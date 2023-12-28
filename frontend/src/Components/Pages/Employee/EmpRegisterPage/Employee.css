@@ -1,0 +1,35 @@
+.search-bar {
+    display: flex;
+    align-items: center;
+  }
+
+  h2 {
+    text-align: center; /* Center the text */
+    color: #007bff; /* Heading color */
+    margin-bottom: 20px; /* Add some space below the heading */
+  }
+  
+
+  /* Employee.css */
+/* Add your custom styles for the table here */
+
+/* Example: Custom styling for the table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+  }
+  
+  /* Add more styles as needed */
+  
+  

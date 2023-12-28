@@ -1,0 +1,118 @@
+/* Register.css */
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0; /* Set background color for the full page */
+  color: #333; /* Set text color for the full page */
+  font-family: Arial, sans-serif; /* Set a default font family */
+}
+.register-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 150vh;
+  background-color: #fff; /* Set background color for the form */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow for depth */
+  width: 70%;
+  margin: 0 auto;
+}
+h1 {
+  text-align: center; /* Center the text */
+  color: #007bff; /* Heading color */
+  margin-bottom: 20px; /* Add some space below the heading */
+}
+h2 {
+  text-align: center; /* Center the text */
+  color: #007bff; /* Heading color */
+  margin-bottom: 20px; /* Add some space below the heading */
+}
+
+
+
+
+/* Style for labels */
+label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* Style for input fields */
+input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc; /* Add a border to the input fields */
+  border-radius: 4px; /* Add border-radius for rounded corners */
+}
+
+/* Style for select boxes */
+.selectlocation {
+  text-align: center;
+  width: 50%;
+  padding: 8px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc; /* Add a border to the select boxes */
+  border-radius: 4px;
+  margin-left: 150px; /* Add border-radius for rounded corners */
+}
+.selectRole {
+  text-align: center;
+  width: 50%;
+  padding: 8px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc; /* Add a border to the select boxes */
+  border-radius: 4px;
+  margin-left: 100px; /* Add border-radius for rounded corners */
+}
+.fistselectrole {
+  text-align: center;
+  width: 50%;
+  padding: 8px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc; /* Add a border to the select boxes */
+  border-radius: 4px;
+  margin-left: 400px; /* Add border-radius for rounded corners */
+}
+
+/* Style for the submit button */
+button {
+  background-color: #007bff; /* Button color */
+  color: #fff; /* Text color */
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Change button color on hover */
+button:hover {
+  background-color: #0056b3; /* Hover color */
+}
+
+
+.formbody {
+  background-color: #eaeaea; /* Set background color for the formbody */
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 50px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.formbody label {
+  display: block;
+  margin-bottom: 8px;
+  color: #333; /* Set text color for labels within the formbody */
+}
+
+.formbody input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
