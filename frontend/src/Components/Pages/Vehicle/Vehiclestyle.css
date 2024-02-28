@@ -1,0 +1,23 @@
+/* FormStyle.css */
+
+.container-fluid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* 100% of the viewport height to center vertically */
+  }
+  
+  .formbody {
+    width: 70%;
+    border: none;
+    padding: 0; /* Remove any default padding */
+   
+    /* Add any other styling for the form body */
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  /* Add more styles as needed */
+  
