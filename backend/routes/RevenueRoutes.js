@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const {  RRDEmployeeEmp } = require('../models/User');
+const {  RRDEmployeeEmp, Revenue } = require('../models/User');
 const bcrypt = require('bcryptjs');
 const verifyToken = require('../middleware/verifyToken')
-
+const verifyToken1 = require('../middleware/verifyToken1');
 
 router.post('/register/addrevenueemp',verifyToken, async (req, res) => {
     try {
@@ -151,6 +151,193 @@ router.post('/register/addrevenueemp',verifyToken, async (req, res) => {
       res.status(500).json({ error: "Internal Server Error" });
     }
   });
+
+
+  //Revenue License Issue
+
+  router.post('/register/revenueregistration', verifyToken, async (req, res) => {
+    try {
+      // Check user role
+      if (req.user.role === 'rregistrationdepartment' || req.user.role === 'VehicleOwner' || req.user.role === 'police' || req.user.role === 'driver') {
+        const existingRevenue = await Revenue.findOne({ engineno: req.body.engineno });
+        if (existingRevenue) {
+          return res.status(409).json({ message: 'vehicleno is already taken' });
+        }
+  
+        // Retrieve other form data
+        const {
+          engineno,
+          owner,
+          email,
+          address,
+          officelocation,
+          issuedate,
+          expdate,
+          amount,
+          weight,
+          seatno,
+          vetnumber,
+          vehicleclass,
+          vehiclefueltype
+        } = req.body;
+  
+       
+  
+        // Create new driver instance
+        const newRevenue = new Revenue({
+          engineno,
+          owner,
+          email,
+          address,
+          officelocation,
+          issuedate,
+          expdate,
+          amount,
+          weight,
+          seatno,
+          vetnumber,
+          vehicleclass,
+          vehiclefueltype
+          
+        });
+  
+        // Save the new driver
+        await newRevenue.save();
+  
+        return res.status(201).json(newRevenue);
+      } else {
+        return res.status(403).json({ message: "Access forbidden. Insufficient role." });
+      }
+    } catch (error) {
+      console.error("Error adding Revenue:", error);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  });
+
+  router.put('/revenueupdate/:id', verifyToken, async (req, res) => {
+    
+    try {
+      
+      if (req.user.role === 'rregistrationdepartment') {
+        const existingRevenue = await Revenue.findOne({
+          _id: req.params.id
+        });
+  
+        if (!existingRevenue) {
+          return res.status(404).json({ message: 'Revenue not found' });
+        }
+  
+       
+        if (req.body.engineno && req.body.engineno !== existingRevenue.engineno) {
+          const vehiclenoTaken = await Revenue.findOne({ engineno: req.body.engineno });
+          if (vehiclenoTaken) {
+            return res.status(409).json({ message: 'Revenue is already registerd..' });
+          }
+        }
+  
+        // Update the existing Revenue data
+        await Revenue.findByIdAndUpdate(req.params.id, req.body);
+  
+        // Fetch and send the updated Revenue data
+        const updatedRevenue = await Revenue.findById(req.params.id);
+        res.status(200).json(updatedRevenue);
+      } else {
+        res.status(403).json({ message: "Access forbidden. Insufficient role." });
+      }
+    } catch (error) {
+      console.error('Error updating Employee data:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  });
+
+  router.get('/revenuesearch', verifyToken, async (req, res) => {
+    try {
+      if (req.user.role === 'rregistrationdepartment' ) {
+        const { userRole, officeLocation, searchInput } = req.query;
+  
+        const searchResults = await Revenue.find({
+          officelocation: officeLocation,
+          // Add other search criteria based on your schema
+          $or: [
+            { vehicleno: { $regex: new RegExp(searchInput, 'i') } },
+            { owner: { $regex: new RegExp(searchInput, 'i') } },
+            
+          ],
+        });
+  
+        res.status(200).json(searchResults);
+      } else {
+        res.status(403).json({ message: "Access forbidden. Insufficient role." });
+      }
+    } catch (error) {
+      console.error("Error searching Employee:", error);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  });
+
+
+  router.delete('/revenuedelete/:_id', verifyToken, async (req, res) => {
+    try {
+      // Check if user role is allowed
+      if (req.user.role === 'rregistrationdepartment' ) {
+        const revenueid = req.params._id;
+        const deletedRevenue = await Revenue.findByIdAndDelete(revenueid);
+  
+      
+        if (deletedRevenue) {
+          return res.status(200).json({ message: 'Revenue deleted successfully' });
+        } else {
+          return res.status(404).json({ message: 'Revenue not found' });
+        }
+      } else {
+        return res.status(403).json({ message: 'Access forbidden. Insufficient role.' });
+      }
+    } catch (error) {
+      console.error('Error deleting Revenue data:', error);
+      return res.status(500).json({ error: 'Internal Server Error' });
+    }
+  });
+
+
+  router.get('/getRevenueData',verifyToken, async (req, res) => {
+    try {
+      if(req.user.role === 'rregistrationdepartment' ){
+
+        const officeLocation = req.user.officelocation;
+
+        const revenues = await Revenue.find({ officelocation: officeLocation });
+        res.status(200).json(revenues);
+      } else {
+        // If the user does not have the required role, return a 403 Forbidden response
+        res.status(403).json({ message: "Access forbidden. Insufficient role." });
+      }
+      
+    } catch (error) {
+      console.error("Error fetching vehicles:", error);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  });
+
+
+  //mobile part
+
+router.get('/getrevenue/:engineno',verifyToken1, async (req, res) => {
+  try {
+    const {engineno } = req.params;
+    
+    const revenueDetails = await Revenue.findOne({ engineno }); // Find revenue details by vehicle number
+    if (!revenueDetails) {
+      return res.status(404).json({ message: 'Revenue details not found' });
+    }
+    res.status(200).json(revenueDetails);
+  } catch (error) {
+    console.error('Error fetching revenue details:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
+
+
+  
   
 
 

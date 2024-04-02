@@ -41,12 +41,18 @@ import RevenueEmpAddForm from './Components/Pages/Revenue/RevenueEmployeeAddForm
 import VehicleViewPage from './Components/Pages/Revenue/VehicleViewPage';
 
 import RegisterRevenu from './Components/Pages/Revenue/RegisterRevenu';
+import RegisterRevuenu from './Components/Pages/Revenue/RegisterRevenu';
+import LoginInsurance from './Components/Auth/Login/LoginInsurance';
+import InsuranceCompanyDashboard from './Components/Dashboard/InsuranceDashboard/InsuranceCompanyDashboard';
+import AddInsurance from './Components/Pages/Insurance/AddInsurance';
 
 function App() {
 
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userRole, setUserRole] = useState(localStorage.getItem('userRole') ||  null);
   const [officeLocation, setOfficeLocation] = useState(localStorage.getItem('officeLocation') || null);
+  const [companyname, setcompanyname] = useState(localStorage.getItem('companyname') || null);
+  const [companyid, setcompanyid] = useState(localStorage.getItem('companyid') || null);
 
 
   useEffect(() => {
@@ -57,7 +63,7 @@ function App() {
   }, []);
 
   return (
-    <UserContext.Provider value={{userRole,setOfficeLocation, officeLocation}}>
+    <UserContext.Provider value={{userRole,setOfficeLocation, officeLocation,companyname,companyid}}>
     <Router>
       <Switch>
         <Route exact path="/" component={Home} />
@@ -68,11 +74,12 @@ function App() {
             <PrivateRoute  path="/motortrafficregistrationdepartment/:officeLocation/addemp" component={(props) => (< MTERegistrationPage {...props} userRole={userRole} officeLocation={officeLocation} />) }  isAuthenticated={isAuthenticated} userRole={userRole} allowedRoles={['motortrafficregistrationdepartment']}  officeLocation={officeLocation} />
             <PrivateRoute  path="/motortrafficregistrationdepartment/:officeLocation/employee"  component={(props) => (<EmployeePage {...props} userRole={userRole} officeLocation={officeLocation} />) } isAuthenticated={isAuthenticated} userRole={userRole} allowedRoles={['motortrafficregistrationdepartment']}  officeLocation={officeLocation}/>   
             <PrivateRoute  path="/motortrafficregistrationdepartment/:officeLocation/vehicle"  component={(props) => (<VehiclePage {...props} userRole={userRole} officeLocation={officeLocation} />) }  isAuthenticated={isAuthenticated} userRole={userRole} allowedRoles={['motortrafficregistrationdepartment']}  officeLocation={officeLocation} />   
-            <PrivateRoute  path="/:userRole/:officeLocation/addvehicle"  component={(props) => (<RegisterVehiclePage {...props} userRole={userRole} officeLocation={officeLocation} />) }  isAuthenticated={isAuthenticated} userRole={userRole} allowedRoles={['motortrafficregistrationdepartment']}  officeLocation={officeLocation} />   
+            <PrivateRoute  path="/motortrafficregistrationdepartment/:officeLocation/addvehicle"  component={(props) => (<RegisterVehiclePage {...props} userRole={userRole} officeLocation={officeLocation} />) }  isAuthenticated={isAuthenticated} userRole={userRole} allowedRoles={['motortrafficregistrationdepartment']}  officeLocation={officeLocation} />   
             <PrivateRoute  path="/motortrafficregistrationdepartment/:officeLocation/driver"  component={(props) => (<DriverPage {...props} userRole={userRole} officeLocation={officeLocation} />) } isAuthenticated={isAuthenticated} userRole={userRole} allowedRoles={['motortrafficregistrationdepartment']}  officeLocation={officeLocation} />   
             <PrivateRoute  path="/motortrafficregistrationdepartment/:officeLocation/adddriver" component={(props) => (<RegisterDriverPage {...props} userRole={userRole} officeLocation={officeLocation} />) }  isAuthenticated={isAuthenticated} userRole={userRole} allowedRoles={['motortrafficregistrationdepartment']}  officeLocation={officeLocation} />   
         <Route path="/login/revenuelrd" render={(props) => <LoginRevenue {...props} setIsAuthenticated={setIsAuthenticated} setUserRole={setUserRole} setOfficeLocation={setOfficeLocation} />} />
             <PrivateRoute  path="/rregistrationdepartment/:officeLocation/dashboard" component={(props) => (<RRDepartmentDashboard {...props} userRole={userRole} officeLocation={officeLocation} />) }  isAuthenticated={isAuthenticated} userRole={userRole} allowedRoles={['rregistrationdepartment']}  officeLocation={officeLocation}/>          
+            <PrivateRoute  path="/rregistrationdepartment/:officeLocation/addrevenue" component={(props) => (<RegisterRevuenu {...props} userRole={userRole} officeLocation={officeLocation} />) }  isAuthenticated={isAuthenticated} userRole={userRole} allowedRoles={['rregistrationdepartment']}  officeLocation={officeLocation}/>          
             <PrivateRoute  path="/rregistrationdepartment/:officeLocation/requestrevenue" component={(props) => (<RequesRevenuePage {...props} userRole={userRole} officeLocation={officeLocation} />) }  isAuthenticated={isAuthenticated} userRole={userRole} allowedRoles={['rregistrationdepartment']}  officeLocation={officeLocation}/>  
             <PrivateRoute  path="/rregistrationdepartment/:officeLocation/revenueemppage" component={(props) => (<RevenueEMpPage {...props} userRole={userRole} officeLocation={officeLocation} />) }  isAuthenticated={isAuthenticated} userRole={userRole} allowedRoles={['rregistrationdepartment']}  officeLocation={officeLocation}/>  
             <PrivateRoute  path="/rregistrationdepartment/:officeLocation/addrevenueemp" component={(props) => (<RevenueEmpAddForm {...props} userRole={userRole} officeLocation={officeLocation} />) }  isAuthenticated={isAuthenticated} userRole={userRole} allowedRoles={['rregistrationdepartment']}  officeLocation={officeLocation}/>  
@@ -85,9 +92,14 @@ function App() {
             <PrivateRoute  path="/police/:officeLocation/addpoliceofficer" component={(props) => (<PoliceRegistrationPage {...props} userRole={userRole} officeLocation={officeLocation} />) }  isAuthenticated={isAuthenticated} userRole={userRole} allowedRoles={['police']}  officeLocation={officeLocation}/>
             <PrivateRoute  path="/police/:officeLocation/fine" component={(props) => (<FinePage {...props} userRole={userRole} officeLocation={officeLocation} />) }  isAuthenticated={isAuthenticated} userRole={userRole} allowedRoles={['police']}  officeLocation={officeLocation}/>
             <PrivateRoute  path="/police/:officeLocation/addfine" component={(props) => (<FineForm {...props} userRole={userRole} officeLocation={officeLocation} />) }  isAuthenticated={isAuthenticated} userRole={userRole} allowedRoles={['police']}  officeLocation={officeLocation}/>
-            <PrivateRoute  path="/:userRole/:officeLocation/driver"  component={(props) => (<DriverView {...props} userRole={userRole} officeLocation={officeLocation} />) } isAuthenticated={isAuthenticated} userRole={userRole} allowedRoles={['police']}  officeLocation={officeLocation} />
-            <PrivateRoute  path="/:userRole/:officeLocation/vehicle"  component={(props) => (<VehicleView {...props} userRole={userRole} officeLocation={officeLocation} />) } isAuthenticated={isAuthenticated} userRole={userRole} allowedRoles={['police']}  officeLocation={officeLocation} />
+            <PrivateRoute  path="/police/:officeLocation/driver"  component={(props) => (<DriverView {...props} userRole={userRole} officeLocation={officeLocation} />) } isAuthenticated={isAuthenticated} userRole={userRole} allowedRoles={['police']}  officeLocation={officeLocation} />
+            <PrivateRoute  path="/police/:officeLocation/vehicle"  component={(props) => (<VehicleView {...props} userRole={userRole} officeLocation={officeLocation} />) } isAuthenticated={isAuthenticated} userRole={userRole} allowedRoles={['police']}  officeLocation={officeLocation} />
 
+
+        <Route path="/login/insurancecompany" render={(props) => <LoginInsurance {...props} setIsAuthenticated={setIsAuthenticated} setUserRole={setUserRole}  setOfficeLocation={setOfficeLocation}  setcompanyname={setcompanyname} setcompanyid={setcompanyid} />} />
+            <PrivateRoute  path="/insurance/:officeLocation/dashboard" component={(props) => (<InsuranceCompanyDashboard {...props} userRole={userRole} officeLocation={officeLocation} />) }  isAuthenticated={isAuthenticated} userRole={userRole} allowedRoles={['insurance']}  officeLocation={officeLocation}/>
+            <PrivateRoute  path="/insurance/:officeLocation/addinsurance" component={(props) => (<AddInsurance {...props} userRole={userRole} officeLocation={officeLocation} />) }  isAuthenticated={isAuthenticated} userRole={userRole} allowedRoles={['insurance']}  officeLocation={officeLocation} companyname={companyname} companyid={companyid} />
+            
 
 
         <Route exact path="/register" component={Register} />

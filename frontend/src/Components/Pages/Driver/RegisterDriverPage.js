@@ -1,16 +1,43 @@
 import React, { useState, useEffect } from 'react';
-import {DriverFields, Vlocations, Bloodtype } from '../../Auth/AdminTEMPRegister/FormStruct';
+import {DriverFields,  Bloodtype } from '../../Auth/AdminTEMPRegister/FormStruct';
 import { useHistory, useLocation } from 'react-router-dom'; // Import useHistory and useLocation from react-router-dom
 
 import axios from 'axios';
+import { imageDb } from './firebase-config';
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+
+const licenseTypes = [
+  { label: "Motor Bike", value: "A" },
+  { label: "3Weel", value: "B" },
+  { label: "Car", value: "C" },
+  { label: "Lorry", value: "D" },
+  { label: "Truck", value: "E" },
+  { label: "Long Truck", value: "F" },
+  { label: "Bus", value: "G" },
+  { label: "Tracktor", value: "H" },
+  { label: "JCB", value: "I" },
+];
+
+
+  
+
+ 
 
 function RegisterDriverPage({userRole, officeLocation}) {
 
   const history = useHistory();
   const location = useLocation();
   const isUpdateMode = location.state && location.state.isUpdateMode; // Check if in update mode
- 
+  
+  const [image, setImage] = useState(null);
 
+  
+  
+
+
+
+
+  
   const [formData, setUserData] = useState({
    
     nic:'',
@@ -22,14 +49,37 @@ function RegisterDriverPage({userRole, officeLocation}) {
     phoneno:'',
     birthday:'',
     issuedate:'',
-    expdate:''
+    expdate:'',
+    drivingLicenseTypes: []
 
   });
 
+  const handleCheckboxChange = (e) => {
+    const { name, checked } = e.target;
+    let updatedLicenseTypes = [...formData.drivingLicenseTypes];
+  
+    if (checked) {
+      // Add the license type to the array
+      updatedLicenseTypes = [...updatedLicenseTypes, name];
+    } else {
+      // Remove the license type from the array
+      updatedLicenseTypes = updatedLicenseTypes.filter((type) => type !== name);
+    }
+  
+    setUserData({ ...formData, drivingLicenseTypes: updatedLicenseTypes });
+  };
+
   useEffect(() => {
     if (isUpdateMode && location.state && location.state.selectedRow) {
-      setUserData(location.state.selectedRow);
-      
+      const formattedData = {
+        ...location.state.selectedRow,
+        birthday: location.state.selectedRow.birthday.split('T')[0],
+        issuedate: location.state.selectedRow.issuedate.split('T')[0],
+        expdate: location.state.selectedRow.expdate.split('T')[0],
+        // Ensure drivingLicenseTypes is an array as expected by checkboxes
+        drivingLicenseTypes: location.state.selectedRow.drivingLicenseTypes || [],
+      };
+      setUserData(formattedData);
     }
   }, [isUpdateMode, location.state]);
 
@@ -38,64 +88,43 @@ function RegisterDriverPage({userRole, officeLocation}) {
     setUserData({ ...formData, [name]: value });
   };
 
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      
-      if(!formData.nic || formData.nic.trim() === "") {
-        console.error("Nic is required");
-        return;
-      }
-      console.log(formData);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-      const token = localStorage.getItem("token");
-
-      if(isUpdateMode) {
-        axios
-        .put(`http://localhost:5000/api/drivers/update/${formData._id}`, 
-        formData,
-        { headers: {Authorization: token}}
-        )
-        .then((response) => {
-          console.log('Driver Updated successfully');
-          window.alert('Driver Updated successfully');
-          history.push(`/${userRole}/${officeLocation}/dashboard`); // Redirect to the BorrowBookTable after update
-        })
-        .catch((error) => {
-          console.error('Error updating Driver:', error);
-        });
-      }
-      else{
-        axios.post('http://localhost:5000/api/drivers/register/driversregistration', 
-        formData,
-        {headers: {Authorization: token}}
-        )
-        .then((response) => {
-          // Handle success (e.g., show a success message, reset the form)
-          console.log("Driver added successfully");
-          window.alert("Driver added successfully");
-          // Reset the form fields
-          setUserData({
-            nic:'',
-            email:'',
-            fullname:'',
-            address:'',
-            officelocation:officeLocation,
-            bloodtype:'',
-            phoneno:'',
-            birthday:'',
-            issuedate:'',
-            expdate:''
-          });
-        })
-        .catch((error) => {
-          // Handle error (e.g., show an error message)
-          console.error("Error adding Driver:", error);
-        });
-        
-      }
-       
-           
+    if (!formData.nic || !image) {
+      alert("NIC and Image are required.");
+      return;
     }
+
+    try {
+      // Upload image to Firebase
+      const imgRef = ref(imageDb, `images/${formData.nic}`);
+      const snapshot = await uploadBytes(imgRef, image);
+      const imageUrl = await getDownloadURL(snapshot.ref);
+      console.log('Image URL:', imageUrl);
+
+      // Prepare form data including the image URL
+      const completeFormData = { ...formData, imageUrl };
+
+      // Submit form data to your API
+      const token = localStorage.getItem('token');
+      const apiURL = isUpdateMode ? `http://localhost:5000/api/drivers/update/${formData._id}` : 'http://localhost:5000/api/drivers/register/driversregistration';
+      
+      await axios({
+        method: isUpdateMode ? 'put' : 'post',
+        url: apiURL,
+        data: completeFormData,
+        headers: { Authorization: token },
+      });
+
+      alert("Driver information submitted successfully.");
+      history.push(`/${userRole}/${officeLocation}/dashboard`);
+    } catch (error) {
+      console.error("Error submitting the form:", error);
+      alert("Failed to submit the form. Please try again.");
+    }
+  };
+
 
    
   
@@ -202,6 +231,33 @@ function RegisterDriverPage({userRole, officeLocation}) {
             ))}
           </select>
         </div>
+
+          {/*image upload*/}
+          <div className='form-group'>
+  <label>Profile Image:</label>
+  <input type="file" onChange={e => setImage(e.target.files[0])} />
+        {/* More form inputs based on your state */}
+      
+</div>
+
+
+        <div className='form-group'>
+  <label>Driving License Types:</label>
+  <div>
+    {licenseTypes.map((type, index) => (
+      <div key={index}>
+        <input
+          type="checkbox"
+          id={type.value}
+          name={type.value}
+          checked={formData.drivingLicenseTypes.includes(type.value)}
+          onChange={handleCheckboxChange}
+        />
+        <label htmlFor={type.value}>{type.label}</label>
+      </div>
+    ))}
+  </div>
+</div>
 
         <button type="submit" className="btn btn-primary">
           {isUpdateMode ? 'Update' : 'Register'}

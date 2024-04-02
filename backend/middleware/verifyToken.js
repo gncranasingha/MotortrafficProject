@@ -1,32 +1,34 @@
 const jwt = require("jsonwebtoken");
-const dotenv = require('dotenv')
+const dotenv = require('dotenv');
 
-dotenv.config()
+dotenv.config();
 
 function verifyToken(req, res, next) {
-  const token = req.headers.authorization; // Assuming you send the token in the 'Authorization' header
- 
-   if (!token) {
-    // Check if the token is stored in sessionStorage
-    token = sessionStorage.getItem('token');
+  // Try to get the token from the Authorization header
+  let token = req.headers.authorization;
 
-    if (!token) {
-      return res.status(403).json({ message: 'Token not provided' });
-    }
+  // Check if the token was provided in the header
+  if (!token) {
+    // If not, return an error response
+    return res.status(403).json({ message: 'Token not provided' });
   }
 
-  jwt.verify(token, process.env.secretKey, (err, decoded) => {
+  // If the token comes with 'Bearer ' prefix, remove it to get the actual token
+  if (token.startsWith('Bearer ')) {
+    // Remove "Bearer " from beginning of the token
+    token = token.slice(7, token.length);
+  }
+
+  // Now we verify the token
+  jwt.verify(token, process.env.secretkey, (err, decoded) => {
     if (err) {
-      return res.status(401).json({ message: "Unauthorized" });
+      // If token is invalid or expired, return an unauthorized status
+      return res.status(401).json({ message: "Unauthorized: Invalid token" });
     }
 
-    // Attach the decoded user information to the request object for use in subsequent middleware or routes
+    // If token is valid, attach the decoded user information to the request object
     req.user = decoded;
-
-   
-
-
-
+    // Proceed to the next middleware or route handler
     next();
   });
 }

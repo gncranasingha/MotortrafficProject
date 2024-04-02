@@ -9,7 +9,8 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-
+import { ref, getDownloadURL } from 'firebase/storage';
+import { imageDb } from '../Driver/firebase-config';
 import './Emptable.css';
 
 const Emptable = ({ userRole, officeLocation, searchResults }) => {
@@ -48,22 +49,29 @@ const Emptable = ({ userRole, officeLocation, searchResults }) => {
 
   const fetchData = () => {
     const token = localStorage.getItem("token");
-   
-    axios
-      .get(`http://localhost:5000/api/drivers/getDriverData`, {
-        headers: { Authorization: token },
-      })
-      .then((response) => {
-       // Update the state with the fetched data
-        setDrivers(response.data);
-        
+    
+    axios.get(`http://localhost:5000/api/drivers/getDriverData`, { headers: { Authorization: token }})
+      .then(async (response) => {
+        // Fetch image URLs for each driver and add them to the driver objects
+        const driversWithImages = await Promise.all(response.data.map(async (driver) => {
+          const imgRef = ref(imageDb, `images/${driver.nic}`);
+          try {
+            const imgUrl = await getDownloadURL(imgRef);
+            return { ...driver, imgUrl };
+          } catch (error) {
+            console.error("Error fetching image URL:", error);
+            return { ...driver, imgUrl: '' }; // Handle missing images or errors gracefully
+          }
+        }));
+  
+        setDrivers(driversWithImages);
       })
       .catch((error) => {
         console.error("Error fetching Drivers:", error);
       });
-  
-   
   };
+
+
   useEffect(()=>{
     fetchData();
   },[]);
@@ -183,6 +191,20 @@ const Emptable = ({ userRole, officeLocation, searchResults }) => {
               >
                Exp Date
               </TableCell>
+              <TableCell
+                align="right"
+                sx={{
+                  bgcolor: '#1800ff',
+                  color: 'white',
+                  fontSize: '1rem',
+                  fontWeight: 'bold',
+                  border: '0',
+                }}
+              >
+               user image
+              </TableCell>
+             
+
               {userRole === 'motortrafficregistrationdepartment' | 'dregistrationdepartment' && (
               <TableCell
                 align="right"
@@ -255,6 +277,10 @@ const Emptable = ({ userRole, officeLocation, searchResults }) => {
                 >
                   {row.expdate} {/* Replace with the actual property from your data */}
                 </TableCell>
+                <TableCell align="right" sx={{ border: '0' }}>
+        <img src={row.imgUrl || 'path/to/default/image'} alt="Driver" style={{ width: 50, height: 50, borderRadius: '50%' }} />
+      </TableCell>
+                
                 {userRole === 'motortrafficregistrationdepartment' | 'dregistrationdepartment' && (
               
                 <TableCell

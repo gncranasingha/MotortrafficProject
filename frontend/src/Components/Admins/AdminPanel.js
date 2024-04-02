@@ -69,7 +69,7 @@ const AdminPanel = () => {
               <div className="card-body d-flex flex-column justify-content-center align-items-center">
                 <img src="https://cdn-icons-png.flaticon.com/512/1869/1869679.png" alt="Admin" style={{ maxWidth: '20%', maxHeight: '20%', borderRadius: '10px', marginBottom: '20px' }} />
                 <div className="mt-auto">
-                  <a href="#" className="btn btn-primary btn-lg" role="button" aria-pressed="true" style={{ width: '400px', height: '50px', paddingTop: "10px", fontWeight: 'bold', fontSize: '1.5rem' }}>
+                  <a href="/login/insurancecompany" className="btn btn-primary btn-lg" role="button" aria-pressed="true" style={{ width: '400px', height: '50px', paddingTop: "10px", fontWeight: 'bold', fontSize: '1.5rem' }}>
                   Insurance Admin
                   </a>
                 </div>

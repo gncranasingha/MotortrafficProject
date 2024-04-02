@@ -32,8 +32,36 @@ const policeFields = [
     { name: 'email', label: 'Email', type: 'email' },
     { name: 'password', label: 'Password', type: 'password' },
     { name: 'address', label: 'Address', type: 'text' },
-   
     { name: 'phoneno', label: 'Phone number', type: 'number' },
+  ];
+
+  const InsuranceFields = [
+    {name:'companyname', label: 'Company Name', type: 'text'},
+    {name:'companyid', label: 'Company Id', type: 'text'},
+    {name:'officeid', label: 'Office Id', type: 'text'},
+    {name:'id', label: 'NIC', type: 'text'},
+    { name: 'fullname', label: 'Full Name', type: 'text' },
+    { name: 'email', label: 'Email', type: 'email' },
+    { name: 'password', label: 'Password', type: 'password' },
+    { name: 'address', label: 'Address', type: 'text' },
+    { name: 'phoneno', label: 'Phone number', type: 'number' },
+   
+  ];
+
+  const InsuranceRegisterFields = [
+    {name:'companyname', label: 'Company Name', type: 'text'},
+    {name:'companyid', label: 'Company Id', type: 'text'},
+    
+    {name:'chassisno', label: 'Chassis NO', type: 'text'},
+    {name:'engineno', label: 'Vehicle NO', type: 'text'},
+    {name:'id', label: 'NIC', type: 'text'},
+    { name: 'fullname', label: 'Full Name', type: 'text' },
+    { name: 'email', label: 'Email', type: 'email' },
+    { name: 'address', label: 'Address', type: 'text' },
+    { name: 'phoneno', label: 'Phone number', type: 'number' },
+    { name: 'issuedate', label: 'Issue Date', type: 'date' },
+    { name: 'expdate', label: 'Expire Date', type: 'date' },
+   
   ];
 
 
@@ -150,6 +178,14 @@ const policeFields = [
   ];
 
   const inputval = [
+   
+    { type:'text', name:'officeid', placeholder:'Office ID' },
+    { type:'email', name:'email', placeholder:'Email' },
+    { type:'password', name:'password', placeholder:'Password' },
+  ]
+  const inputvalinsurance = [
+    { type:'text', name:'companyid', placeholder:'Company ID' },
+    { type:'text', name:'companyname', placeholder:'Company Name' },
     { type:'text', name:'officeid', placeholder:'Office ID' },
     { type:'email', name:'email', placeholder:'Email' },
     { type:'password', name:'password', placeholder:'Password' },
@@ -190,6 +226,7 @@ const policeFields = [
     { name: 'address', label: 'Address', type: 'text' },
     { name: 'phoneno', label: 'Phone number', type: 'number' },
   ];
+ 
 
   const VehicleClass = [
     { value: 'motorcycle', label: 'Motor Cycle' },
@@ -217,6 +254,16 @@ const policeFields = [
     { value: 'sabaragamuwa', label: 'Sabaragamuwa Province' },
     { value: 'central', label: 'Central Province' },
     { value: 'eastern', label: 'Eastern Province' },
+  ]
+  const VehicleProvinceInsurance = [
+    { value: 'NP', label: 'North Province' },
+    { value: 'NC', label: 'North Center Province' },
+    { value: 'WP', label: 'Western Province' },
+    { value: 'UP', label: 'Uva Province' },
+    { value: 'SP', label: 'South Province' },
+    { value: 'SP', label: 'Sabaragamuwa Province' },
+    { value: 'CP', label: 'Central Province' },
+    { value: 'EP', label: 'Eastern Province' },
   ]
   const Vehicleorigincountry = [
     { value: 'srilanka', label: 'Sri Lanka' },
@@ -295,9 +342,24 @@ const policeFields = [
     { value: 'willysmb', label: 'Willys MB' },
   ]
 
+  const RevenueLFeald = [
+    {name:'engineno', label: 'Vehicle Number', type: 'text'},
+    {name:'owner', label: 'Vehicle Owner', type: 'text'},
+    { name: 'address', label: 'Address', type: 'text' },
+    { name: 'email', label: 'Email', type: 'email' },
+    { name: 'issuedate', label: 'Issue Date', type: 'date' },
+    { name: 'expdate', label: 'Expire Date', type: 'date' },
+    { name: 'amount', label: 'Amount(Rs)', type: 'number' },
+    { name: 'weight', label: 'Gross Weight', type: 'text' },
+    { name: 'seatno', label: 'Number of Seate', type: 'number' },
+    { name: 'vetnumber', label: 'Vet Number', type: 'number' },
+  ];
+
 
   
-  export {policeFields, VRDEmployeeFields, RRDEmployeeFields, Plocations, Vlocations, Dlocations, Rlocations 
+  export {policeFields, VRDEmployeeFields, RRDEmployeeFields,InsuranceFields, Plocations, Vlocations, Dlocations, Rlocations 
     ,MTERole, PRole, inputval, VehicleFields,  VehicleClass, VehicleStatus, BikeModel,  VehicleColor
     ,VehicleProvince, VehicleCylinderCapacity, VehicleTaxationClass, VehicleFuelType, Vehicleorigincountry
-    ,weelModel, CarModel ,JeepModel, DriverFields, Bloodtype, FineFields, LisanceStatus, NewClass, OldClass };
+    ,weelModel, CarModel ,JeepModel, DriverFields, Bloodtype, FineFields, LisanceStatus, NewClass, OldClass , RevenueLFeald, inputvalinsurance,VehicleProvinceInsurance
+    ,InsuranceRegisterFields
+  };
