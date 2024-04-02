@@ -13,6 +13,7 @@ const Driver = require('./routes/DriverRoutes')
 const Vehicle = require('./routes/VehicleRoute')
 const MotorTraffic = require('./routes/MotorTrafficRoute')
 const Revenue = require('./routes/RevenueRoutes')
+const Insurance = require('./routes/InsuranceRoutes')
 const Fine = require('./routes/FineRoutes')
 
 
@@ -36,6 +37,7 @@ app.use('/api/drivers', verifyToken, Driver );
 app.use('/api/vehicle', verifyToken, Vehicle );
 app.use('/api/motortraffic', verifyToken, MotorTraffic );
 app.use('/api/revenue', verifyToken, Revenue );
+app.use('/api/insurance', verifyToken, Insurance );
 app.use('/api/fine', verifyToken, Fine );
 
 

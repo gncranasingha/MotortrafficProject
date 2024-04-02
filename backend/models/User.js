@@ -45,6 +45,136 @@ const userSchema = new mongoose.Schema({
 
 const Police = mongoose.model('Police', userSchema, 'admin');
 
+const user11Schema = new mongoose.Schema({
+  companyid: {
+    type:String,
+    required:true,
+    unique:true
+  },
+  officeid: {
+    type:String,
+    required:true,
+    unique:true
+  },
+  companyname: {
+    type:String,
+    required:true,
+    unique:true
+  },
+  id: {
+    type:String,
+    required:true,
+    unique:true
+  },
+  fullname: {
+    type: String,
+    required: true,
+  },
+  address: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+  officelocation: {
+    type: String,
+    required: true,
+  },
+  phoneno: {
+    type: Number,
+    required: true,
+  },
+  role: {
+    type: String,
+    required: true,
+    enum: 'insurance', 
+  },
+});
+
+const Insurance = mongoose.model('Insurance', user11Schema, 'admin');
+
+const user12Schema = new mongoose.Schema({
+  companyid: {
+    type:String,
+    required:true,
+    unique:true
+  },
+  companyname: {
+    type:String,
+    required:true,
+    unique:true
+  },
+  chassisno:{
+    type:String,
+    required:true,
+    unique:true
+  },
+  engineno:{
+    type:String,
+    required:true,
+    unique:true
+  },
+  id: {
+    type:String,
+    required:true,
+    unique:true
+  },
+  fullname: {
+    type: String,
+    required: true,
+  },
+  address: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+  },
+ 
+  officelocation: {
+    type: String,
+    required: true,
+  },
+  phoneno: {
+    type: Number,
+    required: true,
+  },
+  issuedate: {
+    type:Date,
+    required:true,
+  },
+  expdate: {
+    type:Date,
+    required:true,
+  },
+  vehicleclass:{
+    type:String,
+    required:true,
+  },
+  vehiclemodel:{
+    type:String,
+    required:true,
+  },
+  vehicleprovince:{
+    type:String,
+    
+  },
+  role: {
+    type: String,
+   
+    enum: 'insurance', 
+  },
+});
+
+const Insurancedetails = mongoose.model('Insurancedetails', user12Schema, 'insurance');
+
 
 const user7Schema = new mongoose.Schema({
   officeid: {
@@ -54,7 +184,7 @@ const user7Schema = new mongoose.Schema({
   },
   username:{
     type:String,
-    unique:true
+   
   },
   id: {
     type:String,
@@ -318,7 +448,7 @@ const user5Schema = new mongoose.Schema({
   },
   email: {
     type:String,
-    
+    required: true,
   },
   address: {
     type: String,
@@ -333,9 +463,8 @@ const user5Schema = new mongoose.Schema({
     type: String,
   },
   username: {
-    type: String,
+    type: String, 
    
-    unique: true,
   },
   officelocation: {
     type: String,
@@ -400,9 +529,8 @@ const user6Schema = new mongoose.Schema({
     type: String,
   },
   username: {
-    type: String,
-   
-    unique: true,
+    type: String, 
+    
   },
   fullname: {
     type: String,
@@ -437,6 +565,13 @@ const user6Schema = new mongoose.Schema({
   expdate: {
     type:Date,
     required:true,
+  },
+  imagePath: {
+    type: String, // Store the path to the uploaded image
+  },
+  drivingLicenseTypes: {
+    type: [String], // An array of strings to store the driving license types
+    required: true,
   },
   role: {
     type: String,
@@ -533,4 +668,76 @@ const user8Schema = new mongoose.Schema({
 const Fines = mongoose.model('Fines', user8Schema, 'fines');
 
 
-module.exports = {PoliceEmp, Police, RRDEmployee, DRDEmployee, MTRDEmployee, MTDVehicle, Driver, Fines,RRDEmployeeEmp};
+const user10Schema = new mongoose.Schema({
+  engineno: {
+    type:String,
+    required:true,
+    unique:true
+  },
+  owner: {
+    type:String,
+    required:true,
+    unique:true
+  },
+  email: {
+    type:String,
+    required:true,
+  },
+  address: {
+    type: String,
+    required: true,
+  },
+  officelocation: {
+    type: String,
+    required: true,
+  },
+  issuedate: {
+    type:Date,
+    required:true,
+  },
+  expdate: {
+    type:Date,
+    required:true,
+  },
+  amount: {
+    type: Number,
+    required: true,
+    
+  },
+  weight: {
+    type: String,
+    required: true,
+    
+  },
+  seatno: {
+    type: String,
+    required: true,
+   
+  },
+  vetnumber: {
+    type: Number,
+    required: true,
+  },
+ 
+  
+  vehicleclass: {
+    type: String,
+    required: true,
+  },
+ 
+  vehiclefueltype: {
+    type: String,
+    required: true,
+  },
+  role: {
+    type: String,
+    enum:  ['VehicleOwner','dregistrationdepartment','motortrafficregistrationdepartment','police','Police','rregistrationdepartment','vregistrationdepartment'],
+  },
+});
+
+const Revenue = mongoose.model('Revenue', user10Schema, 'revenueLicenses');
+
+
+
+
+module.exports = {PoliceEmp, Police, RRDEmployee, DRDEmployee, MTRDEmployee, MTDVehicle, Driver, Fines,RRDEmployeeEmp, Revenue,Insurance,Insurancedetails};

@@ -1,13 +1,14 @@
 import React from 'react';
 import { Button, Form, Container, Row, Col } from 'react-bootstrap';
-import Emptable from '../Employee/Emptable';
+
 import { Link } from 'react-router-dom';
 import ListItemButton from '@mui/material/ListItemButton';
 
 import axios from "axios";
 import  { useState, useEffect } from 'react'
+import RevenueViewTable from './Revenuetable';
 
-import VehicleTable from '../Vehicle/VehicleTable';
+
 
 const RevenueEMp = ({ userRole, officeLocation }) => {
   const [searchInput, setSearchInput] = useState('');
@@ -19,7 +20,7 @@ const RevenueEMp = ({ userRole, officeLocation }) => {
    const handleSearch = () => {
     const token = localStorage.getItem('token');
     axios
-      .get(`http://localhost:5000/api/vehicle/search`, {
+      .get(`http://localhost:5000/api/revenue/revenuesearch`, {
         headers: { Authorization: token },
         params: { userRole, officeLocation, searchInput },
       })
@@ -89,7 +90,7 @@ const RevenueEMp = ({ userRole, officeLocation }) => {
 
 
 
-      <h2>Add Revenue Employee</h2>
+      <h2>Add First New Revenue </h2>
           <br/><br/>
       <Form>
         <Row className="mb-3">
@@ -111,14 +112,14 @@ const RevenueEMp = ({ userRole, officeLocation }) => {
       </Form><br/>
       <ListItemButton
         component={Link}
-        to={`/${userRole}/${officeLocation}/updaterevenue`}
+        to={`/${userRole}/${officeLocation}/addrevenue`}
         className="custom-link-style"
       >
         Issue First Revenue
       </ListItemButton>
      
           <br/><br/>
-      <VehicleTable userRole={userRole} officeLocation={officeLocation} searchResults={searchResults}  />
+      <RevenueViewTable  userRole={userRole} officeLocation={officeLocation}  searchResults={searchResults}/>
     </Container>
   );
 };

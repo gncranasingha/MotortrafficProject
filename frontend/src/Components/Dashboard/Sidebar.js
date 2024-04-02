@@ -87,6 +87,18 @@ const Sidebar = ({ userRole, officeLocation }) => {
          
           
         ];
+
+
+      case 'insurance':
+        return [
+          { text: 'DashBoard', icon: <GridViewIcon />, path: `/${userRole}/${officeLocation}/dashboard` },
+          { text: 'First Registration ', icon: <PersonIcon />, path: `/${userRole}/${officeLocation}/addinsurance` },  //this url want to change according to the user location
+          { text: 'Request Update', icon: <DirectionsCarFilledIcon />, path: `` }, //this url want to fetch all vehicle details 
+          { text: 'About Us', icon: <EmojiTransportationIcon />, path: `` },
+          { text: 'Setting', icon: <SettingsIcon />, path: `` },
+         
+          
+        ];
       
       default:
         return [];
