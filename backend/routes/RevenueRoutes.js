@@ -321,7 +321,7 @@ router.post('/register/addrevenueemp',verifyToken, async (req, res) => {
 
   //mobile part
 
-router.get('/getrevenue/:engineno',verifyToken1, async (req, res) => {
+router.get('/getrevenue/:engineno',verifyToken, async (req, res) => {
   try {
     const {engineno } = req.params;
     

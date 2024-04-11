@@ -575,13 +575,13 @@ router.post('/login/mobile', async (req, res) => {
     }
 
     // Create token using token payload
-    const token1 = jwt.sign(
+    const token = jwt.sign(
       tokenPayload,
       process.env.secretkey,
       { expiresIn: '1h' }
     );
 
-    res.status(200).json({ token1 });
+    res.status(200).json({ token });
   } catch (error) {
     console.error('Login error:', error);
     res.status(500).json({ message: 'Login failed' });

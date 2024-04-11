@@ -15,6 +15,7 @@ const MotorTraffic = require('./routes/MotorTrafficRoute')
 const Revenue = require('./routes/RevenueRoutes')
 const Insurance = require('./routes/InsuranceRoutes')
 const Fine = require('./routes/FineRoutes')
+const Requestss = require('./routes/RequestRouter')
 
 
 dotenv.config();
@@ -39,6 +40,7 @@ app.use('/api/motortraffic', verifyToken, MotorTraffic );
 app.use('/api/revenue', verifyToken, Revenue );
 app.use('/api/insurance', verifyToken, Insurance );
 app.use('/api/fine', verifyToken, Fine );
+app.use('/api/requestss', verifyToken, Requestss );
 
 
 app.listen(port, () => {

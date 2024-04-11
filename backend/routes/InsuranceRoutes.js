@@ -94,7 +94,7 @@ router.post('/register/addInsurance',verifyToken, async (req, res) => {
 
   //mobile part
 
-router.get('/getinsurance/:engineno',verifyToken1, async (req, res) => {
+router.get('/getinsurance/:engineno',verifyToken, async (req, res) => {
   try {
     const { engineno } = req.params;
     const insuranceDetail = await Insurancedetails.findOne({ engineno }); // Find insurance details by vehicle number

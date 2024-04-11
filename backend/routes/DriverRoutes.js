@@ -7,8 +7,6 @@ const verifyToken = require('../middleware/verifyToken');
 const verifyToken1 = require('../middleware/verifyToken1');
 const bcrypt = require('bcrypt');
 const nodemailer = require('nodemailer');
-const AccessRequest = require('../models/socket'); // Import the AccessRequest model
-
 
 
 
@@ -235,7 +233,7 @@ router.get('/search', verifyToken, async (req, res) => {
 
 
 
-router.get('/getdriverdetails/:nic', verifyToken1, async (req, res) => {
+router.get('/getdriverdetails/:nic', verifyToken, async (req, res) => {
   try {
     const { nic } = req.user; // Assuming NIC is stored in the JWT token
     const driver = await Driver.findOne({ nic });
@@ -249,66 +247,6 @@ router.get('/getdriverdetails/:nic', verifyToken1, async (req, res) => {
     res.status(500).send({ message: 'Error fetching driver details' });
   }
 });
-
-
-//Vehicle request route related to mobile
-
-
-
-
-router.post('/access-request', async (req, res) => {
-  try {
-    const { driverId, vehicleNumber, ownerId, accessPeriod } = req.body;
-
-    // Create a new access request
-    const accessRequest = new AccessRequest({
-      driverId,
-      vehicleNumber,
-      ownerId,
-      accessPeriod,
-    });
-
-    // Save the access request to the database
-    await accessRequest.save();
-
-    res.status(201).json({ message: 'Access request submitted successfully' });
-  } catch (error) {
-    console.error('Error handling access request:', error);
-    res.status(500).json({ message: 'Internal server error' });
-  }
-});
-
-
-router.put('/access-requests/:id/accept', async (req, res) => {
-  try {
-    const { id } = req.params;
-    // Find the access request by ID
-    const accessRequest = await AccessRequest.findById(id);
-    if (!accessRequest) {
-      return res.status(404).json({ message: 'Access request not found' });
-    }
-    // Implement your logic here to handle the accepted access request, such as granting access to the requested documents
-    // For example, you can update the access request status in the database
-    accessRequest.status = 'accepted';
-    await accessRequest.save();
-    res.status(200).json({ message: 'Access request accepted successfully' });
-  } catch (error) {
-    console.error('Error accepting access request:', error);
-    res.status(500).json({ message: 'Internal server error' });
-  }
-});
-
-router.get('/access-requests', async (req, res) => {
-  try {
-    // Retrieve all access requests from the database
-    const accessRequests = await AccessRequest.find();
-    res.status(200).json(accessRequests);
-  } catch (error) {
-    console.error('Error fetching access requests:', error);
-    res.status(500).json({ message: 'Internal server error' });
-  }
-});
-
 
 
 
