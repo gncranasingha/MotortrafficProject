@@ -1,11 +1,47 @@
 import React, { useEffect, useState } from "react";
+import Button from '@mui/material/Button';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
 import axios from "axios";
-
+import { useHistory } from 'react-router-dom';
 
 const PoliceOfficersTable = ({ userRole, officeLocation, searchResults }) => {
-    
+  const history = useHistory();
   const [employee, setEmployees] = useState(searchResults ||[]);
   
+
+  const handleUpdate = (row) => {
+   
+    // Navigate to the BorrowBook form and pass selected row data as state
+    history.push({
+      pathname: `/${userRole}/${officeLocation}/addpoliceofficer`,
+      state: { isUpdateMode: true, selectedRow: row },
+    });
+  };
+
+  const handleDelete = (DriverId) => {
+    // Add logic to delete the Driver with the specified ID
+    const token = localStorage.getItem('token');
+    axios
+      .delete(`http://localhost:5000/api/drivers/delete/${DriverId}`, {
+        headers: { Authorization: token },
+      })
+      .then((response) => {
+        console.log('Driver deleted successfully');
+        window.alert('Driver deleted successfully');
+       
+       fetchData();
+      })
+      .catch((error) => {
+        console.error('Error deleting Driver:', error);
+      });
+  };
+
 
   const fetchData =() => {
     const token = localStorage.getItem("token");
@@ -40,79 +76,201 @@ const PoliceOfficersTable = ({ userRole, officeLocation, searchResults }) => {
 
 
   return (
-    <div className="container-fluid">
-
-    <style>
-      {`
-        /* Emptable.css */
-
-        /* Custom styles for the entire table */
-        .table {
-            width: 100%; /* Make the table full-width */
-            font-size: 16px;
-            background-color: lightblue;
-            border: 2px solid black; /* Add border to the entire table */
-            margin: 0; /* Remove any margin */
-            padding: 0; /* Remove any padding */
-        }
-        
-        /* Custom styles for table headers */
-        .table th {
-            background-color: #ff000d; /* Header background color */
-            color: white; /* Header text color */
-            border: 1px solid black; /* Add border to header cells */
-        }
-        
-        /* Custom styles for table rows */
-        .table tr {
-            border: 1px solid black; /* Add border to all cells in a row */
-        }
-        
-        .table tr:nth-child(even) {
-            background-color: #f2f2f2; /* Alternate row background color */
-        }
-        
-        /* Define more custom styles as needed */
-        
-      `}
-    </style>
-
-
-
-
-
-      <div className="table-responsive">
-        <table className="table">
-          <thead>
-            <tr>
-              <th>Police ID</th>
-              <th>ID</th>
-              <th>Full Name</th>
-              <th>Email</th>
-              <th>address</th>
-              <th>officeLocation</th>
-              <th>Phone No</th>
-             
-            </tr>
-          </thead>
-          <tbody>
-          {employee.map((employee, index) => (
-            <tr key={index}>
-              <td>{employee.officeid}</td>
-              <td>{employee.id}</td>
-              <td>{employee.fullname}</td>
-              <td>{employee.email}</td>
-              <td>{employee.address}</td>
-              <td>{employee.officelocation}</td>
-              <td>{employee.phoneno}</td>
-             
+    <div>
+      <TableContainer component={Paper}>
+        <Table
+          sx={{
+            minWidth: 650,
+            fontSize: '1.2rem',
+            border: '0',
+          }}
+          size="small"
+          aria-label="a dense table"
+        >
+          <TableHead>
+            <TableRow>
+              <TableCell
+                sx={{
+                  bgcolor: '#6905fa',
+                  color: 'white',
+                  fontSize: '1rem',
+                  fontWeight: 'bold',
+                  border: '0',
+                }}
+              >
+                Police ID
+              </TableCell>
+              <TableCell
+                align="right"
+                sx={{
+                  bgcolor: '#6905fa',
+                  color: 'white',
+                  fontSize: '1rem',
+                  fontWeight: 'bold',
+                  border: '0',
+                }}
+              >
+               NIC
+              </TableCell>
+              <TableCell
+                align="right"
+                sx={{
+                  bgcolor: '#6905fa',
+                  color: 'white',
+                  fontSize: '1rem',
+                  fontWeight: 'bold',
+                  border: '0',
+                }}
+              >
+                Full Name
+              </TableCell>
+              <TableCell
+                align="right"
+                sx={{
+                  bgcolor: '#6905fa',
+                  color: 'white',
+                  fontSize: '1rem',
+                  fontWeight: 'bold',
+                  border: '0',
+                }}
+              >
+                 Email
+              </TableCell>
+              <TableCell
+                align="right"
+                sx={{
+                  bgcolor: '#6905fa',
+                  color: 'white',
+                  fontSize: '1rem',
+                  fontWeight: 'bold',
+                  border: '0',
+                }}
+              >
+                Address
+              </TableCell>
+              <TableCell
+                align="right"
+                sx={{
+                  bgcolor: '#6905fa',
+                  color: 'white',
+                  fontSize: '1rem',
+                  fontWeight: 'bold',
+                  border: '0',
+                }}
+              >
+               Office Location
+              </TableCell>
+              <TableCell
+                align="right"
+                sx={{
+                  bgcolor: '#6905fa',
+                  color: 'white',
+                  fontSize: '1rem',
+                  fontWeight: 'bold',
+                  border: '0',
+                }}
+              >
+              Phone No
+              </TableCell>
               
-            </tr>
-          ))}
-            {/* Add more rows as needed */}
-          </tbody>
-        </table>
-      </div>
+
+              <TableCell
+                align="right"
+                sx={{
+                  bgcolor: '#6905fa',
+                  color: 'white',
+                  fontSize: '1rem',
+                  fontWeight: 'bold',
+                  border: '0',
+                }}
+              >
+                Action
+              </TableCell>
+             
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {employee.map((row, index) => (
+              <TableRow
+                key={index}
+                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              >
+                <TableCell
+                  component="th"
+                  scope="row"
+                  sx={{ border: '0', color: '#1471eb', fontSize: '19px' }}
+                >
+                  {row.officeid} {/* Replace with the actual property from your data */}
+                </TableCell>
+                <TableCell
+                  align="right"
+                  sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
+                >
+                  {row.id} {/* Replace with the actual property from your data */}
+                </TableCell>
+                <TableCell
+                  align="right"
+                  sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
+                >
+                  {row.fullname} {/* Replace with the actual property from your data */}
+                </TableCell>
+                <TableCell
+                  align="right"
+                  sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
+                >
+                  {row.email} {/* Replace with the actual property from your data */}
+                </TableCell>
+                <TableCell
+                  align="right"
+                  sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
+                >
+                  {row.address} {/* Replace with the actual property from your data */}
+                </TableCell>
+               
+                <TableCell
+                  align="right"
+                  sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
+                >
+                  {row.officelocation} {/* Replace with the actual property from your data */}
+                </TableCell>
+                <TableCell
+                  align="right"
+                  sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
+                >
+                  {row.phoneno} {/* Replace with the actual property from your data */}
+                </TableCell>
+                
+                {userRole === 'Police' | 'police' && (
+            
+            <TableCell
+              align="right"
+              sx={{ border: '0', color: 'blue', fontWeight: '#1471eb', fontSize: '16px', display:'flex' }}
+            >
+              
+              <Button
+                variant="contained"
+                style={{ backgroundColor: 'green', color: 'white' }}
+                onClick={() => handleUpdate(row)}
+              >
+                Update
+              </Button>
+              <Button
+                variant="contained"
+                style={{ backgroundColor: 'red', color: 'white' }}
+                onClick={() => handleDelete(row._id)}
+              >
+                Delete
+              </Button>
+            </TableCell>
+            )}
+               
+              
+              
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </div>
   );
 };

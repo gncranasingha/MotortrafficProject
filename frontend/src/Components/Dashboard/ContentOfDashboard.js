@@ -36,7 +36,7 @@ const ContentOfDashboard = () => {
     </div>
     <div className="row" style={{ paddingBottom: '16px', paddingRight:'20px' }}>
           <div className="col-12" style={{ maxHeight: '300px', overflowY: 'auto' }}>
-          <ExpListTable/>
+          
           </div>
     </div>
   </Box>

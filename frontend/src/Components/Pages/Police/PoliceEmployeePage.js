@@ -36,7 +36,7 @@ const PoliceEmployeePage = ({ userRole, officeLocation }) => {
 
 
   return (
-    <Container fluid style={{paddingLeft:"20px", paddingRight:"20px",backgroundColor: "#d4e8ec"}} >
+    <Container fluid style={{paddingLeft:"20px", paddingRight:"20px",paddingBottom:"483px", backgroundColor:'#e5d4fe'}} >
 
 
     <style>
@@ -53,9 +53,10 @@ const PoliceEmployeePage = ({ userRole, officeLocation }) => {
             border-radius: 0.25rem;
           }
           h2 {
-          color: #007bff; /* Text color */
+          color: #6905fa; /* Text color */
           font-size: 2rem; /* Font size */
           margin-bottom: 1rem; /* Bottom margin */
+          
         }
           
           /* Styles for the search button */
@@ -65,7 +66,7 @@ const PoliceEmployeePage = ({ userRole, officeLocation }) => {
           
           /* Custom styles for the link button */
           .custom-link-style {
-            background-color: #007bff; /* Bootstrap primary color */
+            background-color:#6905fa ; /* Bootstrap primary color */
             color: #fff;
             border-radius: 0.25rem;
             padding: 0.375rem 20%;
@@ -75,7 +76,11 @@ const PoliceEmployeePage = ({ userRole, officeLocation }) => {
           }
           
           .custom-link-style:hover {
-            background-color: #0056b3; /* Darker shade on hover */
+            background-color: #007bff; /* Darker shade on hover */
+            color: #fff;
+          }
+          search-button:hover {
+            background-color: #6905fa; /* Darker shade on hover */
             color: #fff;
           }
           

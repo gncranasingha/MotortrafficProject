@@ -8,7 +8,7 @@ import Navpage from './NavContent';
 function ResponsiveAppBar() {
  
   return (
-    <AppBar position="static" sx={{ backgroundColor: 'blue' }} >
+    <AppBar position="static" sx={{ backgroundColor: '#6905fa' }} >
       <Container maxWidth="xl">
         <Navpage/>
       </Container>

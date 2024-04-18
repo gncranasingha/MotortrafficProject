@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-
 const path = require('path');
+
 
 const verifyToken = require('../middleware/verifyToken');
 
@@ -128,6 +128,8 @@ router.get('/acceptRequest/:driverNIC', async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 });
+
+
 
   
   

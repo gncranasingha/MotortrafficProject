@@ -16,7 +16,7 @@ const drawerWidth = 240;
 const PoliceDepartmentDashboard = (props) => {
   const { userRole, officeLocation } = props;
   return (
-    <Box sx={{ display: 'flex',  overflow:'hidden'}}>
+    <Box sx={{ display: 'flex',  overflow:'hidden', backgroundColor:'#e5d4fe'}}>
       <CssBaseline />
       <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
 
@@ -28,7 +28,7 @@ const PoliceDepartmentDashboard = (props) => {
         sx={{
           width: drawerWidth,
           flexShrink: 0,
-          [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box', backgroundColor: 'blue' },
+          [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box', backgroundColor: '#6905fa' },
         }}
       >
         <Toolbar />
@@ -48,19 +48,43 @@ const PoliceDepartmentDashboard = (props) => {
             
             </div>
 
-            <div className="row" style={{ paddingBottom: '16px' }}>
+
+            <div className="row" style={{ paddingBottom: '36px' }}>
+          <div className="col-12 text-center ">
+            <h3 style={{color:'#6905fa',fontWeight:'bold', fontFamily:'serif'}}> Police Officers Table</h3>
+          </div>
+        </div>
+
+
+            <div className="row" style={{ paddingBottom: '36px' }}>
               <div className="col-12" style={{ maxHeight: '300px', overflowY: 'auto' }}>
                 <PoliceOfficersTable/>
               </div>
               
             </div>
+
             <div className="row" style={{ paddingBottom: '16px' }}>
+          <div className="col-12 text-center ">
+            <h3 style={{color:'#6905fa',fontWeight:'bold', fontFamily:'serif'}} >Drivers Table</h3>
+          </div>
+        </div>
+
+
+            <div className="row" style={{ paddingBottom: '36px' }}>
               
               <div className="col-12" style={{ maxHeight: '300px', overflowY: 'auto' }}>
                 <GetAllDrivers/>
               </div>
               
             </div>
+
+
+            <div className="row" style={{ paddingBottom: '16px' }}>
+          <div className="col-12 text-center ">
+            <h3 style={{color:'#6905fa',fontWeight:'bold', fontFamily:'serif'}} >Vehicle Table</h3>
+          </div>
+        </div>
+
             <div className="row" style={{ paddingBottom: '16px' }}>
              
               <div className="col-12" style={{ maxHeight: '300px', overflowY: 'auto' }}>

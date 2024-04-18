@@ -74,8 +74,9 @@ function LoginPolice({ setIsAuthenticated, setUserRole, setOfficeLocation, histo
   };
 
   return (
+    <div style={{backgroundColor: '#e5d4fe', height: '100vh'}} >
     <div className="form-container" style={{backgroundColor: "#d4e8ec"}}>
-      <h2>Login</h2>
+      <h2 className='heading'>Login</h2>
       <form onSubmit={handleSubmit}>
         <select name="role" onChange={handleChange} required className="form-control" value={loginData.role} >
           
@@ -83,11 +84,10 @@ function LoginPolice({ setIsAuthenticated, setUserRole, setOfficeLocation, histo
         </select>
         {inputval.map((option,index) => (
             <div key={index}  className="inputfeald mb-3" >
-                <label className='form-label' >{option.placeholder}</label>
-                <input type={option.type} name={option.name} placeholder={option.placeholder} onChange={handleChange} required className="form-control" />
+                 <input type={option.type} name={option.name} placeholder={option.placeholder} onChange={handleChange} required className="form-control" />
             </div>
         ))}
-        <select name="officelocation" onChange={handleChange} required className="form-control" >
+        <select name="officelocation" onChange={handleChange} required className="form-control location" >
           <option value="">Select your location</option>
           {Plocations.map((option,index) => (
           <option key={index} value={option.value}>
@@ -95,10 +95,11 @@ function LoginPolice({ setIsAuthenticated, setUserRole, setOfficeLocation, histo
           </option>
         ))}
         </select>
-        <button type="submit" className="btn btn-primary mt-3" >Login</button>
+        <button type="submit" className="btn btn-primary mt-3" style={{backgroundColor:'#6905fa'}} >Login</button>
       </form>
 
       {errorMessage && <p className="error-message">{errorMessage}</p>}
+    </div>
     </div>
   );
 }

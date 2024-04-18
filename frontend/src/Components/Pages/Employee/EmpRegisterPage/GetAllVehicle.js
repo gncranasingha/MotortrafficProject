@@ -2,6 +2,14 @@ import React, { useState, useEffect,useContext } from 'react'
 
 import axios from "axios";
 
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import Button from '@mui/material/Button';
 
 const GetAllVehicleTable = () => {
 
@@ -37,84 +45,363 @@ const GetAllVehicleTable = () => {
 
 
   return (
-    <div className="">
-
-     {/* Your CSS styles for the table */}
-     <style> 
-      {`
-        /* YourTableComponent.css */
-
-        /* Custom styles for the entire table */
-        .table {
-            font-size: 16px;
-            background-color: lightblue;
-          }
-          
-          /* Custom styles for table headers */
-          .table th {
-            background-color: #ff000d; /* Header background color */
-            color: white; /* Header text color */
-          }
-          
-          /* Custom styles for table rows */
-          .table tr:nth-child(even) {
-            background-color: #f2f2f2; /* Alternate row background color */
-          }
-          
-          /* Define more custom styles as needed */
-          
-      `}
-     </style>
-
-
-
-
-    <table className="table table-responsive">
-      <thead>
-        <tr>
-          <th>Chassino</th>
-          <th>Engine No</th>
-          <th>Seating Capacity</th>
-          <th>Owner fullname</th>
-          <th>NIC</th>
-          <th>Address</th>
-          <th>Phone No</th>
-          <th>Vehicle Class</th>
-          <th>Vehicle model</th>
-          <th>Vehicle Color</th>
-          <th>Vehicle Province</th>
-          <th>Vehicle taxationclass</th>
-          <th>Vehicle origincountry</th>
-          <th>Vehicle ClecylinderCapacity</th>
-          <th>Vehicle status</th>
-          <th>Vehicle fueltype</th>
-        </tr>
-      </thead>
-      <tbody>
-      {VehicleData.map((row,index) => (
-           <tr key={index}>
-              <td>{row.chassisno}</td>
-              <td>{row.engineno}</td>
-              <td>{row.seatingcapacity}</td>
-              <td>{row.ownerfullname}</td>
-              <td>{row.nic}</td>
-              <td>{row.address}</td>
-              <td>{row.phoneno}</td>
-              <td>{row.vehicleclass}</td>
-              <td>{row.vehiclemodel}</td>
-              <td>{row.vehiclecolor}</td>
-              <td>{row. vehicleprovince}</td>
-              <td>{row.vehicletaxationclass}</td>
-              <td>{row.vehicleorigincountry}</td>
-              <td>{row.vehiclecylindercapacity}</td>
-              <td>{row.vehiclestatus}</td>
-              <td>{row.vehiclefueltype}</td>
-              {/* Add more cells as needed */}
-            </tr>
-          ))}
-      </tbody>
-    </table>
-  </div>
+    <div>
+      <TableContainer component={Paper}>
+        <Table
+          sx={{
+            minWidth: 650,
+            fontSize: '1.2rem',
+            border: '0',
+          }}
+          size="small"
+          aria-label="a dense table"
+        >
+          <TableHead>
+            <TableRow>
+              <TableCell
+                sx={{
+                  bgcolor: '#6905fa',
+                  color: 'white',
+                  fontSize: '1rem',
+                  fontWeight: 'bold',
+                  border: '0',
+                }}
+              >
+                Vehicle No
+              </TableCell>
+              <TableCell
+                align="right"
+                sx={{
+                  bgcolor: '#6905fa',
+                  color: 'white',
+                  fontSize: '1rem',
+                  fontWeight: 'bold',
+                  border: '0',
+                }}
+              >
+                Engine No
+              </TableCell>
+              <TableCell
+                align="right"
+                sx={{
+                  bgcolor: '#6905fa',
+                  color: 'white',
+                  fontSize: '1rem',
+                  fontWeight: 'bold',
+                  border: '0',
+                }}
+              >
+                seatingcapacity
+              </TableCell>
+              <TableCell
+                align="right"
+                sx={{
+                  bgcolor: '#6905fa',
+                  color: 'white',
+                  fontSize: '1rem',
+                  fontWeight: 'bold',
+                  border: '0',
+                }}
+              >
+                 ownerfullname
+              </TableCell>
+              <TableCell
+                align="right"
+                sx={{
+                  bgcolor: '#6905fa',
+                  color: 'white',
+                  fontSize: '1rem',
+                  fontWeight: 'bold',
+                  border: '0',
+                }}
+              >
+                Nic
+              </TableCell>
+              <TableCell
+                align="right"
+                sx={{
+                  bgcolor: '#6905fa',
+                  color: 'white',
+                  fontSize: '1rem',
+                  fontWeight: 'bold',
+                  border: '0',
+                }}
+              >
+               address
+              </TableCell>
+              <TableCell
+                align="right"
+                sx={{
+                  bgcolor: '#6905fa',
+                  color: 'white',
+                  fontSize: '1rem',
+                  fontWeight: 'bold',
+                  border: '0',
+                }}
+              >
+                phoneno
+              </TableCell>
+              <TableCell
+                align="right"
+                sx={{
+                  bgcolor: '#6905fa',
+                  color: 'white',
+                  fontSize: '1rem',
+                  fontWeight: 'bold',
+                  border: '0',
+                }}
+              >
+                officelocation
+              </TableCell>
+              <TableCell
+                align="right"
+                sx={{
+                  bgcolor: '#6905fa',
+                  color: 'white',
+                  fontSize: '1rem',
+                  fontWeight: 'bold',
+                  border: '0',
+                }}
+              >
+               vehicleclass
+              </TableCell>
+              <TableCell
+                align="right"
+                sx={{
+                  bgcolor: '#6905fa',
+                  color: 'white',
+                  fontSize: '1rem',
+                  fontWeight: 'bold',
+                  border: '0',
+                }}
+              >
+                vehiclemodel
+              </TableCell>
+              <TableCell
+                align="right"
+                sx={{
+                  bgcolor: '#6905fa',
+                  color: 'white',
+                  fontSize: '1rem',
+                  fontWeight: 'bold',
+                  border: '0',
+                }}
+              >
+               vehiclecolor
+              </TableCell>
+              <TableCell
+                align="right"
+                sx={{
+                  bgcolor: '#6905fa',
+                  color: 'white',
+                  fontSize: '1rem',
+                  fontWeight: 'bold',
+                  border: '0',
+                }}
+              >
+               vehicleprovince
+              </TableCell>
+              <TableCell
+                align="right"
+                sx={{
+                  bgcolor: '#6905fa',
+                  color: 'white',
+                  fontSize: '1rem',
+                  fontWeight: 'bold',
+                  border: '0',
+                }}
+              >
+               vehicletaxationclass
+              </TableCell>
+              <TableCell
+                align="right"
+                sx={{
+                  bgcolor: '#6905fa',
+                  color: 'white',
+                  fontSize: '1rem',
+                  fontWeight: 'bold',
+                  border: '0',
+                }}
+              >
+               vehicleorigincountry
+              </TableCell>
+              <TableCell
+                align="right"
+                sx={{
+                  bgcolor: '#6905fa',
+                  color: 'white',
+                  fontSize: '1rem',
+                  fontWeight: 'bold',
+                  border: '0',
+                }}
+              >
+               vehiclecylindercapacity
+              </TableCell>
+              <TableCell
+                align="right"
+                sx={{
+                  bgcolor: '#6905fa',
+                  color: 'white',
+                  fontSize: '1rem',
+                  fontWeight: 'bold',
+                  border: '0',
+                }}
+              >
+               vehiclestatus
+              </TableCell>
+              <TableCell
+                align="right"
+                sx={{
+                  bgcolor: '#6905fa',
+                  color: 'white',
+                  fontSize: '1rem',
+                  fontWeight: 'bold',
+                  border: '0',
+                }}
+              >
+              vehiclefueltype
+              </TableCell>
+             
+              <TableCell
+                align="right"
+                sx={{
+                  bgcolor: '#6905fa',
+                  color: 'white',
+                  fontSize: '1rem',
+                  fontWeight: 'bold',
+                  border: '0',
+                }}
+              >
+               Action
+              </TableCell>
+             
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {VehicleData.map((row, index) => (
+              <TableRow
+                key={index}
+                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              >
+                <TableCell
+                  component="th"
+                  scope="row"
+                  sx={{ border: '0', color: '#1471eb' }}
+                >
+                  {row.chassisno} {/* Replace with the actual property from your data */}
+                </TableCell>
+                <TableCell
+                  align="right"
+                  sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
+                >
+                  {row.engineno} {/* Replace with the actual property from your data */}
+                </TableCell>
+                <TableCell
+                  align="right"
+                  sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
+                >
+                  {row.seatingcapacity} {/* Replace with the actual property from your data */}
+                </TableCell>
+                <TableCell
+                  align="right"
+                  sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
+                >
+                  {row.ownerfullname} {/* Replace with the actual property from your data */}
+                </TableCell>
+                <TableCell
+                  align="right"
+                  sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
+                >
+                  {row.nic} {/* Replace with the actual property from your data */}
+                </TableCell>
+                <TableCell
+                  align="right"
+                  sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
+                >
+                  {row.address} {/* Replace with the actual property from your data */}
+                </TableCell>
+                <TableCell
+                  align="right"
+                  sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
+                >
+                  {row.phoneno} {/* Replace with the actual property from your data */}
+                </TableCell>
+                <TableCell
+                  align="right"
+                  sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
+                >
+                  {row.officelocation} {/* Replace with the actual property from your data */}
+                </TableCell>
+                <TableCell
+                  align="right"
+                  sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
+                >
+                  {row.vehicleclass} {/* Replace with the actual property from your data */}
+                </TableCell>
+                <TableCell
+                  align="right"
+                  sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
+                >
+                  {row.vehiclemodel} {/* Replace with the actual property from your data */}
+                </TableCell>
+                <TableCell
+                  align="right"
+                  sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
+                >
+                  {row.vehiclecolor} {/* Replace with the actual property from your data */}
+                </TableCell>
+                <TableCell
+                  align="right"
+                  sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
+                >
+                  {row.vehicleprovince} {/* Replace with the actual property from your data */}
+                </TableCell>
+                <TableCell
+                  align="right"
+                  sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
+                >
+                  {row.vehicletaxationclass} {/* Replace with the actual property from your data */}
+                </TableCell>
+                <TableCell
+                  align="right"
+                  sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
+                >
+                  {row.vehicleorigincountry} {/* Replace with the actual property from your data */}
+                </TableCell>
+                <TableCell
+                  align="right"
+                  sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
+                >
+                  {row. vehiclecylindercapacity} {/* Replace with the actual property from your data */}
+                </TableCell>
+                <TableCell
+                  align="right"
+                  sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
+                >
+                  {row.vehiclestatus} {/* Replace with the actual property from your data */}
+                </TableCell>
+                <TableCell
+                  align="right"
+                  sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
+                >
+                  {row.vehiclefueltype} {/* Replace with the actual property from your data */}
+                </TableCell>
+                {/* Repeat for other columns */}
+               
+                   <TableCell
+                   align="right"
+                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb', fontSize: '16px', display:'flex' }}
+                 >
+ 
+                 </TableCell>
+                
+               
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </div>
   )
 }
 

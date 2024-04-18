@@ -183,7 +183,7 @@ function AddInsurance({userRole, officeLocation,companyid,companyname}) {
   
   
     return (
-      <div style={{backgroundColor: "#d4e8ec"}} >
+      <div style={{backgroundColor: "#e5d4fe"}} >
         <h2>Add Insurance</h2><br/><br/>
         
         <div className='container' style={{}}>
@@ -194,7 +194,7 @@ function AddInsurance({userRole, officeLocation,companyid,companyname}) {
         /* RegisterEmployeeStyles.css */
 
         body {
-            background-color: #f0f0f0;
+            background-color: #e5d4fe;
           }
         
         .container {
@@ -238,8 +238,11 @@ function AddInsurance({userRole, officeLocation,companyid,companyname}) {
           
           .btn-primary {
             color: #fff;
-            background-color: #007bff;
+            background-color: #6905fa;
             border: 1px solid #007bff;
+          }
+          h2{
+            color:#6905fa;
           }
           
       `}
@@ -248,7 +251,8 @@ function AddInsurance({userRole, officeLocation,companyid,companyname}) {
 
 
     <h2 className="mb-4">{isUpdateMode ? 'Update Insurance' : 'Insurance Registration'}</h2>
-      <form onSubmit={handleSubmit}>
+    
+      <form onSubmit={handleSubmit} >
       <input type='text' className='form-control' name="officelocation" onChange={handleChange} required value={formData.officelocation} readOnly>
          
       </input>

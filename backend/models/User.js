@@ -646,7 +646,7 @@ const user8Schema = new mongoose.Schema({
     type:Date,
     required:true,
   },
-  issuingofficer: {
+  issuingofficers: {
     type:String,
     required:true,
   },
@@ -658,10 +658,16 @@ const user8Schema = new mongoose.Schema({
     type:String,
     required:true,
   },
-  drivermodel: {
-    type:String,
+  amount:{
+    type:Number,
     required:true,
   },
+  status: {
+    type: String,
+    default: 'Issued',  // Default value when a record is created
+    enum: ['Issued', 'paid', 'Contested', 'Cancelled']  // Enum to restrict to specified values
+  }
+  
  
 });
 

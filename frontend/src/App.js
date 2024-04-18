@@ -45,6 +45,7 @@ import RegisterRevuenu from './Components/Pages/Revenue/RegisterRevenu';
 import LoginInsurance from './Components/Auth/Login/LoginInsurance';
 import InsuranceCompanyDashboard from './Components/Dashboard/InsuranceDashboard/InsuranceCompanyDashboard';
 import AddInsurance from './Components/Pages/Insurance/AddInsurance';
+import AddinsurancePage from './Components/Pages/Insurance/AddinsurancePage';
 
 function App() {
 
@@ -99,6 +100,7 @@ function App() {
         <Route path="/login/insurancecompany" render={(props) => <LoginInsurance {...props} setIsAuthenticated={setIsAuthenticated} setUserRole={setUserRole}  setOfficeLocation={setOfficeLocation}  setcompanyname={setcompanyname} setcompanyid={setcompanyid} />} />
             <PrivateRoute  path="/insurance/:officeLocation/dashboard" component={(props) => (<InsuranceCompanyDashboard {...props} userRole={userRole} officeLocation={officeLocation} />) }  isAuthenticated={isAuthenticated} userRole={userRole} allowedRoles={['insurance']}  officeLocation={officeLocation}/>
             <PrivateRoute  path="/insurance/:officeLocation/addinsurance" component={(props) => (<AddInsurance {...props} userRole={userRole} officeLocation={officeLocation} />) }  isAuthenticated={isAuthenticated} userRole={userRole} allowedRoles={['insurance']}  officeLocation={officeLocation} companyname={companyname} companyid={companyid} />
+            <PrivateRoute  path="/insurance/:officeLocation/addinsurancepage" component={(props) => (<AddinsurancePage {...props} userRole={userRole} officeLocation={officeLocation} />) }  isAuthenticated={isAuthenticated} userRole={userRole} allowedRoles={['insurance']}  officeLocation={officeLocation} companyname={companyname} companyid={companyid} />
             
 
 

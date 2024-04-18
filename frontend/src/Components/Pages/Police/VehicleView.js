@@ -12,7 +12,7 @@ const VehicleView = ({ userRole, officeLocation }) => {
 
 
   return (
-    <Container fluid style={{paddingLeft:"20px", paddingRight:"20px",backgroundColor: "#d4e8ec"}} >
+    <Container fluid style={{paddingLeft:"20px", paddingRight:"20px",paddingBottom:"274px", backgroundColor:'#e5d4fe'}} >
 
 
     <style>
@@ -29,7 +29,7 @@ const VehicleView = ({ userRole, officeLocation }) => {
             border-radius: 0.25rem;
           }
           h2 {
-          color: #007bff; /* Text color */
+          color: #6905fa; /* Text color */
           font-size: 2rem; /* Font size */
           margin-bottom: 1rem; /* Bottom margin */
         }
