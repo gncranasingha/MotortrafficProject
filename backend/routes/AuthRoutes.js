@@ -531,7 +531,7 @@ router.post('/login/mtdemployee', async (req, res) => {
 //mobile login
 router.post('/login/mobile', async (req, res) => {
   try {
-    const { username, password, role, nic, officeid, engineno } = req.body;
+    const { username, password, role, nic, officeid, engineno, officelocation} = req.body;
     
     let user;
     let tokenPayload = {}; // Initialize an empty object to store token payload
@@ -556,9 +556,19 @@ router.post('/login/mobile', async (req, res) => {
         if (!(await bcrypt.compare(password, user.password))) {
           return res.status(401).json({ message: 'Incorrect password' });
         }
+        if (user.username !== username) {
+          return res.status(401).json({ message: 'Invalid office location' });
+        }
+        if (user.officelocation !== officelocation) {
+          return res.status(401).json({ message: 'Invalid office location' });
+        }
         // Populate token payload for police employee
-        tokenPayload = { id: user._id, username: user.username, role: user.role, officeid: user.officeid };
-        break;
+        tokenPayload = { 
+          id: user._id, 
+          username: user.username, 
+          role: user.role, 
+          officelocation: user.officelocation // Add officelocation to the token payload
+        }; break;
       case 'VehicleOwner':
         user = await MTDVehicle.findOne({ engineno });
         if (!user) {
@@ -567,8 +577,9 @@ router.post('/login/mobile', async (req, res) => {
         if (!(await bcrypt.compare(password, user.password))) {
           return res.status(401).json({ message: 'Incorrect password' });
         }
+       
         // Populate token payload for vehicle owner
-        tokenPayload = { id: user._id, username: user.username, role: user.role, engineno: user.engineno };
+        tokenPayload = { id: user._id, username: user.username, role: user.role, engineno: user.engineno};
         break;
       default:
         return res.status(401).json({ message: 'Invalid role' });

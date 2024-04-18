@@ -15,7 +15,7 @@ const drawerWidth = 240;
 const RRDepartmentDashboard = (props) => {
   const { userRole, officeLocation } = props;
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex' ,backgroundColor:'#e5d4fe'}}>
       <CssBaseline />
       <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
 
@@ -27,7 +27,7 @@ const RRDepartmentDashboard = (props) => {
         sx={{
           width: drawerWidth,
           flexShrink: 0,
-          [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box', backgroundColor: 'blue' },
+          [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box', backgroundColor: '#6905fa' },
         }}
       >
         <Toolbar />

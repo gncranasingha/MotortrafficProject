@@ -7,8 +7,7 @@ const verifyToken = require('../middleware/verifyToken')
 
 router.post('/register/fineregistration',verifyToken, async (req, res) => {
   try {
-    if(req.user.role === 'police' ) {
-      
+    
       const existingVehicle = await  Fines.findOne({
         fineid: req.body.fineid
          });
@@ -22,9 +21,7 @@ router.post('/register/fineregistration',verifyToken, async (req, res) => {
 
       return res.status(201).json( newFine);
          
-    }
-    return res.status(403).json({ message: "Access forbidden. Insufficient role." });
-  } catch (error) {
+    } catch (error) {
     console.error("Error adding Fine:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
@@ -34,16 +31,13 @@ router.post('/register/fineregistration',verifyToken, async (req, res) => {
 
 router.get('/register/fineregistration', async (req, res) => {
   try {
-    if(req.user.role === 'police' ){
+   
 
       const officelocation = req.user.officelocation;
-      
+      console.log(officelocation);
       const fine = await Fines.find({ officelocation: officelocation });
       res.status(200).json(fine);
-    } else {
-      // If the user does not have the required role, return a 403 Forbidden response
-      res.status(403).json({ message: "Access forbidden. Insufficient role." });
-    }
+   
    
   }  catch (error) {
     console.error("Error fetching Fines:", error);
@@ -92,5 +86,36 @@ router.get('/getAllVehicleData' ,verifyToken, async (req, res) => {
       res.status(500).json({ error: "Internal Server Error" });
     }
   });
+
+
+  // PUT endpoint to update fine status to 'paid'
+  router.put('/updateFineStatus/:id', verifyToken, async (req, res) => {
+    try {
+      const id = req.params.id;
+      console.log(id);
+      // Find the fine associated with the provided NIC
+      const fine = await Fines.findOne({ id });
+  
+      // If fine not found, return 404 Not Found
+      if (!fine) {
+        return res.status(404).json({ message: 'Fine not found for this NIC' });
+      }
+  
+      // Update the fine status to 'paid'
+      fine.status = 'paid';
+      await fine.save();
+  
+      // Respond with success message
+      res.json({ message: 'Fine status updated successfully', fine });
+    } catch (error) {
+      console.error('Error updating fine status:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  });
+  
+
+
+  
+
   
   module.exports = router;

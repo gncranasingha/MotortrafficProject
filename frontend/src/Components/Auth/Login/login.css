@@ -1,49 +1,69 @@
 /* LoginDriving.css */
 
 /* Custom styles for the page background */
-body {
-    background-color: #f0f0f0; /* Set the background color for the entire page */
-  }
-  
+
+body, html {
+  height: 100%; /* Full height */
+  margin: 0; /* Reset default margin */
+  background-color: #e5d4fe; /* Soft blue background color like the image */
+   }
   /* Custom styles for the form */
   .form-container {
-    max-width: 800px;
-    height: 700px;
-    margin: auto;
-    margin-top: 40px;
-    padding: 80px;
-    border: 1px solid #ccc;
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    background-color: #fff; /* Set the background color for the form */
-  }
-  h2{
-    text-align: center; /* Center the text */
-    color: #007bff; /* Heading color */
-    margin-bottom: 20px;
-    font-weight: bold;
-    font-size: 50px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
   
-  /* Custom styles for form elements */
+  .heading {
+    color: #6905fa;
+    font-size: 40px;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-weight: bold;
+  }
+  
   .form-label {
-    font-weight: bold;
-    margin-bottom: 8px;
-    font-size: 20px;
-    margin-top: 20px;
-  }
-  .form-control {
-    font-size: 20px; /* Set the font size for form controls */
+    display: block;
+    margin-bottom: .5rem;
+    color: #333;
   }
   
-  .btn {
-    font-size: 20px; /* Set the font size for buttons */
+  .form-control {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #007bff;
+    border-radius: 4px;
+    background-color: white;
+  }
+  
+  .btn-primary {
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    background-color: #6905fa;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .btn-primary:hover {
+    background-color: #3f82c8;
   }
   
   .error-message {
-    font-size: 20px; /* Set the font size for error messages */
+    color: #D9534F;
+    text-align: center;
+    margin-top: 1rem;
   }
-  
-  
-  /* Add more custom styles as needed */
+  .inputfeald{
+    margin-top: 60px;
+  }
+  .location{
+    margin-top: 60px;
+  }
   

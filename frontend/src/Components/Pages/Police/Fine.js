@@ -21,11 +21,10 @@ function FineForm({userRole, officeLocation}) {
             issuingofficers:"",
             rank:"",
             timenow:"",
-            drivermodel:""
+           
   });
   const [currentTime, setCurrentTime] = useState(new Date());
-  const [selectedDriverClass, setSelectedDriverClass] = useState('');
-
+  
   //const [selectedVehicleClass, setSelectedVehicleClass] = useState('');
 
 
@@ -45,22 +44,11 @@ function FineForm({userRole, officeLocation}) {
     // if (name === 'vehicleclass') {
     //   setSelectedVehicleClass(value);
     // }
-    if (name === 'driverclass') {
-      setSelectedDriverClass(value);
-    }
+   
 
   };
 
-  const getDriverModelOptions = () => {
-    if (selectedDriverClass === 'new') {
-      return NewClass;
-    } else if (selectedDriverClass === 'old') {
-      return OldClass;
-    }
-    
-    // Add more conditions for other vehicle classes if needed
-    return [];
-  };
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -199,41 +187,7 @@ function FineForm({userRole, officeLocation}) {
               />
             </div>
           ))}
-
-         {/* i want to fetch office location use UserContext */}
-         <div className='form-group'>
-            <label>Select Driving Lisence Status :</label>
-            <select className='form-control' name="driverclass" onChange={handleChange} required  >
-              <option value="">Select  Class</option>
-              {LisanceStatus.map((option,index) => (
-                <option key={index} value={option.value}>
-                  {option.label}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div className='form-group'>
-            <label>Select Driver Lisence Type:</label>
-            <select className='form-control' name="drivermodel" onChange={handleChange}  >
-              <option value="">Select Vehicle Model</option>
-              {getDriverModelOptions().map((option, index) => (
-                <option key={index} value={option.value}>
-                  {option.label}
-                </option>
-              ))}
-            </select>
-          </div>
-
-         
-        
-          
-
-          
-
-          
-
-         
+               
 
           
 

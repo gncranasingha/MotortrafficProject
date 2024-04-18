@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import Button from '@mui/material/Button';
 
 const GetAllDrivers = () => {
  
@@ -29,80 +36,211 @@ const GetAllDrivers = () => {
 
 
   return (
-    <div className="container-fluid">
-      
-    <style>
-      {`
-        /* GetAllDrivers.css */
+    <div>
+    <TableContainer component={Paper}>
+      <Table
+        sx={{
+          minWidth: 650,
+          fontSize: '1.2rem',
+          border: '0',
+        }}
+        size="small"
+        aria-label="a dense table"
+      >
+        <TableHead>
+          <TableRow>
+            <TableCell
+              sx={{
+                bgcolor: '#6905fa',
+                color: 'white',
+                fontSize: '1rem',
+                fontWeight: 'bold',
+                border: '0',
+              }}
+            >
+              NIC
+            </TableCell>
+            <TableCell
+              align="right"
+              sx={{
+                bgcolor: '#6905fa',
+                color: 'white',
+                fontSize: '1rem',
+                fontWeight: 'bold',
+                border: '0',
+              }}
+            >
+             Full Name
+            </TableCell>
+            <TableCell
+              align="right"
+              sx={{
+                bgcolor: '#6905fa',
+                color: 'white',
+                fontSize: '1rem',
+                fontWeight: 'bold',
+                border: '0',
+              }}
+            >
+              Address
+            </TableCell>
+            <TableCell
+              align="right"
+              sx={{
+                bgcolor: '#6905fa',
+                color: 'white',
+                fontSize: '1rem',
+                fontWeight: 'bold',
+                border: '0',
+              }}
+            >
+               Blood Type
+            </TableCell>
+            <TableCell
+              align="right"
+              sx={{
+                bgcolor: '#6905fa',
+                color: 'white',
+                fontSize: '1rem',
+                fontWeight: 'bold',
+                border: '0',
+              }}
+            >
+              Phone No
+            </TableCell>
+            <TableCell
+              align="right"
+              sx={{
+                bgcolor: '#6905fa',
+                color: 'white',
+                fontSize: '1rem',
+                fontWeight: 'bold',
+                border: '0',
+              }}
+            >
+             Birth Day
+            </TableCell>
+            <TableCell
+              align="right"
+              sx={{
+                bgcolor: '#6905fa',
+                color: 'white',
+                fontSize: '1rem',
+                fontWeight: 'bold',
+                border: '0',
+              }}
+            >
+            Issue Date
+            </TableCell>
+            <TableCell
+              align="right"
+              sx={{
+                bgcolor: '#6905fa',
+                color: 'white',
+                fontSize: '1rem',
+                fontWeight: 'bold',
+                border: '0',
+              }}
+            >
+             Exp Date
+            </TableCell>
+            <TableCell
+              align="right"
+              sx={{
+                bgcolor: '#6905fa',
+                color: 'white',
+                fontSize: '1rem',
+                fontWeight: 'bold',
+                border: '0',
+              }}
+            >
+             user image
+            </TableCell>
+           
 
-        /* Custom styles for the entire table */
-        .table {
-            width: 100%; /* Make the table full-width */
-            font-size: 16px;
-            background-color: lightblue;
-            border: 2px solid black; /* Add border to the entire table */
-            margin: 0; /* Remove any margin */
-            padding: 0; /* Remove any padding */
-        }
-        
-        /* Custom styles for table headers */
-        .table th {
-            background-color: #ff000d; /* Header background color */
-            color: white; /* Header text color */
-            border: 1px solid black; /* Add border to header cells */
-        }
-        
-        /* Custom styles for table rows */
-        .table tr {
-            border: 1px solid black; /* Add border to all cells in a row */
-        }
-        
-        .table tr:nth-child(even) {
-            background-color: #f2f2f2; /* Alternate row background color */
-        }
-        
-        /* Define more custom styles as needed */
-        
-      `}
-    </style>
-
-
-
-
-
-      <div className="table-responsive">
-        <table className="table">
-          <thead>
-            <tr>
-              <th>NIC</th>
-              <th>Full Name</th>
-              <th>Address</th>
-              <th>Blood Type</th>
-              <th>Phone No</th>
-              <th>Birth Day</th>
-              <th>Issue Date</th>
-              <th>Expire Date</th>
-            </tr>
-          </thead>
-          <tbody>
-          {drivers.map((driver, index) => (
-            <tr key={index}>
-              <td>{driver.nic}</td>
-              <td>{driver.fullname}</td>
-              <td>{driver.address}</td>
-              <td>{driver.bloodtype}</td>
-              <td>{driver.phoneno}</td>
-              <td>{driver.birthday}</td>
-              <td>{driver.issuedate}</td>
-              <td>{driver.expdate}</td>
+           
+            <TableCell
+              align="right"
+              sx={{
+                bgcolor: '#6905fa',
+                color: 'white',
+                fontSize: '1rem',
+                fontWeight: 'bold',
+                border: '0',
+              }}
+            >
+              Action
+            </TableCell>
+            
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {drivers.map((row, index) => (
+            <TableRow
+              key={index}
+              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+            >
+              <TableCell
+                component="th"
+                scope="row"
+                sx={{ border: '0', color: '#1471eb', fontSize: '19px' }}
+              >
+                {row.nic} {/* Replace with the actual property from your data */}
+              </TableCell>
+              <TableCell
+                align="right"
+                sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
+              >
+                {row.fullname} {/* Replace with the actual property from your data */}
+              </TableCell>
+              <TableCell
+                align="right"
+                sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
+              >
+                {row.address} {/* Replace with the actual property from your data */}
+              </TableCell>
+              <TableCell
+                align="right"
+                sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
+              >
+                {row.bloodtype} {/* Replace with the actual property from your data */}
+              </TableCell>
+              <TableCell
+                align="right"
+                sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
+              >
+                {row.phoneno} {/* Replace with the actual property from your data */}
+              </TableCell>
+             
+              <TableCell
+                align="right"
+                sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
+              >
+                {row. birthday} {/* Replace with the actual property from your data */}
+              </TableCell>
+              <TableCell
+                align="right"
+                sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
+              >
+                {row.issuedate} {/* Replace with the actual property from your data */}
+              </TableCell>
+              <TableCell
+                align="right"
+                sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
+              >
+                {row.expdate} {/* Replace with the actual property from your data */}
+              </TableCell>
+              <TableCell align="right" sx={{ border: '0' }}>
+      <img src={row.imgUrl || 'path/to/default/image'} alt="Driver" style={{ width: 50, height: 50, borderRadius: '50%' }} />
+    </TableCell>
               
-            </tr>
+             
+            </TableRow>
           ))}
-            {/* Add more rows as needed */}
-          </tbody>
-        </table>
-      </div>
-    </div>
+        </TableBody>
+      </Table>
+    </TableContainer>
+  </div>
   );
 };
 

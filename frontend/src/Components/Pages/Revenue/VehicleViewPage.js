@@ -41,7 +41,7 @@ const RevenueEMp = ({ userRole, officeLocation }) => {
 
 
   return (
-    <Container fluid style={{paddingLeft:"20px", paddingRight:"20px", backgroundColor: "#d4e8ec", minHeight: "100vh"}} >
+    <Container fluid style={{paddingLeft:"20px", paddingRight:"20px", backgroundColor:'#e5d4fe', minHeight: "100vh"}} >
 
 
     <style>
@@ -58,7 +58,7 @@ const RevenueEMp = ({ userRole, officeLocation }) => {
             border-radius: 0.25rem;
           }
           h2 {
-          color: #007bff; /* Text color */
+            color: #6905fa; /* Text color */
           font-size: 2rem; /* Font size */
           margin-bottom: 1rem; /* Bottom margin */
         }
@@ -70,7 +70,7 @@ const RevenueEMp = ({ userRole, officeLocation }) => {
           
           /* Custom styles for the link button */
           .custom-link-style {
-            background-color: #1800ff;
+            background-color:#6905fa;
             color: #fff;
             border-radius: 0.25rem;
             padding: 0.375rem 20%;

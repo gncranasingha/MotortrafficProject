@@ -45,7 +45,7 @@ const DriverPage = ({ userRole, officeLocation }) => {
 
 
   return (
-    <Container fluid style={{paddingLeft:"20px", paddingRight:"20px"}} >
+    <Container fluid style={{paddingLeft:"20px", paddingRight:"20px",paddingBottom:"290px", backgroundColor:'#e5d4fe'}} >
 
 
     <style>
@@ -62,7 +62,7 @@ const DriverPage = ({ userRole, officeLocation }) => {
             border-radius: 0.25rem;
           }
           h2 {
-          color: #007bff; /* Text color */
+          color: #6905fa; /* Text color */
           font-size: 2rem; /* Font size */
           margin-bottom: 1rem; /* Bottom margin */
         }
@@ -74,7 +74,7 @@ const DriverPage = ({ userRole, officeLocation }) => {
           
           /* Custom styles for the link button */
           .custom-link-style {
-            background-color: #007bff; /* Bootstrap primary color */
+            background-color:#6905fa; /* Bootstrap primary color */
             color: #fff;
             border-radius: 0.25rem;
             padding: 0.375rem 20%;

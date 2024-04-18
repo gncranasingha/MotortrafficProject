@@ -7,7 +7,15 @@ const verifyToken = require('../middleware/verifyToken');
 const verifyToken1 = require('../middleware/verifyToken1');
 const bcrypt = require('bcrypt');
 const nodemailer = require('nodemailer');
+const {Fines} = require('../models/User')
+const paypal = require('paypal-rest-sdk');
 
+
+paypal.configure ({
+  mode: "sandbox",
+  client_id : "Aee_5cE8_bCDVin7PVsrQ04J8H8MOr56QP_6jkMFMqoqQXmEnYSkpesvobHEzocS1tqePvanhzR8g2KI",
+  client_secret: "EMsNOlgq-ANMEMWVqIkQInQpDUUZAxY6wsUtdw7QxQcIc2nv-DbDSgBz5GWcx-U1zygntr6tutYv4bpP"
+});
 
 
 // POST endpoint for registering drivers with image upload
@@ -248,9 +256,91 @@ router.get('/getdriverdetails/:nic', verifyToken, async (req, res) => {
   }
 });
 
+router.get('/getFinesByDriverId/:nic',verifyToken, async (req, res) => {
+  try {
+    const fines = await Fines.find({ id: req.params.nic });
+    res.json(fines);
+  } catch (error) {
+    console.error('Error fetching fines:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
+
+router.post('/create-payment', verifyToken, (req, res) => {
+  const create_payment_json = {
+      intent: 'sale',
+      payer: {
+          payment_method: 'paypal'
+      },
+      redirect_urls: {
+          return_url: 'http://172.20.10.6:5000/api/drivers/success',
+          cancel_url: 'http://172.20.10.6:5000/api/drivers/cancel'
+      },
+      transactions: [{
+          item_list: {
+              items: [{
+                  name: "Item Name",
+                  sku: "Item sku",
+                  price: "10.00",
+                  currency: "USD",
+                  quantity: 1
+              }]
+          },
+          amount: {
+              currency: "USD",
+              total: "10.00"
+          },
+          description: "This is pay fine"
+      }],
+  };
+
+  paypal.payment.create(create_payment_json, (error, payment) => {
+      if (error) {
+          console.error('Payment Error:', error);
+          return res.status(500).json({ error: error.toString() });
+      }
+      const approvalUrl = payment.links.find(link => link.rel === "approval_url").href;
+      res.json({ approvalUrl });
+  });
+});
 
 
+router.post("/execute-payment", verifyToken, async (req, res) => {
+  const { payerId, paymentId } = req.body;
+  const execute_payment_json = {
+      payer_id: payerId,
+      transactions: [{
+          amount: {
+              currency: "USD",
+              total: "10.00"
+          }
+      }]
+  };
 
+  try {
+      const payment = await new Promise((resolve, reject) => {
+          paypal.payment.execute(paymentId, execute_payment_json, (error, payment) => {
+              if (error) {
+                  reject(error);
+              } else {
+                  resolve(payment);
+              }
+          });
+      });
+      res.json({ message: "Payment completed successfully", payment });
+  } catch (error) {
+      console.error('Execute Payment Error:', error);
+      res.status(500).json({ error: error.toString() });
+  }
+});
+
+
+router.get("/success",verifyToken, (req, res) => {
+  res.send("Success payment was completed");
+})
+router.get("/cancel",verifyToken, (req, res) => {
+  res.send(" payment was cancelled.");
+})
 
 
 module.exports = router;
