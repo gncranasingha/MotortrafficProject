@@ -67,10 +67,7 @@ const Sidebar = ({ userRole, officeLocation }) => {
         return [
           { text: 'DashBoard', icon: <GridViewIcon />, path: `/${userRole}/${officeLocation}/dashboard` },
           { text: 'Add vehicle', icon: <PersonIcon />, path: `/${userRole}/${officeLocation}/vemployee/vehicle` },  //this url want to change according to the user location
-          { text: 'view apply vehicle', icon: <DirectionsCarFilledIcon />, path: `` }, //this url want to fetch all vehicle details 
-          { text: '', icon: <GroupsIcon />, path: ``  },  //this url want to fetch all Driver details 
-          { text: 'Fines', icon: <LibraryBooksIcon />, path: `/${userRole}/${officeLocation}/addfine` },  
-          { text: 'Court', icon: <AddToDriveIcon />, path: `` },
+          { text: 'view apply vehicle', icon: <DirectionsCarFilledIcon />, path: `` }, //this url want to fetch all vehicle details         
           { text: 'About Us', icon: <EmojiTransportationIcon />, path: `` },
           { text: 'Setting', icon: <SettingsIcon />, path: `` },
           
@@ -80,9 +77,9 @@ const Sidebar = ({ userRole, officeLocation }) => {
         return [
           { text: 'DashBoard', icon: <GridViewIcon />, path: `/${userRole}/${officeLocation}/dashboard` },
           { text: 'Add Driver', icon: <PersonIcon />, path: `/${userRole}/${officeLocation}/demployee/driver` },  //this url want to change according to the user location
-          { text: 'First Registration', icon: <DirectionsCarFilledIcon />, path: `` }, //this url want to fetch all vehicle details 
+          { text: 'Update Request', icon: <DirectionsCarFilledIcon />, path: `` }, //this url want to fetch all vehicle details 
           { text: 'Medicle', icon: <GroupsIcon />, path: ``  },  //this url want to fetch all Driver details 
-          { text: 'Exam', icon: <LibraryBooksIcon />, path: `/${userRole}/${officeLocation}/addfine` },  
+          { text: 'Exam', icon: <LibraryBooksIcon />, path: `` },  
           { text: 'Practical Test', icon: <AddToDriveIcon />, path: `` },
          
           
@@ -92,6 +89,7 @@ const Sidebar = ({ userRole, officeLocation }) => {
       case 'insurance':
         return [
           { text: 'DashBoard', icon: <GridViewIcon />, path: `/${userRole}/${officeLocation}/dashboard` },
+          { text: 'Employee ', icon: <PersonIcon />, path: `/${userRole}/${officeLocation}/addemployee` },
           { text: 'First Registration ', icon: <PersonIcon />, path: `/${userRole}/${officeLocation}/addinsurancepage` },  //this url want to change according to the user location
           { text: 'Request Update', icon: <DirectionsCarFilledIcon />, path: `` }, //this url want to fetch all vehicle details 
           { text: 'About Us', icon: <EmojiTransportationIcon />, path: `` },

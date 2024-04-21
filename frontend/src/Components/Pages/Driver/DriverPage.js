@@ -45,7 +45,7 @@ const DriverPage = ({ userRole, officeLocation }) => {
 
 
   return (
-    <Container fluid style={{paddingLeft:"20px", paddingRight:"20px",paddingBottom:"290px", backgroundColor:'#e5d4fe'}} >
+    <Container fluid style={{paddingLeft:"20px", paddingRight:"20px",paddingBottom:"365px", backgroundColor:'#e5d4fe'}} >
 
 
     <style>

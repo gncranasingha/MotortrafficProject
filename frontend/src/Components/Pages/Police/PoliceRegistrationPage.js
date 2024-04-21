@@ -1,13 +1,17 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import {policeFields, Plocations, PRole } from '../../Auth/AdminTEMPRegister/FormStruct';
-
+import { useHistory, useLocation } from 'react-router-dom';
 import axios from 'axios';
 
 function PoliceRegistrationPage({userRole, officeLocation}) {
 
+  const history = useHistory();
+  const location = useLocation();
+  const isUpdateMode = location.state && location.state.isUpdateMode; // Check if in update mode
+  
   
     const [formData, setUserData] = useState({
-      officeid:"",
+                officeid:"",
                 id:"",
                 fullname:"",
                 email:"",
@@ -22,7 +26,14 @@ function PoliceRegistrationPage({userRole, officeLocation}) {
       setUserData({ ...formData, [name]: value });
     };
   
-
+    useEffect(() => {
+      if (isUpdateMode && location.state && location.state.selectedRow) {
+        // Extract selected row data from location state
+        const { selectedRow } = location.state;
+        // Update form data state with selected row data
+        setUserData(selectedRow);
+      }
+    }, [isUpdateMode, location.state]);
 
     const handleSubmit =async (e) => {
 
@@ -34,15 +45,19 @@ function PoliceRegistrationPage({userRole, officeLocation}) {
       }
       console.log(formData);
       
-      const token = localStorage.getItem("token");
-        
+     
+        try {
        
-            axios.post('http://localhost:5000/api/police/register/policeofficerregistration',
-             formData,
-             { headers: {Authorization: token}}
+          const token = localStorage.getItem("token");
+          const apiURL = isUpdateMode ? `http://localhost:5000/api/police/update/${formData._id}` : 'http://localhost:5000/api/police/register/policeofficerregistration';
+          await axios({
+            method: isUpdateMode ? 'put' : 'post',
+            url: apiURL,
+            data: formData,
+            headers: { Authorization: token },
+          });
 
-             ).then((response)=>{
-              console.log('Registration successful');
+          console.log('Registration successful');
 
               setUserData({
                 officeid:"",
@@ -54,10 +69,16 @@ function PoliceRegistrationPage({userRole, officeLocation}) {
                 phoneno:"",
                 role:"",
               })
-            })
-           .catch ((error) => {
-            console.error('Registration failed:', error);
-          })
+              alert("Officer information submitted successfully.");
+              history.push(`/${userRole}/${officeLocation}/dashboard`);
+          
+        } catch (error) {
+          console.error("Error submitting the form:", error);
+          alert("Failed to submit the form. Please try again.");
+        }
+       
+     
+
           setUserData({});
     }
 
@@ -65,8 +86,8 @@ function PoliceRegistrationPage({userRole, officeLocation}) {
   
   
     return (
-      <div style={{backgroundColor: "#d4e8ec"}}>
-        <h2>Police Offcer Registration</h2><br/><br/>
+      <div style={{backgroundColor: "#e5d4fe"}}>
+        <h2  style={{color:'#6905fa'}}>{isUpdateMode ? 'Update Officer' : 'Police Offcer Registration'}</h2><br/><br/>
         
         <div className='container' style={{}} >
 
@@ -119,7 +140,7 @@ function PoliceRegistrationPage({userRole, officeLocation}) {
           
           .btn-primary {
             color: #fff;
-            background-color: #007bff;
+            background-color: #6905fa;
             border: 1px solid #007bff;
           }
           
@@ -133,7 +154,7 @@ function PoliceRegistrationPage({userRole, officeLocation}) {
         
         <div className='form-group'>
           <label htmlFor="officelocation">Select Employee location:</label>
-          <input type='text' className='form-control' name="fficelocation" onChange={handleChange} required value={formData.officelocation} readOnly/>
+          <input type='text' className='form-control' name="officelocation" onChange={handleChange} required value={formData.officelocation} readOnly/>
          
         </div>
 
@@ -157,7 +178,7 @@ function PoliceRegistrationPage({userRole, officeLocation}) {
          
         </div>
 
-        <button type="submit" className="btn btn-primary">Register</button>
+        <button type="submit" className="btn btn-primary"> {isUpdateMode ? 'Update' : 'Register'}</button>
       </form>
     </div>
       </div>

@@ -11,29 +11,31 @@ import axios from "axios";
 import { useHistory } from 'react-router-dom';
 
 const PoliceOfficersTable = ({ userRole, officeLocation, searchResults }) => {
+  
   const history = useHistory();
   const [employee, setEmployees] = useState(searchResults ||[]);
   
 
   const handleUpdate = (row) => {
-   
+    
     // Navigate to the BorrowBook form and pass selected row data as state
     history.push({
+      
       pathname: `/${userRole}/${officeLocation}/addpoliceofficer`,
       state: { isUpdateMode: true, selectedRow: row },
     });
   };
 
-  const handleDelete = (DriverId) => {
+  const handleDelete = (officerId) => {
     // Add logic to delete the Driver with the specified ID
     const token = localStorage.getItem('token');
     axios
-      .delete(`http://localhost:5000/api/drivers/delete/${DriverId}`, {
+      .delete(`http://localhost:5000/api/police/delete/${officerId}`, {
         headers: { Authorization: token },
       })
       .then((response) => {
-        console.log('Driver deleted successfully');
-        window.alert('Driver deleted successfully');
+        console.log('Officer deleted successfully');
+        window.alert('Officer deleted successfully');
        
        fetchData();
       })
@@ -240,7 +242,7 @@ const PoliceOfficersTable = ({ userRole, officeLocation, searchResults }) => {
                   {row.phoneno} {/* Replace with the actual property from your data */}
                 </TableCell>
                 
-                {userRole === 'Police' | 'police' && (
+               
             
             <TableCell
               align="right"
@@ -262,7 +264,7 @@ const PoliceOfficersTable = ({ userRole, officeLocation, searchResults }) => {
                 Delete
               </Button>
             </TableCell>
-            )}
+           
                
               
               

@@ -49,7 +49,7 @@ const user11Schema = new mongoose.Schema({
   companyid: {
     type:String,
     required:true,
-    unique:true
+    
   },
   officeid: {
     type:String,
@@ -100,30 +100,32 @@ const user11Schema = new mongoose.Schema({
 const Insurance = mongoose.model('Insurance', user11Schema, 'admin');
 
 const user12Schema = new mongoose.Schema({
-  companyid: {
+  engineno:{
     type:String,
     required:true,
     unique:true
   },
+  
+  companyid: {
+    type:String,
+    required:true,
+   
+  },
   companyname: {
     type:String,
     required:true,
-    unique:true
+    
   },
   chassisno:{
     type:String,
     required:true,
     unique:true
   },
-  engineno:{
-    type:String,
-    required:true,
-    unique:true
-  },
+ 
   id: {
     type:String,
     required:true,
-    unique:true
+    
   },
   fullname: {
     type: String,

@@ -140,6 +140,65 @@ router.get('/getpoliceofficerData', async (req, res) => {
       res.status(500).json({ error: "Internal Server Error" });
     }
   });
+
+  router.put('/update/:id', verifyToken, async (req, res) => {
+    
+    try {
+      
+      if (req.user.role === 'police' || req.user.role ==='Police') {
+        const existingOfficer = await PoliceEmp.findOne({
+          _id: req.params.id
+         
+        });
+        
+        if (!existingOfficer) {
+          return res.status(404).json({ message: 'Vehicle not found' });
+        }
+  
+        
+        if (req.body.nic && req.body.nic !== existingOfficer.nic) {
+          const nicTaken = await PoliceEmp.findOne({ nic: req.body.nic });
+          if (nicTaken) {
+            return res.status(409).json({ message: 'nic is already taken' });
+          }
+        }
+  
+        
+        await PoliceEmp.findByIdAndUpdate(req.params.id, req.body);
+  
+        // Fetch and send the updated vehicle data
+        const updatedOfficer = await PoliceEmp.findById(req.params.id);
+        res.status(200).json(updatedOfficer);
+      } else {
+        res.status(403).json({ message: "Access forbidden. Insufficient role." });
+      }
+    } catch (error) {
+      console.error('Error updating Officer data:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  });
+  
+  router.delete('/delete/:_id', verifyToken, async (req, res) => {
+    try {
+      // Check if user role is allowed
+      if (req.user.role === 'police' || req.user.role ==='Police') {
+        const OfficerId = req.params._id;
+        const deletedOfficer = await PoliceEmp.findByIdAndDelete(OfficerId);
+  
+      
+        if (deletedOfficer) {
+          return res.status(200).json({ message: 'Officer deleted successfully' });
+        } else {
+          return res.status(404).json({ message: 'Officer not found' });
+        }
+      } else {
+        return res.status(403).json({ message: 'Access forbidden. Insufficient role.' });
+      }
+    } catch (error) {
+      console.error('Error deleting Officer data:', error);
+      return res.status(500).json({ error: 'Internal Server Error' });
+    }
+  });
   
 
 

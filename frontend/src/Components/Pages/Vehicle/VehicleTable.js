@@ -156,18 +156,7 @@ const VehicleTable = ({ userRole, officeLocation, searchResults }) => {
               >
                 phoneno
               </TableCell>
-              <TableCell
-                align="right"
-                sx={{
-                  bgcolor: '#6905fa',
-                  color: 'white',
-                  fontSize: '1rem',
-                  fontWeight: 'bold',
-                  border: '0',
-                }}
-              >
-                officelocation
-              </TableCell>
+              
               <TableCell
                 align="right"
                 sx={{
@@ -280,7 +269,7 @@ const VehicleTable = ({ userRole, officeLocation, searchResults }) => {
               <TableCell
                 align="right"
                 sx={{
-                  bgcolor: '#1800ff',
+                  bgcolor: '#6905fa',
                   color: 'white',
                   fontSize: '1rem',
                   fontWeight: 'bold',
@@ -341,12 +330,7 @@ const VehicleTable = ({ userRole, officeLocation, searchResults }) => {
                 >
                   {row.phoneno} {/* Replace with the actual property from your data */}
                 </TableCell>
-                <TableCell
-                  align="right"
-                  sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
-                >
-                  {row.officelocation} {/* Replace with the actual property from your data */}
-                </TableCell>
+                
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}

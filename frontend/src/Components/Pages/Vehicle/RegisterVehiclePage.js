@@ -186,7 +186,7 @@ function RegisterVehiclePage({userRole, officeLocation}) {
   
   
     return (
-      <div style={{backgroundColor: "#d4e8ec"}} >
+      <div style={{backgroundColor: "#e5d4fe"}} >
         <h2>Motor Traffic Vehicle Registration</h2><br/><br/>
         
         <div className='container' style={{}}>
@@ -241,8 +241,11 @@ function RegisterVehiclePage({userRole, officeLocation}) {
           
           .btn-primary {
             color: #fff;
-            background-color: #007bff;
+            background-color: #6905fa;
             border: 1px solid #007bff;
+          }
+          h2{
+            color:#6905fa;
           }
           
       `}

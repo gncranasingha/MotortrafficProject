@@ -256,7 +256,7 @@ const RevenueViewTable = ({ userRole, officeLocation, searchResults }) => {
                   scope="row"
                   sx={{ border: '0', color: '#1471eb', fontSize: '19px' }}
                 >
-                  {row.vehicleno} {/* Replace with the actual property from your data */}
+                  {row.engineno} {/* Replace with the actual property from your data */}
                 </TableCell>
                 <TableCell
                   align="right"

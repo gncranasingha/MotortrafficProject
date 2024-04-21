@@ -5,7 +5,7 @@ const AdminPanel = () => {
     backgroundImage: `url('https://img.freepik.com/premium-vector/hologram-hud-ui-style-background_115579-831.jpg?size=626&ext=jpg')`,
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
-    minHeight: '100vh',  // Set the container height to 100% of the viewport height
+      // Set the container height to 100% of the viewport height
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -19,9 +19,9 @@ const AdminPanel = () => {
  
   return (
     <div style={backgroundStyle}>
-      <div className="container mt-5">
+      <div className="container mt-1">
         <div className="row">
-          <div className="col-12 mb-4">
+          <div className="col-12 ">
             <h2 className="text-center mb-4">Choose Your Role</h2>
             <p className="lead text-center" style={{ color: 'white' }}>Select whether you are in the Police, Mototraffic, Revenue Department or an Insurance company to get started.</p>
           </div>
