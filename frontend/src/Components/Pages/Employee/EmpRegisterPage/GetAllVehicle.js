@@ -262,18 +262,7 @@ const GetAllVehicleTable = () => {
               vehiclefueltype
               </TableCell>
              
-              <TableCell
-                align="right"
-                sx={{
-                  bgcolor: '#6905fa',
-                  color: 'white',
-                  fontSize: '1rem',
-                  fontWeight: 'bold',
-                  border: '0',
-                }}
-              >
-               Action
-              </TableCell>
+              
              
             </TableRow>
           </TableHead>
@@ -388,12 +377,7 @@ const GetAllVehicleTable = () => {
                 </TableCell>
                 {/* Repeat for other columns */}
                
-                   <TableCell
-                   align="right"
-                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb', fontSize: '16px', display:'flex' }}
-                 >
- 
-                 </TableCell>
+                 
                 
                
               </TableRow>

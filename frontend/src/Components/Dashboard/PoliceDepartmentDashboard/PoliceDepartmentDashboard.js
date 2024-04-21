@@ -15,6 +15,7 @@ const drawerWidth = 240;
 
 const PoliceDepartmentDashboard = (props) => {
   const { userRole, officeLocation } = props;
+ 
   return (
     <Box sx={{ display: 'flex',  overflow:'hidden', backgroundColor:'#e5d4fe'}}>
       <CssBaseline />
@@ -58,7 +59,7 @@ const PoliceDepartmentDashboard = (props) => {
 
             <div className="row" style={{ paddingBottom: '36px' }}>
               <div className="col-12" style={{ maxHeight: '300px', overflowY: 'auto' }}>
-                <PoliceOfficersTable/>
+                <PoliceOfficersTable   userRole={userRole} officeLocation={officeLocation}/>
               </div>
               
             </div>

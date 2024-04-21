@@ -6,7 +6,8 @@ import ListItemButton from '@mui/material/ListItemButton';
 
 import axios from "axios";
 import  { useState, useEffect } from 'react'
-import RevenueViewTable from '../Revenue/Revenuetable';
+
+import NewInsurance from './NewInsurance';
 
 
 
@@ -119,7 +120,7 @@ const AddinsurancePage = ({ userRole, officeLocation }) => {
       </ListItemButton>
      
           <br/><br/>
-      <RevenueViewTable  userRole={userRole} officeLocation={officeLocation}  searchResults={searchResults}/>
+      <NewInsurance  userRole={userRole} officeLocation={officeLocation}  searchResults={searchResults}/>
     </Container>
   );
 };

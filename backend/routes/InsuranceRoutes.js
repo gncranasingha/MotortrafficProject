@@ -55,6 +55,33 @@ router.post('/register/addInsurance',verifyToken, async (req, res) => {
     }
   });
 
+
+  router.get('/getInsuraceData', verifyToken, async (req, res) => {
+    try {
+        if (req.user.role === 'insurance') {
+            const officeLocation = req.user.officelocation;
+            const companyId = req.user.companyid; 
+            const insurances = await Insurancedetails.find({ companyid: companyId, officelocation: officeLocation });
+            res.status(200).json(insurances);
+        } else {
+           
+            res.status(403).json({ message: "Access forbidden. Insufficient role." });
+        }
+
+    } catch (error) {
+        console.error("Error fetching insurances:", error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+});
+
+
+
+
+
+
+
+
+
   router.put('/update/:id', verifyToken, async (req, res) => {
     
     try {

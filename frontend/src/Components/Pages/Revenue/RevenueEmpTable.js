@@ -90,7 +90,7 @@ const RevenueEmpTable = ({ userRole, officeLocation, searchResults }) => {
             <TableRow>
               <TableCell
                 sx={{
-                  bgcolor: '#1800ff',
+                  bgcolor: '#6905fa',
                   color: 'white',
                   fontSize: '1rem',
                   fontWeight: 'bold',
@@ -102,7 +102,7 @@ const RevenueEmpTable = ({ userRole, officeLocation, searchResults }) => {
               <TableCell
                 align="right"
                 sx={{
-                  bgcolor: '#1800ff',
+                  bgcolor: '#6905fa',
                   color: 'white',
                   fontSize: '1rem',
                   fontWeight: 'bold',
@@ -114,7 +114,7 @@ const RevenueEmpTable = ({ userRole, officeLocation, searchResults }) => {
               <TableCell
                 align="right"
                 sx={{
-                  bgcolor: '#1800ff',
+                  bgcolor: '#6905fa',
                   color: 'white',
                   fontSize: '1rem',
                   fontWeight: 'bold',
@@ -126,7 +126,7 @@ const RevenueEmpTable = ({ userRole, officeLocation, searchResults }) => {
               <TableCell
                 align="right"
                 sx={{
-                  bgcolor: '#1800ff',
+                  bgcolor: '#6905fa',
                   color: 'white',
                   fontSize: '1rem',
                   fontWeight: 'bold',
@@ -138,7 +138,7 @@ const RevenueEmpTable = ({ userRole, officeLocation, searchResults }) => {
               <TableCell
                 align="right"
                 sx={{
-                  bgcolor: '#1800ff',
+                  bgcolor: '#6905fa',
                   color: 'white',
                   fontSize: '1rem',
                   fontWeight: 'bold',
@@ -150,7 +150,7 @@ const RevenueEmpTable = ({ userRole, officeLocation, searchResults }) => {
               <TableCell
                 align="right"
                 sx={{
-                  bgcolor: '#1800ff',
+                  bgcolor: '#6905fa',
                   color: 'white',
                   fontSize: '1rem',
                   fontWeight: 'bold',
@@ -164,7 +164,7 @@ const RevenueEmpTable = ({ userRole, officeLocation, searchResults }) => {
               <TableCell
                 align="right"
                 sx={{
-                  bgcolor: '#1800ff',
+                  bgcolor: '#6905fa',
                   color: 'white',
                   fontSize: '1rem',
                   fontWeight: 'bold',

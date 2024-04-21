@@ -9,30 +9,28 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { ref, getDownloadURL } from 'firebase/storage';
-import { imageDb } from '../Driver/firebase-config';
-import './Emptable.css';
 
-const Emptable = ({ userRole, officeLocation, searchResults }) => {
+import '../Employee/Emptable.css';
+
+const NewInsurance = ({ userRole, officeLocation, searchResults }) => {
 
   const history = useHistory();
  
-  const [drivers, setDrivers] = useState(searchResults || []);
+  const [insurance, setinsurance] = useState(searchResults || []);
 
   const handleUpdate = (row) => {
    
-    // Navigate to the BorrowBook form and pass selected row data as state
     history.push({
-      pathname: `/${userRole}/${officeLocation}/adddriver`,
+      pathname: `/${userRole}/${officeLocation}/addrevenue`,
       state: { isUpdateMode: true, selectedRow: row },
     });
   };
 
-  const handleDelete = (DriverId) => {
+  const handleDelete = (RevenueId) => {
     // Add logic to delete the Driver with the specified ID
     const token = localStorage.getItem('token');
     axios
-      .delete(`http://localhost:5000/api/drivers/delete/${DriverId}`, {
+      .delete(`http://localhost:5000/api/revenue/revenuedelete/${RevenueId}`, {
         headers: { Authorization: token },
       })
       .then((response) => {
@@ -48,26 +46,16 @@ const Emptable = ({ userRole, officeLocation, searchResults }) => {
   
 
   const fetchData = () => {
-    const token = localStorage.getItem("token");
-    
-    axios.get(`http://localhost:5000/api/drivers/getDriverData`, { headers: { Authorization: token }})
-      .then(async (response) => {
-        // Fetch image URLs for each driver and add them to the driver objects
-        const driversWithImages = await Promise.all(response.data.map(async (driver) => {
-          const imgRef = ref(imageDb, `images/${driver.nic}`);
-          try {
-            const imgUrl = await getDownloadURL(imgRef);
-            return { ...driver, imgUrl };
-          } catch (error) {
-            console.error("Error fetching image URL:", error);
-            return { ...driver, imgUrl: '' }; // Handle missing images or errors gracefully
-          }
-        }));
-  
-        setDrivers(driversWithImages);
+    const token = localStorage.getItem('token');
+    axios
+      .get(`http://localhost:5000/api/insurance/getInsuraceData`, {
+        headers: { Authorization: token },
+      })
+      .then((response) => {
+        setinsurance(response.data);
       })
       .catch((error) => {
-        console.error("Error fetching Drivers:", error);
+        console.error('Error fetching vehicles:', error);
       });
   };
 
@@ -78,7 +66,7 @@ const Emptable = ({ userRole, officeLocation, searchResults }) => {
 
   useEffect(() => {
     // Update the state when searchResults change
-    setDrivers(searchResults || []);
+    setinsurance(searchResults || []);
   }, [searchResults]);
 
 
@@ -105,6 +93,30 @@ const Emptable = ({ userRole, officeLocation, searchResults }) => {
                   border: '0',
                 }}
               >
+                Vehicleno
+              </TableCell>
+              <TableCell
+                align="right"
+                sx={{
+                  bgcolor: '#6905fa',
+                  color: 'white',
+                  fontSize: '1rem',
+                  fontWeight: 'bold',
+                  border: '0',
+                }}
+              >
+              Chassis No
+              </TableCell>
+              <TableCell
+                align="right"
+                sx={{
+                  bgcolor: '#6905fa',
+                  color: 'white',
+                  fontSize: '1rem',
+                  fontWeight: 'bold',
+                  border: '0',
+                }}
+              >
                 NIC
               </TableCell>
               <TableCell
@@ -117,7 +129,7 @@ const Emptable = ({ userRole, officeLocation, searchResults }) => {
                   border: '0',
                 }}
               >
-               Full Name
+                 Full Name
               </TableCell>
               <TableCell
                 align="right"
@@ -129,7 +141,7 @@ const Emptable = ({ userRole, officeLocation, searchResults }) => {
                   border: '0',
                 }}
               >
-                Address
+                 Address
               </TableCell>
               <TableCell
                 align="right"
@@ -141,7 +153,7 @@ const Emptable = ({ userRole, officeLocation, searchResults }) => {
                   border: '0',
                 }}
               >
-                 Blood Type
+               Email
               </TableCell>
               <TableCell
                 align="right"
@@ -153,7 +165,7 @@ const Emptable = ({ userRole, officeLocation, searchResults }) => {
                   border: '0',
                 }}
               >
-                Phone No
+              Office Location
               </TableCell>
               <TableCell
                 align="right"
@@ -165,7 +177,7 @@ const Emptable = ({ userRole, officeLocation, searchResults }) => {
                   border: '0',
                 }}
               >
-               Birth Day
+               Phone No
               </TableCell>
               <TableCell
                 align="right"
@@ -177,7 +189,7 @@ const Emptable = ({ userRole, officeLocation, searchResults }) => {
                   border: '0',
                 }}
               >
-              Issue Date
+               Issue Date
               </TableCell>
               <TableCell
                 align="right"
@@ -189,7 +201,7 @@ const Emptable = ({ userRole, officeLocation, searchResults }) => {
                   border: '0',
                 }}
               >
-               Exp Date
+              Exp Date
               </TableCell>
               <TableCell
                 align="right"
@@ -201,11 +213,35 @@ const Emptable = ({ userRole, officeLocation, searchResults }) => {
                   border: '0',
                 }}
               >
-               user image
+               Vehicle Class
+              </TableCell>
+              <TableCell
+                align="right"
+                sx={{
+                  bgcolor: '#6905fa',
+                  color: 'white',
+                  fontSize: '1rem',
+                  fontWeight: 'bold',
+                  border: '0',
+                }}
+              >
+              Vehicle Model
+              </TableCell>
+              <TableCell
+                align="right"
+                sx={{
+                  bgcolor: '#6905fa',
+                  color: 'white',
+                  fontSize: '1rem',
+                  fontWeight: 'bold',
+                  border: '0',
+                }}
+              >
+                Vehicle Province
               </TableCell>
              
 
-              {userRole === 'dregistrationdepartment' && (
+              {userRole === 'insurance' && (
               <TableCell
                 align="right"
                 sx={{
@@ -222,7 +258,7 @@ const Emptable = ({ userRole, officeLocation, searchResults }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {drivers.map((row, index) => (
+            {insurance.map((row, index) => (
               <TableRow
                 key={index}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -232,7 +268,19 @@ const Emptable = ({ userRole, officeLocation, searchResults }) => {
                   scope="row"
                   sx={{ border: '0', color: '#1471eb', fontSize: '19px' }}
                 >
-                  {row.nic} {/* Replace with the actual property from your data */}
+                  {row.engineno} {/* Replace with the actual property from your data */}
+                </TableCell>
+                <TableCell
+                  align="right"
+                  sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
+                >
+                  {row.chassisno} {/* Replace with the actual property from your data */}
+                </TableCell>
+                <TableCell
+                  align="right"
+                  sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
+                >
+                  {row.id} {/* Replace with the actual property from your data */}
                 </TableCell>
                 <TableCell
                   align="right"
@@ -246,24 +294,24 @@ const Emptable = ({ userRole, officeLocation, searchResults }) => {
                 >
                   {row.address} {/* Replace with the actual property from your data */}
                 </TableCell>
+               
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row.bloodtype} {/* Replace with the actual property from your data */}
+                  {row. email} {/* Replace with the actual property from your data */}
+                </TableCell>
+                <TableCell
+                  align="right"
+                  sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
+                >
+                  {row.officelocation} {/* Replace with the actual property from your data */}
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
                   {row.phoneno} {/* Replace with the actual property from your data */}
-                </TableCell>
-               
-                <TableCell
-                  align="right"
-                  sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
-                >
-                  {row. birthday} {/* Replace with the actual property from your data */}
                 </TableCell>
                 <TableCell
                   align="right"
@@ -277,11 +325,27 @@ const Emptable = ({ userRole, officeLocation, searchResults }) => {
                 >
                   {row.expdate} {/* Replace with the actual property from your data */}
                 </TableCell>
-                <TableCell align="right" sx={{ border: '0' }}>
-        <img src={row.imgUrl || 'path/to/default/image'} alt="Driver" style={{ width: 50, height: 50, borderRadius: '50%' }} />
-      </TableCell>
+                <TableCell
+                  align="right"
+                  sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
+                >
+                  {row.vehicleclass} {/* Replace with the actual property from your data */}
+                </TableCell>
+                <TableCell
+                  align="right"
+                  sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
+                >
+                  {row.vehiclemodel} {/* Replace with the actual property from your data */}
+                </TableCell>
+                <TableCell
+                  align="right"
+                  sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
+                >
+                  {row.vehicleprovince} {/* Replace with the actual property from your data */}
+                </TableCell>
                 
-                {userRole ===  'dregistrationdepartment' && (
+                
+                {userRole === 'insurance' && (
               
                 <TableCell
                   align="right"
@@ -313,4 +377,4 @@ const Emptable = ({ userRole, officeLocation, searchResults }) => {
   );
 };
 
-export default Emptable;
+export default NewInsurance;

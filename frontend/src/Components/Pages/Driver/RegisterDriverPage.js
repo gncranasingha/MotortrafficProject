@@ -187,8 +187,11 @@ function RegisterDriverPage({userRole, officeLocation}) {
       
       .btn-primary {
         color: #fff;
-        background-color: #007bff;
+        background-color: #6905fa;
         border: 1px solid #007bff;
+      }
+      h2{
+        color:#6905fa;
       }
       
   `}

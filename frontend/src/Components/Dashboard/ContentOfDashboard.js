@@ -7,14 +7,15 @@ import RequestListTable from '../Pages/Revenue/RequestListTable'
 import RevenueLRDCard from './Card/RevenueLRDCard';
 import RevenueEmpTable from '../Pages/Revenue/RevenueEmpTable';
 import ExpListTable from '../Pages/Revenue/ExpListTable';
+import RevenueViewTable from '../Pages/Revenue/Revenuetable';
 
 
-const ContentOfDashboard = () => {
-
+const ContentOfDashboard = (props) => {
+  const { userRole, officeLocation } = props;
  
     
   return (
-    <Box component="main" sx={{ flexGrow: 1, p: 3 , overflowY: 'auto'}}>
+    <Box component="main" sx={{ flexGrow: 1, p: 3 , overflowY: 'auto', paddingBottom:'146px'}}>
     <Toolbar />
 
     <div className="row" style={{ paddingBottom: '56px' }}>
@@ -25,7 +26,8 @@ const ContentOfDashboard = () => {
       
     <div className="row" style={{ paddingBottom: '16px', paddingRight:'20px' }}>
           <div className="col-12" style={{ maxHeight: '300px', overflowY: 'auto' }}>
-          <RequestListTable/>
+          <RevenueViewTable  userRole={userRole} officeLocation={officeLocation}  />
+   
           </div>
     </div>
 
@@ -34,11 +36,7 @@ const ContentOfDashboard = () => {
           <RevenueEmpTable/>
           </div>
     </div>
-    <div className="row" style={{ paddingBottom: '16px', paddingRight:'20px' }}>
-          <div className="col-12" style={{ maxHeight: '300px', overflowY: 'auto' }}>
-          
-          </div>
-    </div>
+   
   </Box>
   )
 }

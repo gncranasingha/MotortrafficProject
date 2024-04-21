@@ -18,7 +18,7 @@ const Requestss = require('./routes/RequestRouter')
 const paypal = require('paypal-rest-sdk');
 const cron = require('node-cron');
 const AcceptedVehicleRequest = require('./models/AcceptedVehicleRequest');
-
+const Employee =require('./routes/EmployeeRoute')
 
 dotenv.config();
 const app = express();
@@ -63,6 +63,7 @@ app.use('/api/revenue', verifyToken, Revenue );
 app.use('/api/insurance', verifyToken, Insurance );
 app.use('/api/fine', verifyToken, Fine );
 app.use('/api/requestss', verifyToken, Requestss );
+app.use('/api/employee', verifyToken,Employee  );
 
 
 app.listen(port, () => {

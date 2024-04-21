@@ -1,18 +1,26 @@
-import React, { useState } from 'react';
+import React, {useContext, useState } from 'react';
 import axios from 'axios';
 import '../../../Auth/Login/login.css'
 import { Vlocations, inputval } from '../../../Auth/AdminTEMPRegister/FormStruct';
+import UserContext from '../../../../UserContext';
 
-function MTRDloginPage({ setIsAuthenticated, setUserRole, history }) {
-  const [loginData, setLoginData] = useState({});
+function MTRDloginPage({ setIsAuthenticated,  setUserRole, setOfficeLocation, history }) {
+  const [loginData, setLoginData] = useState();
   const [errorMessage, setErrorMessage] = useState('');
   
-
+  const { setOfficeLocation: setUserContextOfficeLocation } = useContext(UserContext);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setLoginData({ ...loginData, [name]: value });
+    if (name === "officelocation") {
+      setLoginData({ ...loginData, [name]: value });
+      setUserContextOfficeLocation(value);
+    } else {
+      setLoginData({ ...loginData, [name]: value });
+    }
   };
+
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,7 +33,12 @@ function MTRDloginPage({ setIsAuthenticated, setUserRole, history }) {
         // Authentication successful
         setIsAuthenticated(true);
         setUserRole(loginData.role);
+        setOfficeLocation(loginData.officelocation);
+
         localStorage.setItem('token', response.data.token);
+        localStorage.setItem('userRole', loginData.role);
+        localStorage.setItem('officeLocation', loginData.officelocation);
+
         if(loginData.role === "dregistrationdepartment"){
           
           history.push(`/${loginData.role}/${loginData.officelocation}/demployee/dashboard`);
@@ -47,6 +60,7 @@ function MTRDloginPage({ setIsAuthenticated, setUserRole, history }) {
   };
 
   return (
+    <div  style={{backgroundColor: '#e5d4fe', height: '100vh'}}>
     <div className="form-container" style={{backgroundColor: "#d4e8ec"}} >
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
@@ -73,6 +87,7 @@ function MTRDloginPage({ setIsAuthenticated, setUserRole, history }) {
       </form>
 
       {errorMessage && <p className="error-message">{errorMessage}</p>}
+    </div>
     </div>
   );
 }

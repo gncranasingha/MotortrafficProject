@@ -9,6 +9,8 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
+import { ref, getDownloadURL } from 'firebase/storage';
+import { imageDb } from '../../Driver/firebase-config';
 
 const GetAllDrivers = () => {
  
@@ -22,9 +24,21 @@ const GetAllDrivers = () => {
       .get(`http://localhost:5000/api/drivers/getAllDriverData`, {
         headers: { Authorization: token },
       })
-      .then((response) => {
+      .then(async(response) => {
+
+        const driversWithImages = await Promise.all(response.data.map(async (driver) => {
+          const imgRef = ref(imageDb, `images/${driver.nic}`);
+          try {
+            const imgUrl = await getDownloadURL(imgRef);
+            return { ...driver, imgUrl };
+          } catch (error) {
+            console.error("Error fetching image URL:", error);
+            return { ...driver, imgUrl: '' }; // Handle missing images or errors gracefully
+          }
+        }));
+  
        // Update the state with the fetched data
-        setDrivers(response.data);
+       setDrivers(driversWithImages);
         
       })
       .catch((error) => {
@@ -159,18 +173,7 @@ const GetAllDrivers = () => {
            
 
            
-            <TableCell
-              align="right"
-              sx={{
-                bgcolor: '#6905fa',
-                color: 'white',
-                fontSize: '1rem',
-                fontWeight: 'bold',
-                border: '0',
-              }}
-            >
-              Action
-            </TableCell>
+           
             
           </TableRow>
         </TableHead>

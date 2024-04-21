@@ -8,6 +8,7 @@ import VehicleRDCard from '../Card/VehicleRDCard';
 
 import ResponsiveAppBar from '../Navbar';
 import Sidebar from '../Sidebar';
+import VehicleTable from '../../Pages/Vehicle/VehicleTable';
 
 const drawerWidth = 240;
 
@@ -15,7 +16,7 @@ const VehicleEmployeeDashboard = (props) => {
   const { userRole, officeLocation } = props;
 
   return (
-    <Box sx={{ display: 'flex', overflow: 'hidden' }}>
+    <Box sx={{ display: 'flex', overflow: 'hidden', backgroundColor:'#e5d4fe' }}>
       <CssBaseline />
       <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
         <ResponsiveAppBar />
@@ -25,7 +26,7 @@ const VehicleEmployeeDashboard = (props) => {
         sx={{
           width: drawerWidth,
           flexShrink: 0,
-          [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box', backgroundColor: 'blue' },
+          [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box', backgroundColor: '#6905fa' },
         }}
       >
         <Toolbar />
@@ -37,13 +38,18 @@ const VehicleEmployeeDashboard = (props) => {
         {/* Card Component in a Row */}
         <div className="row" style={{ paddingBottom: '56px' }}>
           <div className="col-12">
-            <VehicleRDCard/>
+            <VehicleRDCard userRole={userRole} officeLocation={officeLocation} />
           </div>
         </div>
         {/* Vehicle Table in a Bootstrap Card with Scrollbar */}
+        <div className="row" style={{ paddingBottom: '16px' }}>
+          <div className="col-12 text-center ">
+            <h3 style={{color:'#6905fa',fontWeight:'bold', fontFamily:'serif'}} >Vehicles Table</h3>
+          </div>
+        </div>
         <div className="row" style={{ paddingBottom: '16px', paddingRight:'20px' }}>
           <div className="col-12" style={{ maxHeight: '300px', overflowY: 'auto' }}>
-           
+          <VehicleTable userRole={userRole} officeLocation={officeLocation}   />
           </div>
         </div>
         {/* Additional Rows if needed */}

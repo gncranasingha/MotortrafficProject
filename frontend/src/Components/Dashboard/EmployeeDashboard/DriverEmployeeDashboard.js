@@ -5,9 +5,9 @@ import AppBar from '@mui/material/AppBar';
 import CssBaseline from '@mui/material/CssBaseline';
 import Toolbar from '@mui/material/Toolbar';
 import DriverRDCard from '../Card/DriverRDCard';
-
 import ResponsiveAppBar from '../Navbar';
 import Sidebar from '../Sidebar';
+import Emptable from '../../Pages/Employee/Emptable';
 
 const drawerWidth = 240;
 
@@ -15,7 +15,7 @@ const DriverEmployeeDashboard = (props) => {
   const { userRole, officeLocation } = props;
 
   return (
-    <Box sx={{ display: 'flex', overflow: 'hidden' }}>
+    <Box sx={{ display: 'flex', overflow: 'hidden', backgroundColor:'#e5d4fe' }}>
       <CssBaseline />
       <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
         <ResponsiveAppBar />
@@ -25,7 +25,7 @@ const DriverEmployeeDashboard = (props) => {
         sx={{
           width: drawerWidth,
           flexShrink: 0,
-          [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box', backgroundColor: 'blue' },
+          [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box', backgroundColor: '#6905fa' },
         }}
       >
         <Toolbar />
@@ -40,10 +40,16 @@ const DriverEmployeeDashboard = (props) => {
             <DriverRDCard />
           </div>
         </div>
+        <div className="row" style={{ paddingBottom: '16px' }}>
+          <div className="col-12 text-center ">
+            <h3 style={{color:'#6905fa',fontWeight:'bold', fontFamily:'serif'}} >Drivers Table</h3>
+          </div>
+        </div>
         {/* Driver Table in a Bootstrap Card with Scrollbar */}
         <div className="row" style={{ paddingBottom: '16px', paddingRight:'20px' }}>
           <div className="col-12" style={{ maxHeight: '300px', overflowY: 'auto' }}>
-           
+          <Emptable userRole={userRole} officeLocation={officeLocation}   />
+  
           </div>
         </div>
         {/* Additional Rows if needed */}
