@@ -595,7 +595,7 @@ const user8Schema = new mongoose.Schema({
   },
   officelocation:{
     type:String,
-    required:true,
+    
   },
  
   fineid: {

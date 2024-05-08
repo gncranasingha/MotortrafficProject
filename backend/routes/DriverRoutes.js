@@ -13,8 +13,8 @@ const paypal = require('paypal-rest-sdk');
 
 paypal.configure ({
   mode: "sandbox",
-  client_id : "Aee_5cE8_bCDVin7PVsrQ04J8H8MOr56QP_6jkMFMqoqQXmEnYSkpesvobHEzocS1tqePvanhzR8g2KI",
-  client_secret: "EMsNOlgq-ANMEMWVqIkQInQpDUUZAxY6wsUtdw7QxQcIc2nv-DbDSgBz5GWcx-U1zygntr6tutYv4bpP"
+  client_id : "AbJ32mws4gFotoCudPzjuAaVBMHLpK5Lo0MtMvTIb2yhFCf4X1iWrQY_j4cCuQFBkopZtc-9VEzu8rJO",
+  client_secret: "EA3KajWrZ96YuTKDEv4M_rnPVmMfft5g4DpBNwNYwMjfeLbmVOGc3V_jeqJWBBxSiiqQN8_bx4BbNXzJ"
 });
 
 
@@ -92,7 +92,7 @@ router.post('/register/driversregistration', verifyToken, async (req, res) => {
         },
         to: email,
         subject: "Welcome to DriveEasyConnect System",
-        text: `Hello ${fullname},\n\nThank you for registering!\n\nYour username: ${generatedUsername}\nYour password: ${generatedPassword}`,
+        text: `Hello ${fullname},\n\nThank you for registering as Driver!\n\nYour username: ${generatedUsername}\nYour password: ${generatedPassword}`,
       };
 
       transporter.sendMail(mailOptions, (error, info) => {
@@ -281,14 +281,14 @@ router.post('/create-payment', verifyToken, (req, res) => {
               items: [{
                   name: "Item Name",
                   sku: "Item sku",
-                  price: "10.00",
+                  price: "5.00",
                   currency: "USD",
                   quantity: 1
               }]
           },
           amount: {
               currency: "USD",
-              total: "10.00"
+              total: "5.00"
           },
           description: "This is pay fine"
       }],

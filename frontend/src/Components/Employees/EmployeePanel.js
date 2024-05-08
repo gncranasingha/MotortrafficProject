@@ -76,6 +76,30 @@ const AdminPanel = () => {
               </div>
             </div>
           </div>
+          <div className="col-lg-6 col-md-6 col-sm-12  mb-2">
+            <div className="card shadow p-3 mb-5 rounded text-dark" style={{ ...transparentCardStyle }}>
+              <div className="card-body d-flex flex-column justify-content-center align-items-center">
+                <img src="https://cdn-icons-png.flaticon.com/512/1869/1869679.png" alt="Admin" style={{ maxWidth: '20%', maxHeight: '20%', borderRadius: '10px', marginBottom: '20px' }} />
+                <div className="mt-auto">
+                  <a href="/medical/officeLocation/dashboard" className="btn btn-primary btn-lg" role="button" aria-pressed="true" style={{ width: '400px', height: '50px', paddingTop: "10px", fontWeight: 'bold', fontSize: '1.5rem' }}>
+                  Medical Panel
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="col-lg-6 col-md-6 col-sm-12 mb-2">
+            <div className="card shadow p-3 mb-5 rounded text-dark" style={{ ...transparentCardStyle }}>
+              <div className="card-body d-flex flex-column justify-content-center align-items-center">
+                <img src="https://cdn-icons-png.flaticon.com/512/1869/1869679.png" alt="Admin" style={{ maxWidth: '20%', maxHeight: '20%', borderRadius: '10px', marginBottom: '20px' }} />
+                <div className="mt-auto">
+                  <a href="#" className="btn btn-primary btn-lg" role="button" aria-pressed="true" style={{ width: '400px', height: '50px', paddingTop: "10px", fontWeight: 'bold', fontSize: '1.5rem' }}>
+                  Mission Test
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

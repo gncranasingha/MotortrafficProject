@@ -545,6 +545,9 @@ router.post('/login/mobile', async (req, res) => {
         if (!(await bcrypt.compare(password, user.password))) {
           return res.status(401).json({ message: 'Incorrect password' });
         }
+        if (user.username !== username) {
+          return res.status(401).json({ message: 'Invalid office location' });
+        }
         // Populate token payload for driver
         tokenPayload = { id: user._id, username: user.username, role: user.role, nic: user.nic };
         break;
@@ -576,6 +579,9 @@ router.post('/login/mobile', async (req, res) => {
         }
         if (!(await bcrypt.compare(password, user.password))) {
           return res.status(401).json({ message: 'Incorrect password' });
+        }
+        if (user.username !== username) {
+          return res.status(401).json({ message: 'Invalid office location' });
         }
        
         // Populate token payload for vehicle owner

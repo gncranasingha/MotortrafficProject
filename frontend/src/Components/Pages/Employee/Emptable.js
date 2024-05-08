@@ -11,6 +11,8 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { ref, getDownloadURL } from 'firebase/storage';
 import { imageDb } from '../Driver/firebase-config';
+import io from 'socket.io-client';
+
 import './Emptable.css';
 
 const Emptable = ({ userRole, officeLocation, searchResults }) => {
@@ -18,6 +20,27 @@ const Emptable = ({ userRole, officeLocation, searchResults }) => {
   const history = useHistory();
  
   const [drivers, setDrivers] = useState(searchResults || []);
+  const [enabledExpUpdate, setEnabledExpUpdate] = useState({});
+
+useEffect(() => {
+  const newSocket = io('http://172.20.10.6:5000');
+  newSocket.on('enable_exp_button', (data) => {
+    setEnabledExpUpdate(prevState => ({ ...prevState, [data.nic]: true }));
+    console.log(data);
+  });
+
+  return () => {
+    newSocket.close();
+  };
+}, []);
+
+
+const handleExpUpdate = (row) => {
+  history.push({
+    pathname: `/${userRole}/${officeLocation}/expupdate`,
+    state: { driverDetails: row }
+  });
+}
 
   const handleUpdate = (row) => {
    
@@ -205,7 +228,7 @@ const Emptable = ({ userRole, officeLocation, searchResults }) => {
               </TableCell>
              
 
-              {userRole === 'dregistrationdepartment' && (
+              {userRole === 'dregistrationdepartment' || 'motortrafficregistrationdepartment' && (
               <TableCell
                 align="right"
                 sx={{
@@ -217,6 +240,20 @@ const Emptable = ({ userRole, officeLocation, searchResults }) => {
                 }}
               >
                 Action
+              </TableCell>
+              )}
+              {userRole === 'dregistrationdepartment' || 'motortrafficregistrationdepartment' && (
+              <TableCell
+                align="right"
+                sx={{
+                  bgcolor: '#6905fa',
+                  color: 'white',
+                  fontSize: '1rem',
+                  fontWeight: 'bold',
+                  border: '0',
+                }}
+              >
+                Update Exp Date
               </TableCell>
               )}
             </TableRow>
@@ -281,7 +318,7 @@ const Emptable = ({ userRole, officeLocation, searchResults }) => {
         <img src={row.imgUrl || 'path/to/default/image'} alt="Driver" style={{ width: 50, height: 50, borderRadius: '50%' }} />
       </TableCell>
                 
-                {userRole ===  'dregistrationdepartment' && (
+                {userRole ===  'dregistrationdepartment' || 'motortrafficregistrationdepartment' && (
               
                 <TableCell
                   align="right"
@@ -304,6 +341,24 @@ const Emptable = ({ userRole, officeLocation, searchResults }) => {
                   </Button>
                 </TableCell>
                 )}
+                <TableCell   align="right" sx={{ border: '0', color: 'blue', fontWeight: '#1471eb', fontSize: '16px' }}>
+                <Button
+                  variant="contained"
+                  sx={{
+                  color: 'black',
+                  backgroundColor: enabledExpUpdate[row.nic] ? 'yellow' : 'gray',
+                  '&:hover': {
+                  backgroundColor: enabledExpUpdate[row.nic] ? 'darkyellow' : 'darkgray',
+                  }
+                }}
+                disabled={!enabledExpUpdate[row.nic]}
+                 onClick={() => handleExpUpdate(row)}
+                  >
+                Exp Update
+                </Button>
+
+                </TableCell>
+              
               </TableRow>
             ))}
           </TableBody>

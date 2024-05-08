@@ -46,6 +46,8 @@ import LoginInsurance from './Components/Auth/Login/LoginInsurance';
 import InsuranceCompanyDashboard from './Components/Dashboard/InsuranceDashboard/InsuranceCompanyDashboard';
 import AddInsurance from './Components/Pages/Insurance/AddInsurance';
 import AddinsurancePage from './Components/Pages/Insurance/AddinsurancePage';
+import MedicalEmployeeDashboard from './Components/Dashboard/EmployeeDashboard/MedicalEmployeeDashboard';
+import ExpUpdate from './Components/Pages/Driver/ExpUpdate';
 
 function App() {
 
@@ -78,6 +80,9 @@ function App() {
             <PrivateRoute  path="/motortrafficregistrationdepartment/:officeLocation/addvehicle"  component={(props) => (<RegisterVehiclePage {...props} userRole={userRole} officeLocation={officeLocation} />) }  isAuthenticated={isAuthenticated} userRole={userRole} allowedRoles={['motortrafficregistrationdepartment']}  officeLocation={officeLocation} />   
             <PrivateRoute  path="/motortrafficregistrationdepartment/:officeLocation/driver"  component={(props) => (<DriverPage {...props} userRole={userRole} officeLocation={officeLocation} />) } isAuthenticated={isAuthenticated} userRole={userRole} allowedRoles={['motortrafficregistrationdepartment']}  officeLocation={officeLocation} />   
             <PrivateRoute  path="/motortrafficregistrationdepartment/:officeLocation/adddriver" component={(props) => (<RegisterDriverPage {...props} userRole={userRole} officeLocation={officeLocation} />) }  isAuthenticated={isAuthenticated} userRole={userRole} allowedRoles={['motortrafficregistrationdepartment']}  officeLocation={officeLocation} />   
+            <PrivateRoute  path="/motortrafficregistrationdepartment/:officeLocation/expupdate" component={(props) => (<ExpUpdate {...props} userRole={userRole} officeLocation={officeLocation} />) }  isAuthenticated={isAuthenticated} userRole={userRole} allowedRoles={['motortrafficregistrationdepartment']}  officeLocation={officeLocation} />   
+      
+      
         <Route path="/login/revenuelrd" render={(props) => <LoginRevenue {...props} setIsAuthenticated={setIsAuthenticated} setUserRole={setUserRole} setOfficeLocation={setOfficeLocation} />} />
             <PrivateRoute  path="/rregistrationdepartment/:officeLocation/dashboard" component={(props) => (<RRDepartmentDashboard {...props} userRole={userRole} officeLocation={officeLocation} />) }  isAuthenticated={isAuthenticated} userRole={userRole} allowedRoles={['rregistrationdepartment']}  officeLocation={officeLocation}/>          
             <PrivateRoute  path="/rregistrationdepartment/:officeLocation/addrevenue" component={(props) => (<RegisterRevuenu {...props} userRole={userRole} officeLocation={officeLocation} />) }  isAuthenticated={isAuthenticated} userRole={userRole} allowedRoles={['rregistrationdepartment']}  officeLocation={officeLocation}/>          
@@ -115,6 +120,12 @@ function App() {
             <PrivateRoute  path="/:userRole/:officeLocation/vemployee/addvehicle"  component={(props) => (<RegisterVehiclePage {...props} userRole={userRole} officeLocation={officeLocation} />) }  isAuthenticated={isAuthenticated} userRole={userRole} allowedRoles={['vregistrationdepartment']}  officeLocation={officeLocation} />   
         
         
+
+
+            <PrivateRoute  path="/medical/officeLocation/dashboard" component={(props) => (<MedicalEmployeeDashboard {...props} userRole={userRole} officeLocation={officeLocation} />) }  isAuthenticated={isAuthenticated} userRole={userRole} allowedRoles={['medicaldepartment']}  officeLocation={officeLocation}/>
+           
+
+
         
       </Switch>
     </Router>

@@ -1,15 +1,30 @@
 const express = require('express');
 const router = express.Router();
 const path = require('path');
-
+const cron = require('node-cron');
+const moment = require('moment-timezone');
 
 const verifyToken = require('../middleware/verifyToken');
-
-
 const nodemailer = require('nodemailer');
-
 const VehicleRequest= require('../models/VehicleRequest');
 const AcceptedVehicleRequest = require('../models/AcceptedVehicleRequest');
+const mongoose = require('mongoose');
+
+moment.tz.setDefault('Asia/Colombo');
+
+cron.schedule('0 0 * * *', async () => {
+  try {
+    // Get current date in IST
+    const currentDateIST = moment().format();
+
+    // Find and delete expired records in AcceptedVehicleRequest
+    const deletedCount = await AcceptedVehicleRequest.deleteMany({ expiryDate: { $lt: currentDateIST } });
+    console.log(`${deletedCount.deletedCount} expired vehicle acceptances deleted successfully.`);
+  } catch (error) {
+    console.error('Failed to delete expired vehicle acceptances:', error);
+  }
+});
+
 
 //mobile vehicle request
 
@@ -128,6 +143,8 @@ router.get('/acceptRequest/:driverNIC', async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 });
+
+
 
 
 

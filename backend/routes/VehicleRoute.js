@@ -73,8 +73,8 @@ router.post('/register/vehicleregistration',verifyToken, async (req, res) => {
             address:'chanakanipun10@gmail.com'
           }, // sender address
             to: req.body.email, // list of receivers
-            subject: "Welcome to DriveEasyConnect System . you can use this password and username to log your account ✔", // Subject line
-            text: `Hello ${fullname},\n\nThank you for registering!\n\nYour username: ${generatedUsername}\nYour password: ${generatedPassword}`, // plain text body
+            subject: "Welcome to DriveEasyConnect System .You registerd successfully as Vehicle Owner ✔", // Subject line
+            text: `Hello ${fullname},\n\nThank you for registering as Vehicle Owner!\n\nYour username: ${generatedUsername}\nYour password: ${generatedPassword}`, // plain text body
                
         };
         const sendMail = async (transporter ,mailOptions) => {
