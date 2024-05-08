@@ -201,6 +201,16 @@ router.get('/getpoliceofficerData', async (req, res) => {
   });
   
 
-
+  router.get('/getpoliceofficerData/:officeid',verifyToken, async (req, res) => {
+    try {
+      const officeid = req.params.officeid;
+      const policeOfficers = await PoliceEmp.find({ officeid: officeid });
+      res.status(200).json(policeOfficers);
+    } catch (error) {
+      console.error("Error fetching Police officers:", error);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  });
+  
   
   module.exports = router;
