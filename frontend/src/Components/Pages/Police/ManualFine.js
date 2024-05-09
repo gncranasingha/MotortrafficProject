@@ -10,7 +10,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-const FineTable = ({ userRole, officeLocation, searchResults }) => {
+const ManualFineTable = ({ userRole, officeLocation, searchResults }) => {
   const history = useHistory();
   const [fines, setFines] = useState([]);
 
@@ -39,9 +39,10 @@ const FineTable = ({ userRole, officeLocation, searchResults }) => {
 
   const fetchData = () => {
     const token = localStorage.getItem("token");
+    const queryParams = `?createstatus=manual`; 
    
     axios
-      .get(`http://localhost:5000/api/fine/register/fineregistration`, {
+      .get(`http://localhost:5000/api/fine/register/fineregistration${queryParams}`, {
         headers: { Authorization: token },
       })
       .then((response) => {
@@ -445,4 +446,4 @@ const FineTable = ({ userRole, officeLocation, searchResults }) => {
   );
 };
 
-export default FineTable;
+export default ManualFineTable;

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {  DRDEmployee } = require('../models/User');
+const {  DRDEmployee, MTRDEmployee, Insurance, Police, RRDEmployee } = require('../models/User');
 const bcrypt = require('bcryptjs');
 const verifyToken = require('../middleware/verifyToken')
 
@@ -150,6 +150,37 @@ router.get('/getEmployeeData',verifyToken, async (req, res) => {
       res.status(500).json({ error: "Internal Server Error" });
     }
   });
+
+  // Dynamic Profile Endpoint
+router.get('/:role/profile/:officeid', verifyToken, async (req, res) => {
+  const { role, officeid } = req.params;
+  try {
+    const model = getModelBasedOnRole(role);  // You need to implement this function
+    const user = await model.findOne({ officeid });
+    if (!user) {
+      return res.status(404).send({ message: 'User not found' });
+    }
+    res.send(user);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ message: 'Error fetching user details', error: error.toString() });
+  }
+});
+
+function getModelBasedOnRole(role) {
+  switch (role) {
+    case 'police': return Police;
+    case 'insurance': return Insurance;
+    case 'rregistrationdepartment': return RRDEmployee;
+    case 'motortrafficregistrationdepartment': return MTRDEmployee;
+    // Add other cases as needed
+    default: throw new Error('Invalid role');
+  }
+}
+
+  
+  
+  
   
 
 

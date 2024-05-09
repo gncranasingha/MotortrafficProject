@@ -10,7 +10,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-const FineTable = ({ userRole, officeLocation, searchResults }) => {
+const AutoFineTable = ({ userRole, officeLocation, searchResults }) => {
   const history = useHistory();
   const [fines, setFines] = useState([]);
 
@@ -39,22 +39,21 @@ const FineTable = ({ userRole, officeLocation, searchResults }) => {
 
   const fetchData = () => {
     const token = localStorage.getItem("token");
-   
+    const queryParams = `?createstatus=auto`;  // Filter fines by 'createstatus'
+  
     axios
-      .get(`http://localhost:5000/api/fine/register/fineregistration`, {
+      .get(`http://localhost:5000/api/fine/register/fineregistration${queryParams}`, {
         headers: { Authorization: token },
       })
       .then((response) => {
-       // Update the state with the fetched data
-       setFines(response.data);
-        
+        // Update the state with the fetched data
+        setFines(response.data);
       })
       .catch((error) => {
-        console.error("Error fetching Drivers:", error);
+        console.error("Error fetching fines:", error);
       });
-  
-   
   };
+  
 
   useEffect(() => {
     fetchData();
@@ -445,4 +444,4 @@ const FineTable = ({ userRole, officeLocation, searchResults }) => {
   );
 };
 
-export default FineTable;
+export default AutoFineTable;

@@ -267,12 +267,11 @@ const user2Schema = new mongoose.Schema({
   role: {
     type: String,
     required: true,
-    enum:  'motortrafficregistrationdepartment',
+    enum:  ['motortrafficregistrationdepartment', ''],
   },
 });
 
 const MTRDEmployee = mongoose.model('MTRDEmployee', user2Schema, 'admin');
-
 
 
 
@@ -657,6 +656,10 @@ const user8Schema = new mongoose.Schema({
     required:true,
   },
   timenow: {
+    type:String,
+    required:true,
+  },
+  createstatus: {
     type:String,
     required:true,
   },

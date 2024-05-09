@@ -107,7 +107,7 @@ function RevenueEmpAddForm({userRole, officeLocation}) {
         /* RegisterEmployeeStyles.css */
 
         body {
-            background-color: #f0f0f0;
+            background-color: #e5d4fe;
           }
         
         .container {
@@ -151,8 +151,11 @@ function RevenueEmpAddForm({userRole, officeLocation}) {
           
           .btn-primary {
             color: #fff;
-            background-color: #007bff;
+            background-color: #6905fa;
             border: 1px solid #007bff;
+          }
+          h2{
+            color:#6905fa;
           }
           
       `}

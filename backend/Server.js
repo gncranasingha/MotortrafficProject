@@ -89,6 +89,13 @@ io.on('connection', (socket) => {
   });
 
 
+  io.on('connection', (socket) => {
+    socket.on('payment_successful', (data) => {
+      // Broadcast this event to all clients
+      io.emit('enable_expir_button', { nic: data.nic });
+    });
+  });
+
 
   socket.on('join_room', (room) => {
     socket.join(room);

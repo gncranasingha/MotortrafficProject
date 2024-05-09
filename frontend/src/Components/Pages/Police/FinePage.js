@@ -3,13 +3,15 @@ import { Button, Form, Container, Row, Col } from 'react-bootstrap';
 import FineTable from './FineTable';
 import { Link } from 'react-router-dom';
 import ListItemButton from '@mui/material/ListItemButton';
+import ManualFineTable from './ManualFine';
+import AutoFineTable from './AutoFIne';
 
 const FinePage = ({ userRole, officeLocation }) => {
  
  
 
   return (
-    <Container fluid  style={{paddingLeft:"20px", paddingRight:"20px",backgroundColor: "#d4e8ec"}}>
+    <Container fluid  style={{paddingLeft:"20px", paddingRight:"20px",backgroundColor: "#e5d4fe"}}>
 
 
     <style>
@@ -26,7 +28,7 @@ const FinePage = ({ userRole, officeLocation }) => {
             border-radius: 0.25rem;
           }
           h2 {
-          color: #007bff; /* Text color */
+          color: #6905fa; /* Text color */
           font-size: 2rem; /* Font size */
           margin-bottom: 1rem; /* Bottom margin */
         }
@@ -38,7 +40,7 @@ const FinePage = ({ userRole, officeLocation }) => {
           
           /* Custom styles for the link button */
           .custom-link-style {
-            background-color: #007bff; /* Bootstrap primary color */
+            background-color: #6905fa; /* Bootstrap primary color */
             color: #fff;
             border-radius: 0.25rem;
             padding: 0.375rem 20%;
@@ -58,7 +60,7 @@ const FinePage = ({ userRole, officeLocation }) => {
 
 
 
-      <h2>Add Vehicle</h2>
+      <h2>Fines</h2>
 
       <Form>
         <Row className="mb-3">
@@ -81,10 +83,42 @@ const FinePage = ({ userRole, officeLocation }) => {
         Add Fine
       </ListItemButton>
           <br/><br/>
+
+        <div className="row" style={{ paddingBottom: '36px' }}>
+          <div className="col-12 text-center ">
+            <h3 style={{color:'#6905fa',fontWeight:'bold', fontFamily:'serif'}}> All Fines Table</h3>
+          </div>
+        </div>
           
       <div className="row" style={{ paddingBottom: '16px', paddingRight:'20px' }}>
           <div className="col-12" style={{ maxHeight: '300px', overflowY: 'auto' }}>
             <FineTable userRole={userRole} officeLocation={officeLocation} />
+          </div>
+      </div>
+
+      <div className="row" style={{ paddingBottom: '36px' }}>
+          <div className="col-12 text-center ">
+            <h3 style={{color:'#6905fa',fontWeight:'bold', fontFamily:'serif'}}>Manual Fines Table</h3>
+          </div>
+        </div>
+
+
+      <div className="row" style={{ paddingBottom: '16px', paddingRight:'20px' }}>
+          <div className="col-12" style={{ maxHeight: '300px', overflowY: 'auto' }}>
+            <ManualFineTable userRole={userRole} officeLocation={officeLocation} />
+          </div>
+      </div>
+
+      <div className="row" style={{ paddingBottom: '36px' }}>
+          <div className="col-12 text-center ">
+            <h3 style={{color:'#6905fa',fontWeight:'bold', fontFamily:'serif'}}>Auto Fines Table</h3>
+          </div>
+        </div>
+
+
+      <div className="row" style={{ paddingBottom: '16px', paddingRight:'20px' }}>
+          <div className="col-12" style={{ maxHeight: '300px', overflowY: 'auto' }}>
+            <AutoFineTable userRole={userRole} officeLocation={officeLocation} />
           </div>
         </div>
     </Container>

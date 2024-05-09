@@ -111,13 +111,13 @@ function RegisterRevenu({ userRole, officeLocation }) {
 
   return (
     <div className='container-fluid'>
-
+         <h2>Fist Revenue Registration</h2><br/><br/>
       <style>
         {`
           /* Formstyle.css */
 
           body {
-              background-color: #f0f0f0;
+              background-color: #e5d4fe;
             }
             
             .container-fluid {
@@ -126,7 +126,7 @@ function RegisterRevenu({ userRole, officeLocation }) {
             }
             
             .formbody {
-              background-color: #ffffff; /* Change to white or any other color you prefer */
+              background-color: #d4e8ec; /* Change to white or any other color you prefer */
               padding: 20px;
               margin-top: 10px;
               border-radius: 8px;
@@ -164,8 +164,11 @@ function RegisterRevenu({ userRole, officeLocation }) {
             
             .btn-primary {
               color: #fff;
-              background-color: #007bff;
+              background-color:#6905fa;
               border: 1px solid #007bff;
+            }
+            h2{
+              color:#6905fa;
             }
             
         `}

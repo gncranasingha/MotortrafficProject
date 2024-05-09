@@ -58,6 +58,7 @@ function LoginRevenue({ setIsAuthenticated, setUserRole, setOfficeLocation, hist
          localStorage.setItem('token', response.data.token);
          localStorage.setItem('userRole', loginData.role);
          localStorage.setItem('officeLocation', loginData.officelocation);
+         localStorage.setItem('officeid', loginData.officeid);
  
 
         localStorage.setItem('token', response.data.token);

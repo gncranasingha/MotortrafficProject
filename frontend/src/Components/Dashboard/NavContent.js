@@ -11,7 +11,7 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-
+import { useHistory } from 'react-router-dom';
 import EmojiTransportationIcon from '@mui/icons-material/EmojiTransportation';
 
 import yourImage from '../../assets/2.jpeg'
@@ -21,7 +21,7 @@ const settings = ['Profile', 'Logout'];
 
 
 const Navpage = () => {
-
+  const history = useHistory()
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
   
@@ -153,11 +153,11 @@ const Navpage = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
+            {settings.map((setting) => (
+                        <MenuItem key={setting} onClick={() => history.push('/profile')}>
+                            <Typography textAlign="center">{setting}</Typography>
+                        </MenuItem>
+                    ))}
             </Menu>
           </Box>
         </Toolbar>
