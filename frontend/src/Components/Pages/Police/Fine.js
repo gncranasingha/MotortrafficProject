@@ -1,11 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import {FineFields, LisanceStatus, NewClass, OldClass} from '../../Auth/AdminTEMPRegister/FormStruct';
 import axios from 'axios';
+import { useHistory, useLocation } from 'react-router-dom'; // Import useHistory and useLocation from react-router-dom
+
+
+
 function FineForm({userRole, officeLocation}) {
+
+  const history = useHistory();
+  const location = useLocation();
+  const isUpdateMode = location.state && location.state.isUpdateMode; // Check if in update mode
+ 
 
   const [formData, setFineData] = useState({
             dateoffence: "",
             fineid:"",
+            createstatus:"manual",
             id: "",
             DLNo: "",
             fullname: "",
@@ -21,12 +31,16 @@ function FineForm({userRole, officeLocation}) {
             issuingofficers:"",
             rank:"",
             timenow:"",
+            amount:""
            
   });
   const [currentTime, setCurrentTime] = useState(new Date());
   
-  //const [selectedVehicleClass, setSelectedVehicleClass] = useState('');
-
+    useEffect(() => {
+    if (isUpdateMode && location.state && location.state.selectedRow) {
+      setFineData(location.state.selectedRow);
+     }
+  }, [isUpdateMode, location.state]);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -52,60 +66,51 @@ function FineForm({userRole, officeLocation}) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-   // onSubmit(formData);
-
-   if (!formData.fineid || formData.fineid.trim() === ""){
-    console.error("fineid is required");
-    return;
+  
+    // Convert fineid to string and trim it to ensure proper formatting
+    const trimmedFineId = String(formData.fineid).trim();
+  
+    if (!trimmedFineId) {
+      console.error("fineid is required");
+      window.alert("Fine ID is required."); // Provide user feedback
+      return;
+    }
+  
+    console.log("Processed form data:", formData);
+  
+    const token = localStorage.getItem("token"); // Retrieve the authentication token
+  
+    // Define API endpoints based on whether updating or adding a new fine
+    const endpoint = isUpdateMode ?
+      `http://localhost:5000/api/fine/update/${formData._id}` : // Endpoint for updating
+      'http://localhost:5000/api/fine/register/fineregistration'; // Endpoint for registering
+  
+    // Prepare headers with authorization
+    const config = {
+      headers: { Authorization: `Bearer ${token}` }
+    };
+  
+    // Decide the HTTP method based on operation mode
+    const method = isUpdateMode ? axios.put : axios.post;
+  
+    // Execute the HTTP request using axios
+    method(endpoint, {...formData, fineid: trimmedFineId}, config)
+      .then(response => {
+        console.log(`${isUpdateMode ? 'Fine updated' : 'Fine registered'} successfully`);
+        window.alert(`${isUpdateMode ? 'Fine updated' : 'Fine registered'} successfully`);
+        history.push(`/${userRole}/${officeLocation}/dashboard`); // Redirect after successful operation
+      })
+      .catch(error => {
+        console.error('Error submitting fine:', error);
+        window.alert('Error submitting fine: ' + error.message);
+      });
   }
-  console.log(formData);
-
-  const token = localStorage.getItem("token");
-
-    
-         axios
-            .post('http://localhost:5000/api/Fine/register/fineregistration',
-         formData,
-        { headers: {Authorization: token}}
-        )
-        .then((response) => {
-          // Handle success (e.g., show a success message, reset the form)
-          console.log("Fine added successfully");
-          // Reset the form fields
-          setFineData({
-            dateoffence: "",
-            fineid:"",
-            id: "",
-            DLNo: "",
-            fullname: "",
-            email: "",
-            officelocation:"",
-            address: "",
-            phoneno: "",
-            vehicleno:"",
-            offenceplace:"",
-            natureoffence:"",
-            court:"",
-            courtdate:"",
-            issuingofficers:"",
-            rank:"",
-            timenow:"",
-            drivermodel:""
-            
-          });
-        })
-        .catch((error) => {
-          // Handle error (e.g., show an error message)
-          console.error("Error adding Fine:", error);
-        });
-
-
-        setFineData({});
-  };
+  
 
   return (
     <div><br/><br/>
-        <h2>Add Fine</h2><br/>
+        <h2 className="mb-4">{isUpdateMode ? 'Update Fine' : 'Fine Registration'}</h2>
+    
         
     <div className='container' style={{}}>
         
@@ -115,14 +120,14 @@ function FineForm({userRole, officeLocation}) {
         /* RegisterEmployeeStyles.css */
 
         body {
-            background-color: #f0f0f0;
+            background-color: #e5d4fe;
           }
         
         .container {
           max-width: 800px;
           margin: auto;
           padding: 20px;
-          background-color: #ffffff;
+          background-color: #d4e8ec;
           border-radius: 8px;
           box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
           margin-bottom: 20px;
@@ -184,6 +189,7 @@ function FineForm({userRole, officeLocation}) {
                 className='form-control'
                 name={field.name}
                 onChange={handleChange}
+                value={formData[field.name]}
               />
             </div>
           ))}
@@ -191,8 +197,9 @@ function FineForm({userRole, officeLocation}) {
 
           
 
-          <button type="submit" className="btn btn-primary">Add Fine</button>
-       
+        <button type="submit" className="btn btn-primary">
+          {isUpdateMode ? 'Update' : 'Add Fine'}
+        </button>
       </form>
     </div>
     </div>

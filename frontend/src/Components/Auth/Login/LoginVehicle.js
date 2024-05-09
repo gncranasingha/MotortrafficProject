@@ -35,6 +35,7 @@ function LoginVehicle({ setIsAuthenticated, setUserRole, setOfficeLocation, hist
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('userRole', loginData.role);
         localStorage.setItem('officeLocation', loginData.officelocation);
+        localStorage.setItem('officeid', loginData.officeid);
 
         history.push(`/${loginData.role}/${loginData.officelocation}/dashboard`);
       }

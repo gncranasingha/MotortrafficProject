@@ -266,6 +266,31 @@ router.get('/getFinesByDriverId/:nic',verifyToken, async (req, res) => {
   }
 });
 
+
+router.put('/updateDates/:nic', async (req, res) => {
+  const { issuedate, expdate } = req.body;
+  try {
+    const updatedDriver = await Driver.findOneAndUpdate(
+      { nic: req.params.nic },
+      { $set: { issuedate, expdate } },
+      { new: true }
+    );
+    res.json(updatedDriver);
+  } catch (error) {
+    console.error('Failed to update driver dates:', error);
+    res.status(500).send('Server error');
+  }
+});
+
+
+
+
+
+
+
+
+
+
 router.post('/create-payment', verifyToken, (req, res) => {
   const create_payment_json = {
       intent: 'sale',
@@ -304,6 +329,44 @@ router.post('/create-payment', verifyToken, (req, res) => {
   });
 });
 
+router.post('/create-payment-to-updateLicense', verifyToken, (req, res) => {
+  const create_payment_json = {
+      intent: 'sale',
+      payer: {
+          payment_method: 'paypal'
+      },
+      redirect_urls: {
+          return_url: 'http://172.20.10.6:5000/api/drivers/successuppayment',
+          cancel_url: 'http://172.20.10.6:5000/api/drivers/canceluppayment'
+      },
+      transactions: [{
+          item_list: {
+              items: [{
+                  name: "Item Name",
+                  sku: "Item sku",
+                  price: "5.00",
+                  currency: "USD",
+                  quantity: 1
+              }]
+          },
+          amount: {
+              currency: "USD",
+              total: "5.00"
+          },
+          description: "This is pay fine"
+      }],
+  };
+
+  paypal.payment.create(create_payment_json, (error, payment) => {
+      if (error) {
+          console.error('Payment Error:', error);
+          return res.status(500).json({ error: error.toString() });
+      }
+      const approvalUrl = payment.links.find(link => link.rel === "approval_url").href;
+      res.json({ approvalUrl });
+  });
+});
+
 
 router.post("/execute-payment", verifyToken, async (req, res) => {
   const { payerId, paymentId } = req.body;
@@ -312,7 +375,7 @@ router.post("/execute-payment", verifyToken, async (req, res) => {
       transactions: [{
           amount: {
               currency: "USD",
-              total: "10.00"
+              total: "5.00"
           }
       }]
   };
@@ -339,6 +402,12 @@ router.get("/success",verifyToken, (req, res) => {
   res.send("Success payment was completed");
 })
 router.get("/cancel",verifyToken, (req, res) => {
+  res.send(" payment was cancelled.");
+})
+router.get("/successuppayment",verifyToken, (req, res) => {
+  res.send("Success payment was completed");
+})
+router.get("/canceluppayment",verifyToken, (req, res) => {
   res.send(" payment was cancelled.");
 })
 

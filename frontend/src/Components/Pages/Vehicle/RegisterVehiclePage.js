@@ -204,7 +204,7 @@ function RegisterVehiclePage({userRole, officeLocation}) {
           max-width: 800px;
           margin: auto;
           padding: 20px;
-          background-color: #ffffff;
+          background-color: #d4e8ec;
           border-radius: 8px;
           box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
           margin-bottom: 20px;

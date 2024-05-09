@@ -24,7 +24,7 @@ const Emptable = ({ userRole, officeLocation, searchResults }) => {
 
 useEffect(() => {
   const newSocket = io('http://172.20.10.6:5000');
-  newSocket.on('enable_exp_button', (data) => {
+  newSocket.on('enable_expir_button', (data) => {
     setEnabledExpUpdate(prevState => ({ ...prevState, [data.nic]: true }));
     console.log(data);
   });
@@ -38,7 +38,11 @@ useEffect(() => {
 const handleExpUpdate = (row) => {
   history.push({
     pathname: `/${userRole}/${officeLocation}/expupdate`,
-    state: { driverDetails: row }
+    state: { 
+      driverDetails: row ,
+      userRole: userRole,
+      officeLocation: officeLocation
+    }
   });
 }
 
@@ -225,6 +229,18 @@ const handleExpUpdate = (row) => {
                 }}
               >
                user image
+              </TableCell>
+              <TableCell
+                align="right"
+                sx={{
+                  bgcolor: '#6905fa',
+                  color: 'white',
+                  fontSize: '1rem',
+                  fontWeight: 'bold',
+                  border: '0',
+                }}
+              >
+               Update Exp
               </TableCell>
              
 

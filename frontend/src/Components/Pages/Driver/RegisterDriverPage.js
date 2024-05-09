@@ -118,7 +118,7 @@ function RegisterDriverPage({userRole, officeLocation}) {
       });
 
       alert("Driver information submitted successfully.");
-      history.push(`/${userRole}/${officeLocation}/dashboard`);
+      history.push(`/${userRole}/${officeLocation}/demployee/dashboard`);
     } catch (error) {
       console.error("Error submitting the form:", error);
       alert("Failed to submit the form. Please try again.");
@@ -140,7 +140,7 @@ function RegisterDriverPage({userRole, officeLocation}) {
     /* Formstyle.css */
 
     body {
-        background-color: #f0f0f0;
+        background-color: #e5d4fe;
       }
       
       .container-fluid {
@@ -149,7 +149,7 @@ function RegisterDriverPage({userRole, officeLocation}) {
       }
       
       .formbody {
-        background-color: #ffffff; /* Change to white or any other color you prefer */
+        background-color: #d4e8ec; /* Change to white or any other color you prefer */
         padding: 20px;
         margin-top: 10px;
         border-radius: 8px;

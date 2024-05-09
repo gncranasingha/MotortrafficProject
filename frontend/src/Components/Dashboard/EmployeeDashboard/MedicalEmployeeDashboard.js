@@ -25,11 +25,7 @@ const MedicalEmployeeDashboard = (props) => {
       <Box component="main" sx={{ flexGrow: 1, p: 3, overflowY: 'auto' }}>
         <Toolbar />
        
-        <div className="row" style={{ paddingBottom: '16px' }}>
-          <div className="col-12 text-center ">
-            <h3 style={{color:'#6905fa',fontWeight:'bold', fontFamily:'serif'}} >Drivers Table</h3>
-          </div>
-        </div>
+       
         {/* Driver Table in a Bootstrap Card with Scrollbar */}
         <div className="row" style={{ paddingBottom: '16px', paddingRight:'20px' }}>
           <div className="col-12" style={{ maxHeight: '300px', overflowY: 'auto' }}>

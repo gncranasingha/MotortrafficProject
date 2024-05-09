@@ -23,6 +23,11 @@ const ContentOfDashboard = (props) => {
       <RevenueLRDCard/>
       </div>
     </div>
+    <div className="row" style={{ paddingBottom: '16px'  }}>
+          <div className="col-12 text-center">
+            <h3  style={{color:'#6905fa',fontWeight:'bold', fontFamily:'serif'}} >Revenue License Table</h3>
+          </div>
+        </div>
       
     <div className="row" style={{ paddingBottom: '16px', paddingRight:'20px' }}>
           <div className="col-12" style={{ maxHeight: '300px', overflowY: 'auto' }}>
@@ -30,6 +35,12 @@ const ContentOfDashboard = (props) => {
    
           </div>
     </div>
+
+    <div className="row" style={{ paddingBottom: '16px'  }}>
+          <div className="col-12 text-center">
+            <h3  style={{color:'#6905fa',fontWeight:'bold', fontFamily:'serif'}} >Employee Table</h3>
+          </div>
+        </div>
 
     <div className="row" style={{ paddingBottom: '16px', paddingRight:'20px' }}>
           <div className="col-12" style={{ maxHeight: '300px', overflowY: 'auto' }}>
