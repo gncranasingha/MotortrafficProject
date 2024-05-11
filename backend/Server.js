@@ -122,6 +122,11 @@ io.on('connection', (socket) => {
     // Emit this to all clients (or you can target a specific room if clients join rooms based on NIC)
     io.emit('enable_exp_button', { nic });
   });
+  socket.on('enable_exp_revenueupdate', ({ engineno }) => {
+    console.log(`Enable Exp Update received for vehicle no: ${engineno}`);
+    // Emit this to all clients (or you can target a specific room if clients join rooms based on NIC)
+    io.emit('enable_exp_revenuebutton', { engineno });
+  });
 
 
   socket.on('send_update_request', ({engineno}) => {
