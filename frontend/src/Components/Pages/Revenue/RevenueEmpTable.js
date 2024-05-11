@@ -20,7 +20,6 @@ const RevenueEmpTable = ({ userRole, officeLocation, searchResults }) => {
 
   const handleUpdate = (row) => {
    
-    // Navigate to the BorrowBook form and pass selected row data as state
     history.push({
       pathname: `/${userRole}/${officeLocation}/addrevenueemp`,
       state: { isUpdateMode: true, selectedRow: row },
@@ -28,7 +27,7 @@ const RevenueEmpTable = ({ userRole, officeLocation, searchResults }) => {
   };
 
   const handleDelete = (EmpId) => {
-    // Add logic to delete the Emp with the specified ID
+    
     const token = localStorage.getItem('token');
     axios
       .delete(`http://localhost:5000/api/revenue/delete/${EmpId}`, {
@@ -48,15 +47,14 @@ const RevenueEmpTable = ({ userRole, officeLocation, searchResults }) => {
 
   const fetchData = () => {
     const token = localStorage.getItem("token");
-    const userRole = "rregistrationdepartment"; // Replace this with the actual user's role
+    const userRole = "rregistrationdepartment"; 
   
     axios
       .get(`http://localhost:5000/api/revenue/getRevenueEmployeeData`, {
         headers: { Authorization: token },
-        params: { role: userRole }, // Pass the user's role as a parameter
+        params: { role: userRole }, 
       })
       .then((response) => {
-        // Update the state with the fetched data
         setRevenueemp(response.data);
       })
       .catch((error) => {
@@ -69,7 +67,6 @@ const RevenueEmpTable = ({ userRole, officeLocation, searchResults }) => {
   },[]);
 
   useEffect(() => {
-    // Update the state when searchResults change
     setRevenueemp(searchResults || []);
   }, [searchResults]);
 
@@ -186,38 +183,38 @@ const RevenueEmpTable = ({ userRole, officeLocation, searchResults }) => {
                   scope="row"
                   sx={{ border: '0', color: '#1471eb', fontSize: '19px' }}
                 >
-                  {row.officeid} {/* Replace with the actual property from your data */}
+                  {row.officeid} 
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row.id} {/* Replace with the actual property from your data */}
+                  {row.id} 
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row.fullname} {/* Replace with the actual property from your data */}
+                  {row.fullname} 
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row. email} {/* Replace with the actual property from your data */}
+                  {row. email} 
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row.address} {/* Replace with the actual property from your data */}
+                  {row.address} 
                 </TableCell>
                
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row. phoneno} {/* Replace with the actual property from your data */}
+                  {row. phoneno} 
                 </TableCell>
                 
                 <TableCell

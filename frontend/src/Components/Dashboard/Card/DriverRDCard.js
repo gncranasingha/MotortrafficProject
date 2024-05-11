@@ -9,9 +9,9 @@ const DriverRDCard = () => {
     const [driversCount, setDriversCount] = useState(0);
     const [employee, setEmployee] = useState(0);
     const checkUserRole = () => {
-        // Replace this logic with your actual role-checking mechanism
+        
         const userRole = localStorage.getItem('userRole');
-        return userRole === 'dregistrationdepartment' || "motortrafficregistrationdepartment"; // Adjust the condition based on your roles
+        return userRole === 'dregistrationdepartment' || "motortrafficregistrationdepartment"; 
       };
     
       useEffect(() => {
@@ -25,7 +25,7 @@ const DriverRDCard = () => {
             headers: { Authorization: token },
           })
           .then((response) => {
-           // Update the state with the fetched data
+           
            
             setDriversCount(response.data.length);
           })
@@ -48,7 +48,7 @@ const DriverRDCard = () => {
             headers: { Authorization: token },
           })
           .then((response) => {
-           // Update the state with the fetched data
+          
            
            setEmployee(response.data.length);
           })

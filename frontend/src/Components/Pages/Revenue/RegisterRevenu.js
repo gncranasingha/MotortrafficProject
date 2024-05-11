@@ -1,7 +1,7 @@
 import React, { useState,useEffect } from 'react';
 import { RevenueLFeald, VehicleClass,VehicleFuelType } from '../../Auth/AdminTEMPRegister/FormStruct';
 import axios from 'axios';
-import { useHistory, useLocation } from 'react-router-dom'; // Import useHistory and useLocation from react-router-dom
+import { useHistory, useLocation } from 'react-router-dom'; 
 
 
 function RegisterRevenu({ userRole, officeLocation }) {
@@ -25,7 +25,7 @@ function RegisterRevenu({ userRole, officeLocation }) {
   });
   const history = useHistory();
   const location = useLocation();
-  const isUpdateMode = location.state && location.state.isUpdateMode; // Check if in update mode
+  const isUpdateMode = location.state && location.state.isUpdateMode; 
   
   useEffect(() => {
     if (isUpdateMode && location.state && location.state.selectedRow) {
@@ -33,7 +33,6 @@ function RegisterRevenu({ userRole, officeLocation }) {
         ...location.state.selectedRow,
         issuedate: location.state.selectedRow.issuedate.split('T')[0],
         expdate: location.state.selectedRow.expdate.split('T')[0],
-        // Ensure drivingLicenseTypes is an array as expected by checkboxes
         };
       setRevenueData(formData);
     }
@@ -66,7 +65,7 @@ function RegisterRevenu({ userRole, officeLocation }) {
             .then((response) => {
               console.log('revenue Updated successfully');
               window.alert('revenue Updated successfully');
-              history.push(`/${userRole}/${officeLocation}/dashboard`); // Redirect to the BorrowBookTable after update
+              history.push(`/${userRole}/${officeLocation}/dashboard`); 
             })
             .catch((error) => {
               console.error('Error updating revenue:', error);
@@ -80,10 +79,10 @@ function RegisterRevenu({ userRole, officeLocation }) {
         { headers: {Authorization: token}}
         )
         .then((response) => {
-          // Handle success (e.g., show a success message, reset the form)
+         
           console.log("revenue added successfully");
           window.alert('revenue added successfully');
-          // Reset the form fields
+         
           setRevenueData({
             engineno:'',
             owner:'',
@@ -102,7 +101,6 @@ function RegisterRevenu({ userRole, officeLocation }) {
           });
         })
         .catch((error) => {
-          // Handle error (e.g., show an error message)
           console.error("Error adding vehicle:", error);
         });
 

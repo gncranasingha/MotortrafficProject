@@ -48,7 +48,6 @@ const handleExpUpdate = (row) => {
 
   const handleUpdate = (row) => {
    
-    // Navigate to the BorrowBook form and pass selected row data as state
     history.push({
       pathname: `/${userRole}/${officeLocation}/adddriver`,
       state: { isUpdateMode: true, selectedRow: row },
@@ -56,7 +55,7 @@ const handleExpUpdate = (row) => {
   };
 
   const handleDelete = (DriverId) => {
-    // Add logic to delete the Driver with the specified ID
+    
     const token = localStorage.getItem('token');
     axios
       .delete(`http://localhost:5000/api/drivers/delete/${DriverId}`, {
@@ -79,7 +78,7 @@ const handleExpUpdate = (row) => {
     
     axios.get(`http://localhost:5000/api/drivers/getDriverData`, { headers: { Authorization: token }})
       .then(async (response) => {
-        // Fetch image URLs for each driver and add them to the driver objects
+        
         const driversWithImages = await Promise.all(response.data.map(async (driver) => {
           const imgRef = ref(imageDb, `images/${driver.nic}`);
           try {
@@ -87,7 +86,7 @@ const handleExpUpdate = (row) => {
             return { ...driver, imgUrl };
           } catch (error) {
             console.error("Error fetching image URL:", error);
-            return { ...driver, imgUrl: '' }; // Handle missing images or errors gracefully
+            return { ...driver, imgUrl: '' }; 
           }
         }));
   
@@ -104,7 +103,7 @@ const handleExpUpdate = (row) => {
   },[]);
 
   useEffect(() => {
-    // Update the state when searchResults change
+    
     setDrivers(searchResults || []);
   }, [searchResults]);
 
@@ -285,50 +284,50 @@ const handleExpUpdate = (row) => {
                   scope="row"
                   sx={{ border: '0', color: '#1471eb', fontSize: '19px' }}
                 >
-                  {row.nic} {/* Replace with the actual property from your data */}
+                  {row.nic} 
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row.fullname} {/* Replace with the actual property from your data */}
+                  {row.fullname} 
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row.address} {/* Replace with the actual property from your data */}
+                  {row.address} 
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row.bloodtype} {/* Replace with the actual property from your data */}
+                  {row.bloodtype} 
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row.phoneno} {/* Replace with the actual property from your data */}
+                  {row.phoneno} 
                 </TableCell>
                
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row. birthday} {/* Replace with the actual property from your data */}
+                  {row. birthday} 
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row.issuedate} {/* Replace with the actual property from your data */}
+                  {row.issuedate} 
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row.expdate} {/* Replace with the actual property from your data */}
+                  {row.expdate} 
                 </TableCell>
                 <TableCell align="right" sx={{ border: '0' }}>
         <img src={row.imgUrl || 'path/to/default/image'} alt="Driver" style={{ width: 50, height: 50, borderRadius: '50%' }} />

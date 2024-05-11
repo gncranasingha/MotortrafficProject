@@ -124,19 +124,19 @@ const RevenueViewTable = ({ userRole, officeLocation, searchResults }) => {
                   scope="row"
                   sx={{ border: '0', color: '#1471eb' }}
                 >
-                  {row.chassisno} {/* Replace with the actual property from your data */}
+                  {row.chassisno} 
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row.engineno} {/* Replace with the actual property from your data */}
+                  {row.engineno} 
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row.seatingcapacity} {/* Replace with the actual property from your data */}
+                  {row.seatingcapacity} 
                 </TableCell>
                 
                 {/* Repeat for other columns */}

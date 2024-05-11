@@ -7,7 +7,7 @@ function PoliceRegistrationPage({userRole, officeLocation}) {
 
   const history = useHistory();
   const location = useLocation();
-  const isUpdateMode = location.state && location.state.isUpdateMode; // Check if in update mode
+  const isUpdateMode = location.state && location.state.isUpdateMode; 
   
   
     const [formData, setUserData] = useState({
@@ -16,9 +16,9 @@ function PoliceRegistrationPage({userRole, officeLocation}) {
                 fullname:"",
                 email:"",
                 address:"",
-                officelocation:officeLocation,
+                officelocation:officeLocation || "",
                 phoneno:"",
-                role:userRole,
+                role:userRole || "",
     });
   
     const handleChange = (e) => {
@@ -28,9 +28,9 @@ function PoliceRegistrationPage({userRole, officeLocation}) {
   
     useEffect(() => {
       if (isUpdateMode && location.state && location.state.selectedRow) {
-        // Extract selected row data from location state
+        
         const { selectedRow } = location.state;
-        // Update form data state with selected row data
+       
         setUserData(selectedRow);
       }
     }, [isUpdateMode, location.state]);

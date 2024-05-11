@@ -19,9 +19,6 @@ const GetAllVehicleTable = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     
-   
-    
-      // Fetch data from the server based on userRole and officeLocation
     axios
       .get(`http://localhost:5000/api/vehicle/getAllVehicleData`,{
       headers: { Authorization: token },
@@ -40,10 +37,7 @@ const GetAllVehicleTable = () => {
    
   }, []);
 
-     // Include userRole and officeLocation in the dependency array
-
-
-
+    
   return (
     <div>
       <TableContainer component={Paper}>
@@ -277,105 +271,105 @@ const GetAllVehicleTable = () => {
                   scope="row"
                   sx={{ border: '0', color: '#1471eb' }}
                 >
-                  {row.chassisno} {/* Replace with the actual property from your data */}
+                  {row.chassisno} 
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row.engineno} {/* Replace with the actual property from your data */}
+                  {row.engineno} 
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row.seatingcapacity} {/* Replace with the actual property from your data */}
+                  {row.seatingcapacity} 
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row.ownerfullname} {/* Replace with the actual property from your data */}
+                  {row.ownerfullname} 
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row.nic} {/* Replace with the actual property from your data */}
+                  {row.nic} 
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row.address} {/* Replace with the actual property from your data */}
+                  {row.address} 
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row.phoneno} {/* Replace with the actual property from your data */}
+                  {row.phoneno} 
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row.officelocation} {/* Replace with the actual property from your data */}
+                  {row.officelocation} 
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row.vehicleclass} {/* Replace with the actual property from your data */}
+                  {row.vehicleclass} 
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row.vehiclemodel} {/* Replace with the actual property from your data */}
+                  {row.vehiclemodel} 
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row.vehiclecolor} {/* Replace with the actual property from your data */}
+                  {row.vehiclecolor} 
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row.vehicleprovince} {/* Replace with the actual property from your data */}
+                  {row.vehicleprovince} 
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row.vehicletaxationclass} {/* Replace with the actual property from your data */}
+                  {row.vehicletaxationclass} 
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row.vehicleorigincountry} {/* Replace with the actual property from your data */}
+                  {row.vehicleorigincountry} 
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row. vehiclecylindercapacity} {/* Replace with the actual property from your data */}
+                  {row. vehiclecylindercapacity} 
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row.vehiclestatus} {/* Replace with the actual property from your data */}
+                  {row.vehiclestatus} 
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row.vehiclefueltype} {/* Replace with the actual property from your data */}
+                  {row.vehiclefueltype} 
                 </TableCell>
-                {/* Repeat for other columns */}
+               
                
                  
                 

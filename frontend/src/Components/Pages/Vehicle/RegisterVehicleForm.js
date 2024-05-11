@@ -14,7 +14,6 @@ function RegisterVehicleForm({ fields, vclass, onSubmit, Bikemodel,
     const { name, value } = e.target;
     setUserData({ ...formData, [name]: value });
 
-    // If the selected field is 'vehicleclass', update the selected vehicle class state
     if (name === 'vehicleclass') {
       setSelectedVehicleClass(value);
     }
@@ -33,7 +32,6 @@ function RegisterVehicleForm({ fields, vclass, onSubmit, Bikemodel,
     else if (selectedVehicleClass === 'jeep') {
       return JeepModel;
     }
-    // Add more conditions for other vehicle classes if needed
     return [];
   };
 

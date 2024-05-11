@@ -77,14 +77,14 @@ router.get('/getEmployeeData',verifyToken, async (req, res) => {
         });
   
         if (!existingEmployee) {
-          return res.status(404).json({ message: 'Vehicle not found' });
+          return res.status(404).json({ message: 'Employee not found' });
         }
   
         // Check if the chassisno is already taken by another vehicle
-        if (req.body.id && req.body.id !== existingVehicle.id) {
+        if (req.body.id && req.body.id !== existingEmployee.id) {
           const idTaken = await DRDEmployee.findOne({ id: req.body.id });
           if (idTaken) {
-            return res.status(409).json({ message: 'Chassisno is already taken' });
+            return res.status(409).json({ message: 'nic is already taken' });
           }
         }
   

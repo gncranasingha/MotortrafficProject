@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {DriverFields,  Bloodtype } from '../../Auth/AdminTEMPRegister/FormStruct';
-import { useHistory, useLocation } from 'react-router-dom'; // Import useHistory and useLocation from react-router-dom
+import { useHistory, useLocation } from 'react-router-dom'; 
 
 import axios from 'axios';
 import { imageDb } from './firebase-config';
@@ -27,7 +27,7 @@ function RegisterDriverPage({userRole, officeLocation}) {
 
   const history = useHistory();
   const location = useLocation();
-  const isUpdateMode = location.state && location.state.isUpdateMode; // Check if in update mode
+  const isUpdateMode = location.state && location.state.isUpdateMode; 
   
   const [image, setImage] = useState(null);
 
@@ -59,10 +59,10 @@ function RegisterDriverPage({userRole, officeLocation}) {
     let updatedLicenseTypes = [...formData.drivingLicenseTypes];
   
     if (checked) {
-      // Add the license type to the array
+      
       updatedLicenseTypes = [...updatedLicenseTypes, name];
     } else {
-      // Remove the license type from the array
+      
       updatedLicenseTypes = updatedLicenseTypes.filter((type) => type !== name);
     }
   
@@ -76,7 +76,7 @@ function RegisterDriverPage({userRole, officeLocation}) {
         birthday: location.state.selectedRow.birthday.split('T')[0],
         issuedate: location.state.selectedRow.issuedate.split('T')[0],
         expdate: location.state.selectedRow.expdate.split('T')[0],
-        // Ensure drivingLicenseTypes is an array as expected by checkboxes
+       
         drivingLicenseTypes: location.state.selectedRow.drivingLicenseTypes || [],
       };
       setUserData(formattedData);
@@ -97,16 +97,16 @@ function RegisterDriverPage({userRole, officeLocation}) {
     }
 
     try {
-      // Upload image to Firebase
+      
       const imgRef = ref(imageDb, `images/${formData.nic}`);
       const snapshot = await uploadBytes(imgRef, image);
       const imageUrl = await getDownloadURL(snapshot.ref);
       console.log('Image URL:', imageUrl);
 
-      // Prepare form data including the image URL
+     
       const completeFormData = { ...formData, imageUrl };
 
-      // Submit form data to your API
+     
       const token = localStorage.getItem('token');
       const apiURL = isUpdateMode ? `http://localhost:5000/api/drivers/update/${formData._id}` : 'http://localhost:5000/api/drivers/register/driversregistration';
       
@@ -118,7 +118,7 @@ function RegisterDriverPage({userRole, officeLocation}) {
       });
 
       alert("Driver information submitted successfully.");
-      history.push(`/${userRole}/${officeLocation}/demployee/dashboard`);
+      history.push(`/${userRole}/${officeLocation}/dashboard`);
     } catch (error) {
       console.error("Error submitting the form:", error);
       alert("Failed to submit the form. Please try again.");
@@ -235,11 +235,11 @@ function RegisterDriverPage({userRole, officeLocation}) {
           </select>
         </div>
 
-          {/*image upload*/}
+         
           <div className='form-group'>
   <label>Profile Image:</label>
   <input type="file" onChange={e => setImage(e.target.files[0])} />
-        {/* More form inputs based on your state */}
+       
       
 </div>
 

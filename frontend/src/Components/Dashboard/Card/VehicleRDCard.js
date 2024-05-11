@@ -11,8 +11,7 @@ const VehicleRDCard = ({userRole, officeLocation}) => {
 
 
   const checkUserRole = () => {
-    // Replace this logic with your actual role-checking mechanism
-    const userRole = localStorage.getItem('userRole');
+     const userRole = localStorage.getItem('userRole');
     return userRole === 'motortrafficregistrationdepartment'|| 'dregistrationdepartment' || 'vregistrationdepartment'  ; // Adjust the condition based on your roles
   };
 
@@ -24,16 +23,11 @@ const VehicleRDCard = ({userRole, officeLocation}) => {
 
     const token = localStorage.getItem("token");
     
-
-    
-      // Fetch data from the server based on userRole and officeLocation
-    axios
+       axios
       .get(`http://localhost:5000/api/vehicle/getVehicleData`,{
       headers: { Authorization: token },
     })
     .then((response) => {
-      
-      // Update the state with the fetched data
       setVehiclesCount(response.data.length);
     })
    
@@ -50,17 +44,13 @@ const VehicleRDCard = ({userRole, officeLocation}) => {
 
     const token = localStorage.getItem("token");
     
-
-    
-      // Fetch data from the server based on userRole and officeLocation
-    axios
+        axios
       .get(`http://localhost:5000/api/employee/getEmployeeData`,{
       headers: { Authorization: token },
     })
     .then((response) => {
       
-      // Update the state with the fetched data
-      setEmployeesCount(response.data.length);
+        setEmployeesCount(response.data.length);
     })
    
     .catch((error) => {

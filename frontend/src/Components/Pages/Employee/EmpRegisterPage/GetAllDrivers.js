@@ -33,11 +33,11 @@ const GetAllDrivers = () => {
             return { ...driver, imgUrl };
           } catch (error) {
             console.error("Error fetching image URL:", error);
-            return { ...driver, imgUrl: '' }; // Handle missing images or errors gracefully
+            return { ...driver, imgUrl: '' }; 
           }
         }));
   
-       // Update the state with the fetched data
+      
        setDrivers(driversWithImages);
         
       })
@@ -188,50 +188,50 @@ const GetAllDrivers = () => {
                 scope="row"
                 sx={{ border: '0', color: '#1471eb', fontSize: '19px' }}
               >
-                {row.nic} {/* Replace with the actual property from your data */}
+                {row.nic} 
               </TableCell>
               <TableCell
                 align="right"
                 sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
               >
-                {row.fullname} {/* Replace with the actual property from your data */}
+                {row.fullname}
               </TableCell>
               <TableCell
                 align="right"
                 sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
               >
-                {row.address} {/* Replace with the actual property from your data */}
+                {row.address} 
               </TableCell>
               <TableCell
                 align="right"
                 sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
               >
-                {row.bloodtype} {/* Replace with the actual property from your data */}
+                {row.bloodtype} 
               </TableCell>
               <TableCell
                 align="right"
                 sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
               >
-                {row.phoneno} {/* Replace with the actual property from your data */}
+                {row.phoneno} 
               </TableCell>
              
               <TableCell
                 align="right"
                 sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
               >
-                {row. birthday} {/* Replace with the actual property from your data */}
+                {row. birthday} 
               </TableCell>
               <TableCell
                 align="right"
                 sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
               >
-                {row.issuedate} {/* Replace with the actual property from your data */}
+                {row.issuedate} 
               </TableCell>
               <TableCell
                 align="right"
                 sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
               >
-                {row.expdate} {/* Replace with the actual property from your data */}
+                {row.expdate} 
               </TableCell>
               <TableCell align="right" sx={{ border: '0' }}>
       <img src={row.imgUrl || 'path/to/default/image'} alt="Driver" style={{ width: 50, height: 50, borderRadius: '50%' }} />

@@ -31,10 +31,10 @@ const DriverEmployeeDashboard = (props) => {
         <Toolbar />
         <Sidebar userRole={userRole} officeLocation={officeLocation} />
       </Drawer>
-      {/* Import Content of dashboard */}
+     
       <Box component="main" sx={{ flexGrow: 1, p: 3, overflowY: 'auto' }}>
         <Toolbar />
-        {/* Card Component in a Row */}
+       
         <div className="row" style={{ paddingBottom: '56px' }}>
           <div className="col-12">
             <DriverRDCard />
@@ -45,14 +45,14 @@ const DriverEmployeeDashboard = (props) => {
             <h3 style={{color:'#6905fa',fontWeight:'bold', fontFamily:'serif'}} >Drivers Table</h3>
           </div>
         </div>
-        {/* Driver Table in a Bootstrap Card with Scrollbar */}
+       
         <div className="row" style={{ paddingBottom: '16px', paddingRight:'20px' }}>
           <div className="col-12" style={{ maxHeight: '300px', overflowY: 'auto' }}>
           <Emptable userRole={userRole} officeLocation={officeLocation}   />
   
           </div>
         </div>
-        {/* Additional Rows if needed */}
+        
         <div className="row" style={{ paddingBottom: '16px' }}>
           <div className="col-12">
            

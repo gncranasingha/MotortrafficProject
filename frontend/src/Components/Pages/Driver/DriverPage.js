@@ -11,10 +11,10 @@ const DriverPage = ({ userRole, officeLocation }) => {
   const [searchInput, setSearchInput] = useState('');
   const [searchResults, setSearchResults] = useState([]);
 
-   // Define the base URL based on userRole
+  
    let baseUrl = "";
 
-   // Set the base URL based on userRole
+  
    if (userRole === "motortrafficregistrationdepartment") {
      baseUrl = `/${userRole}/${officeLocation}/adddriver`;
    } else if (userRole === "dregistrationdepartment") {

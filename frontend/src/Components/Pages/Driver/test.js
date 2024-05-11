@@ -1,7 +1,7 @@
 const handleSubmit = async (e) => {
     e.preventDefault();
     
-    // Check required fields
+  
     if (!formData.nic || formData.nic.trim() === "") {
       console.error("NIC is required");
       return;
@@ -11,19 +11,19 @@ const handleSubmit = async (e) => {
       return;
     }
   
-    // Use NIC as the image name for uploading
+    
     const imgRef = ref(imageDb, `images/${formData.nic}`);
     
     try {
-      // Upload the image first
+     
       const snapshot = await uploadBytes(imgRef, img);
       console.log('Image uploaded successfully!', snapshot);
   
-      // Optionally, retrieve the file URL after the upload
+      
       const imageUrl = await getDownloadURL(imgRef);
       console.log('File available at', imageUrl);
   
-      // Add the image URL to the form data
+     
       const completeFormData = { ...formData, imageUrl };
   
       const token = localStorage.getItem("token");
@@ -31,7 +31,7 @@ const handleSubmit = async (e) => {
         ? `http://localhost:5000/api/drivers/update/${formData._id}` 
         : 'http://localhost:5000/api/drivers/register/driversregistration';
   
-      // Now submit the complete form data including the image URL to your backend
+      
       await axios({
         method: isUpdateMode ? 'put' : 'post',
         url: endpoint,
@@ -42,7 +42,7 @@ const handleSubmit = async (e) => {
       console.log(isUpdateMode ? "Driver updated successfully" : "Driver added successfully");
       window.alert(isUpdateMode ? "Driver updated successfully" : "Driver added successfully");
   
-      // Reset the form fields or redirect as needed after successful submission
+     
       if (!isUpdateMode) {
         setUserData({
           nic: '',
@@ -56,10 +56,10 @@ const handleSubmit = async (e) => {
           issuedate: '',
           expdate: '',
         });
-        setimg(null); // Reset image state
+        setimg(null);
       }
   
-      // Optional: Redirect or update UI
+      
       history.push(`/${userRole}/${officeLocation}/dashboard`);
       
     } catch (error) {

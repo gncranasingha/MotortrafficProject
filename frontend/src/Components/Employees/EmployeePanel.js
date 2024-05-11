@@ -5,7 +5,7 @@ const AdminPanel = () => {
     backgroundImage: `url('https://img.freepik.com/premium-vector/hologram-hud-ui-style-background_115579-831.jpg?size=626&ext=jpg')`,
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
-    minHeight: '100vh',  // Set the container height to 100% of the viewport height
+    minHeight: '100vh', 
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -14,7 +14,7 @@ const AdminPanel = () => {
   };
 
   const transparentCardStyle = {
-    backgroundColor: 'rgba(255, 255, 255, 0.5)', // Adjust the alpha value for transparency
+    backgroundColor: 'rgba(255, 255, 255, 0.5)', 
   };
  
   return (
@@ -93,7 +93,7 @@ const AdminPanel = () => {
               <div className="card-body d-flex flex-column justify-content-center align-items-center">
                 <img src="https://cdn-icons-png.flaticon.com/512/1869/1869679.png" alt="Admin" style={{ maxWidth: '20%', maxHeight: '20%', borderRadius: '10px', marginBottom: '20px' }} />
                 <div className="mt-auto">
-                  <a href="#" className="btn btn-primary btn-lg" role="button" aria-pressed="true" style={{ width: '400px', height: '50px', paddingTop: "10px", fontWeight: 'bold', fontSize: '1.5rem' }}>
+                  <a href="/missiontest/officeLocation/dashboard" className="btn btn-primary btn-lg" role="button" aria-pressed="true" style={{ width: '400px', height: '50px', paddingTop: "10px", fontWeight: 'bold', fontSize: '1.5rem' }}>
                   Mission Test
                   </a>
                 </div>

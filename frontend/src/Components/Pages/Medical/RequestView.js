@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
 
+
 const RequestView = () => {
   const [requests, setRequests] = useState([]);
   const [message, setMessage] = useState('');
-  const [nicToSend, setNicToSend] = useState('');  // NIC to send the message to
+  const [nicToSend, setNicToSend] = useState('');  
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {
-    // Establish WebSocket connection
-    const newSocket = io('http://172.20.10.6:5000'); // Replace with your server's address
+    
+    const newSocket = io('http://172.20.10.6:5000'); 
     setSocket(newSocket);
 
     newSocket.on('update_license_request', (data) => {
@@ -31,7 +32,7 @@ const RequestView = () => {
   const sendMessageToDriver = () => {
     if (socket && nicToSend && message) {
       socket.emit('send_to_driver', { nic: nicToSend, message });
-      setMessage('');  // Clear the message input after sending
+      setMessage('');  
     }
   };
 

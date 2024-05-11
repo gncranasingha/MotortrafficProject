@@ -19,7 +19,6 @@ const RRDepartmentDashboard = (props) => {
       <CssBaseline />
       <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
 
-        {/*import navbar */}
         <ResponsiveAppBar/>
       </AppBar>
       <Drawer
@@ -31,12 +30,10 @@ const RRDepartmentDashboard = (props) => {
         }}
       >
         <Toolbar />
-         {/*import Sidebar */}
         <Sidebar userRole={userRole} officeLocation={officeLocation} />
 
 
       </Drawer>
-         {/*import Content of dashboard */}
       <ContentOfDashboard/>
 
 

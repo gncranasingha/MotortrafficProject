@@ -310,104 +310,104 @@ const FineTable = ({ userRole, officeLocation, searchResults }) => {
                   scope="row"
                   sx={{ border: '0', color: '#1471eb' }}
                 >
-                  {row.fineid} {/* Replace with the actual property from your data */}
+                  {row.fineid} 
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row.id} {/* Replace with the actual property from your data */}
+                  {row.id} 
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row.DLNo} {/* Replace with the actual property from your data */}
+                  {row.DLNo} 
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row.fullname} {/* Replace with the actual property from your data */}
+                  {row.fullname} 
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row.email} {/* Replace with the actual property from your data */}
+                  {row.email} 
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row.address} {/* Replace with the actual property from your data */}
+                  {row.address} 
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row.phoneno} {/* Replace with the actual property from your data */}
+                  {row.phoneno} 
                 </TableCell>
                 
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row.vehicleno} {/* Replace with the actual property from your data */}
+                  {row.vehicleno} 
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row.offenceplace} {/* Replace with the actual property from your data */}
+                  {row.offenceplace} 
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row.dateoffence} {/* Replace with the actual property from your data */}
+                  {row.dateoffence} 
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row.natureoffence} {/* Replace with the actual property from your data */}
+                  {row.natureoffence} 
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row.court} {/* Replace with the actual property from your data */}
+                  {row.court} 
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row.courtdate} {/* Replace with the actual property from your data */}
+                  {row.courtdate} 
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row.issuingofficers} {/* Replace with the actual property from your data */}
+                  {row.issuingofficers} 
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row.rank} {/* Replace with the actual property from your data */}
+                  {row.rank} 
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row.timenow} {/* Replace with the actual property from your data */}
+                  {row.timenow} 
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row.status} {/* Replace with the actual property from your data */}
+                  {row.status} 
                 </TableCell>
                 {/* Repeat for other columns */}
                

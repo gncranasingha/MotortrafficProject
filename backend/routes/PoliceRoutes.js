@@ -12,10 +12,10 @@ router.post('/register/policeofficerregistration', async (req, res) => {
     const { officeid,id, fullname, address, officelocation, phoneno, email } = req.body;
 
     // Generate a username (assuming it's based on the email address)
-    const username = email.split('@')[0];
+    const username = email.replace(/[@]/g, '').replace(/gmail.com/, '');
 
     // Generate a random password (you can customize this logic as needed)
-    const generatedPassword = Math.random().toString(36).slice(-8);
+    const generatedPassword = Math.random().toString(36).slice(-5);
 
     // Hash the generated password
     const hashedPassword = await bcrypt.hash(generatedPassword, 10);

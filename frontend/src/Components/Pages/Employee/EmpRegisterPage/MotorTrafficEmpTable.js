@@ -18,7 +18,6 @@ const Emptable = ({ userRole, officeLocation, searchResults  }) => {
   
   const handleUpdate = (row) => {
    
-    // Navigate to the BorrowBook form and pass selected row data as state
     history.push({
       pathname: `/${userRole}/${officeLocation}/addemp`,
       state: { isUpdateMode: true, selectedRow: row },
@@ -26,7 +25,7 @@ const Emptable = ({ userRole, officeLocation, searchResults  }) => {
   };
 
   const handleDelete = (EmpId) => {
-    // Add logic to delete the Driver with the specified ID
+   
     const token = localStorage.getItem('token');
     axios
       .delete(`http://localhost:5000/api/motortraffic/delete/${EmpId}`, {
@@ -54,7 +53,6 @@ const Emptable = ({ userRole, officeLocation, searchResults  }) => {
       })
       .then((response) => {
         
-        // Update the state with the fetched data
         setEmployees(response.data);
       })
       .catch((error) => {
@@ -68,7 +66,6 @@ const Emptable = ({ userRole, officeLocation, searchResults  }) => {
   },[]);
 
   useEffect(() => {
-    // Update the state when searchResults change
     setEmployees(searchResults || []);
   }, [searchResults]);
 
@@ -209,52 +206,52 @@ const Emptable = ({ userRole, officeLocation, searchResults  }) => {
                   scope="row"
                   sx={{ border: '0', color: '#1471eb', fontSize: '19px' }}
                 >
-                  {row.officeid} {/* Replace with the actual property from your data */}
+                  {row.officeid} 
                 </TableCell>
                 <TableCell
                   component="th"
                   scope="row"
                   sx={{ border: '0', color: '#1471eb', fontSize: '19px' }}
                 >
-                  {row.id} {/* Replace with the actual property from your data */}
+                  {row.id} 
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row.fullname} {/* Replace with the actual property from your data */}
+                  {row.fullname} 
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row.email} {/* Replace with the actual property from your data */}
+                  {row.email} 
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row.address} {/* Replace with the actual property from your data */}
+                  {row.address} 
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row.officelocation} {/* Replace with the actual property from your data */}
+                  {row.officelocation} 
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row.phoneno} {/* Replace with the actual property from your data */}
+                  {row.phoneno} 
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row. role} {/* Replace with the actual property from your data */}
+                  {row. role} 
                 </TableCell>
-                {/* Repeat for other columns */}
+               
                 {userRole === 'motortrafficregistrationdepartment' && (
                 <TableCell
                   align="right"

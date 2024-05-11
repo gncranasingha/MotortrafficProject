@@ -5,8 +5,7 @@ import { BikeModel,weelModel,
    InsuranceRegisterFields} from '../../Auth/AdminTEMPRegister/FormStruct';
 import axios from 'axios';
 
-import { useHistory, useLocation } from 'react-router-dom'; // Import useHistory and useLocation from react-router-dom
-
+import { useHistory, useLocation } from 'react-router-dom'; 
 
 
 
@@ -14,7 +13,7 @@ function AddInsurance({userRole, officeLocation,companyid,companyname}) {
 
   const history = useHistory();
   const location = useLocation();
-  const isUpdateMode = location.state && location.state.isUpdateMode; // Check if in update mode
+  const isUpdateMode = location.state && location.state.isUpdateMode;
  
   const [selectedVehicleClass, setSelectedVehicleClass] = useState('');
 
@@ -103,7 +102,7 @@ function AddInsurance({userRole, officeLocation,companyid,companyname}) {
     else if (selectedVehicleClass === 'jeep') {
       return JeepModel;
     }
-    // Add more conditions for other vehicle classes if needed
+   
     return [];
   };
 
@@ -133,7 +132,7 @@ function AddInsurance({userRole, officeLocation,companyid,companyname}) {
               .then((response) => {
                 console.log('Insurance Updated successfully');
                 window.alert('Insurance Updated successfully');
-                history.push(`/${userRole}/${officeLocation}/dashboard`); // Redirect to the BorrowBookTable after update
+                history.push(`/${userRole}/${officeLocation}/dashboard`); 
               })
               .catch((error) => {
                 console.error('Error updating Insurance:', error);
@@ -147,10 +146,10 @@ function AddInsurance({userRole, officeLocation,companyid,companyname}) {
           { headers: {Authorization: token}}
           )
           .then((response) => {
-            // Handle success (e.g., show a success message, reset the form)
+           
             console.log("Insurance added successfully");
             window.alert('Insurance added successfully');
-            // Reset the form fields
+            
             setUserData({
                 companyid: "",
                 companyname: "",
@@ -172,7 +171,6 @@ function AddInsurance({userRole, officeLocation,companyid,companyname}) {
             });
           })
           .catch((error) => {
-            // Handle error (e.g., show an error message)
             console.error("Error adding vehicle:", error);
           });
 
