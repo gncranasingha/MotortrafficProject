@@ -13,6 +13,7 @@ import { ref, getDownloadURL } from 'firebase/storage';
 import { imageDb } from '../Driver/firebase-config';
 import io from 'socket.io-client';
 
+
 import './Emptable.css';
 
 const Emptable = ({ userRole, officeLocation, searchResults }) => {
