@@ -31,6 +31,13 @@ const MissionRequest = () => {
       }
   };
 
+  const handlePassButtonClick = (engineno) => {
+    if (socket) {
+      socket.emit('enable_exp_revenueupdate', { engineno });
+      console.log(`Requested to enable Exp Update for NIC: ${engineno}`);
+    }
+  };
+
   return (
     <div>
       <h1>Revenue License Update Requests</h1>
@@ -38,6 +45,7 @@ const MissionRequest = () => {
         {requests.map((request, index) => (
           <li key={index}>
             Vehicle No: {request.engineno} - Request received
+            <button onClick={() => handlePassButtonClick(request.engineno)}>Pass</button>
           </li>
         ))}
       </ul>
