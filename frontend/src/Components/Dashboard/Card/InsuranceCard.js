@@ -10,9 +10,9 @@ const InsuranceCard = () => {
   const [vehiclesCount, setVehiclesCount] = useState(0);
 
   const checkUserRole = () => {
-    // Replace this logic with your actual role-checking mechanism
+   
     const userRole = localStorage.getItem('userRole');
-    return userRole === 'police'  ; // Adjust the condition based on your roles
+    return userRole === 'police'  ; 
   };
 
 
@@ -32,7 +32,7 @@ const InsuranceCard = () => {
       })
       .then((response) => {
         
-        // Update the state with the fetched data
+       
         setofficersCount(response.data.length);
       })
       .catch((error) => {
@@ -54,8 +54,7 @@ const InsuranceCard = () => {
         headers: { Authorization: token },
       })
       .then((response) => {
-       // Update the state with the fetched data
-       
+     
        
       })
       .catch((error) => {
@@ -74,14 +73,14 @@ const InsuranceCard = () => {
     
 
     
-      // Fetch data from the server based on userRole and officeLocation
+    
     axios
       .get(`http://localhost:5000/api/vehicle/getVehicleData`,{
       headers: { Authorization: token },
     })
     .then((response) => {
       
-      // Update the state with the fetched data
+      
       setVehiclesCount(response.data.length);
     })
    

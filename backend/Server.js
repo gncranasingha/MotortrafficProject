@@ -107,11 +107,30 @@ io.on('connection', (socket) => {
     // Emit the message only to sockets in the specified NIC room
     io.to(nic).emit('message_from_admin', message);
   });
+
+  socket.on('send_message_to_vehicle_owner', ({ engineno, message }) => {
+    console.log(`Message to vehicle no ${ engineno}:`, message);
+    // Emit to all clients, or use rooms to target a specific client
+    io.emit('receive_message',  message);
+  });
+
+
+
+
   socket.on('enable_exp_update', ({ nic }) => {
     console.log(`Enable Exp Update received for NIC: ${nic}`);
     // Emit this to all clients (or you can target a specific room if clients join rooms based on NIC)
     io.emit('enable_exp_button', { nic });
   });
+
+
+  socket.on('send_update_request', ({engineno}) => {
+    console.log(`Update Request Received for Vehicle No: ${engineno}`);
+    // You can now emit this to all clients or to a specific room
+    io.emit('update_request_received', { engineno });
+  });
+
+ 
 
 
   socket.on('disconnect', () => {

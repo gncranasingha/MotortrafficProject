@@ -21,19 +21,15 @@ const MedicalEmployeeDashboard = (props) => {
         <ResponsiveAppBar />
       </AppBar>
      
-      {/* Import Content of dashboard */}
       <Box component="main" sx={{ flexGrow: 1, p: 3, overflowY: 'auto' }}>
         <Toolbar />
        
-       
-        {/* Driver Table in a Bootstrap Card with Scrollbar */}
         <div className="row" style={{ paddingBottom: '16px', paddingRight:'20px' }}>
           <div className="col-12" style={{ maxHeight: '300px', overflowY: 'auto' }}>
         
                 <RequestView/>
           </div>
         </div>
-        {/* Additional Rows if needed */}
         <div className="row" style={{ paddingBottom: '16px' }}>
           <div className="col-12">
            

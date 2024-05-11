@@ -15,9 +15,6 @@ function InsuranceeRegistrationPage() {
             const response = await axios.post('http://localhost:5000/api/auth/register/insurance', formData);
             console.log('Registration successful:', response.data);
             
-            
-            // After successful registration, you can choose to navigate the user to the login page.
-            // You can use the history object if you're using React Router.
           } catch (error) {
             console.error('Registration failed:', error);
            

@@ -1,4 +1,4 @@
-// RequestListTable.js
+
 
 import React from "react";
 
@@ -64,7 +64,7 @@ const ExpListTable = () => {
                 <button type="button" className="btn btn-outline-warning ml-3" style={{marginLeft:'20px'}} >Update</button>
               </td>
             </tr>
-            {/* Add more rows as needed */}
+            
           </tbody>
         </table>
       </div>

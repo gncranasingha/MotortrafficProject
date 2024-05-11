@@ -21,7 +21,6 @@ const PoliceDepartmentDashboard = (props) => {
       <CssBaseline />
       <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
 
-        {/*import navbar */}
         <ResponsiveAppBar/>
       </AppBar>
       <Drawer
@@ -33,12 +32,10 @@ const PoliceDepartmentDashboard = (props) => {
         }}
       >
         <Toolbar />
-         {/*import Sidebar */}
         <Sidebar userRole={userRole} officeLocation={officeLocation} />
 
 
       </Drawer>
-         {/*import Content of dashboard */}
          <Box component="main" sx={{ flexGrow: 1, p: 3, overflowY: 'auto' }}>
           <Toolbar />
 

@@ -30,7 +30,7 @@ function MTRDloginPage({ setIsAuthenticated,  setUserRole, setOfficeLocation, hi
 
       
       if (response.data.token) {
-        // Authentication successful
+       
         setIsAuthenticated(true);
         setUserRole(loginData.role);
         setOfficeLocation(loginData.officelocation);

@@ -47,7 +47,7 @@ function LoginPolice({ setIsAuthenticated, setUserRole, setOfficeLocation, histo
 
       
       if (response.data.token) {
-        // Authentication successful
+       
         setIsAuthenticated(true);
         setUserRole(loginData.role);
         setOfficeLocation(loginData.officelocation);

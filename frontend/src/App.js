@@ -49,6 +49,7 @@ import AddinsurancePage from './Components/Pages/Insurance/AddinsurancePage';
 import MedicalEmployeeDashboard from './Components/Dashboard/EmployeeDashboard/MedicalEmployeeDashboard';
 import ExpUpdate from './Components/Pages/Driver/ExpUpdate';
 import UserProfile from './Components/Pages/UserProfile';
+import MissionTestEmployeeDasgboard from './Components/Dashboard/EmployeeDashboard/MissionTestEmployeeDashboard';
 
 function App() {
 
@@ -123,6 +124,7 @@ function App() {
 
 
             <PrivateRoute  path="/medical/officeLocation/dashboard" component={(props) => (<MedicalEmployeeDashboard {...props} userRole={userRole} officeLocation={officeLocation} />) }  isAuthenticated={isAuthenticated} userRole={userRole} allowedRoles={['medicaldepartment']}  officeLocation={officeLocation}/>
+            <PrivateRoute  path="/missiontest/officeLocation/dashboard" component={(props) => (<MissionTestEmployeeDasgboard {...props} userRole={userRole} officeLocation={officeLocation} />) }  isAuthenticated={isAuthenticated} userRole={userRole} allowedRoles={['missiontestdepartment']}  officeLocation={officeLocation}/>
         
 
         <Route path="/profile" component={UserProfile} />

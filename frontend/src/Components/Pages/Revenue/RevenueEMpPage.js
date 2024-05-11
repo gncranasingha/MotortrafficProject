@@ -13,10 +13,8 @@ const RevenueEMp = ({ userRole, officeLocation }) => {
   const [searchResults, setSearchResults] = useState([]);
 
 
-   // Define the base URL based on userRole
-   let baseUrl = "";
+    let baseUrl = "";
 
-   // Set the base URL based on userRole
    if (userRole === "rregistrationdepartment") {
      baseUrl = `/${userRole}/${officeLocation}/addrevenueemp`;
    

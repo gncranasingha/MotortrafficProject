@@ -11,7 +11,7 @@ const ExpUpdate = () => {
   const [expdate, setExpDate] = useState(driverDetails.expdate);
 
   const handleUpdate = async () => {
-    const token = localStorage.getItem('token'); // assuming you store your token in localStorage
+    const token = localStorage.getItem('token'); 
     try {
       await axios.put(`http://localhost:5000/api/drivers/updateDates/${driverDetails.nic}`, {
         issuedate,
@@ -20,7 +20,7 @@ const ExpUpdate = () => {
         headers: { Authorization: `Bearer ${token}` },
       });
       alert('Update successful');
-      history.push(`/${userRole}/${officeLocation}/dashboard`); // Adjust this path as needed
+      history.push(`/${userRole}/${officeLocation}/dashboard`); 
     } catch (error) {
       console.error('Failed to update dates:', error);
       alert('Failed to update dates');

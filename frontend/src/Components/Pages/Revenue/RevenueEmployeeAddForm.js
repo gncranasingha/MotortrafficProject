@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {RRDEmployeeFields, MTERole } from '../../Auth/AdminTEMPRegister/FormStruct';
-import { useHistory, useLocation } from 'react-router-dom'; // Import useHistory and useLocation from react-router-dom
+import { useHistory, useLocation } from 'react-router-dom'; 
 
 import axios from 'axios';
 
@@ -8,7 +8,7 @@ function RevenueEmpAddForm({userRole, officeLocation}) {
 
   const history = useHistory();
   const location = useLocation();
-  const isUpdateMode = location.state && location.state.isUpdateMode; // Check if in update mode
+  const isUpdateMode = location.state && location.state.isUpdateMode; 
  
 
 
@@ -58,7 +58,7 @@ function RevenueEmpAddForm({userRole, officeLocation}) {
         .then((response) => {
           console.log('Employee Updated successfully');
           window.alert('Employee Updated successfully');
-          history.push(`/${userRole}/${officeLocation}/dashboard`); // Redirect to the BorrowBookTable after update
+          history.push(`/${userRole}/${officeLocation}/dashboard`); 
         })
         .catch((error) => {
           console.error('Error updating Employee:', error);

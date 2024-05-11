@@ -2,8 +2,7 @@ import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
-  const isAuthenticated = localStorage.getItem('token'); // Check if the user is authenticated
-
+  const isAuthenticated = localStorage.getItem('token');
   return (
     <Route
       {...rest}
@@ -11,7 +10,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
         isAuthenticated ? (
           <Component {...props} />
         ) : (
-          <Redirect to="/login" /> // Redirect to the login page if not authenticated
+          <Redirect to="/login" /> 
         )
       }
     />

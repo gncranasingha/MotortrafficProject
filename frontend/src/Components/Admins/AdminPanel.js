@@ -5,7 +5,6 @@ const AdminPanel = () => {
     backgroundImage: `url('https://img.freepik.com/premium-vector/hologram-hud-ui-style-background_115579-831.jpg?size=626&ext=jpg')`,
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
-      // Set the container height to 100% of the viewport height
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -14,7 +13,7 @@ const AdminPanel = () => {
   };
 
   const transparentCardStyle = {
-    backgroundColor: 'rgba(255, 255, 255, 0.5)', // Adjust the alpha value for transparency
+    backgroundColor: 'rgba(255, 255, 255, 0.5)',
   };
  
   return (

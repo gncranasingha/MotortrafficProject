@@ -28,7 +28,7 @@ export default function RequestListTable({ userRole, officeLocation }) {
   const history = useHistory();
 
   const handleUpdateDate = () => {
-    // Add the route you want to navigate to
+   
     history.push(`/${userRole}/${officeLocation}/updaterevenue`);
   };
 

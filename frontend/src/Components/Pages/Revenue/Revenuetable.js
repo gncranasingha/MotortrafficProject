@@ -27,7 +27,7 @@ const RevenueViewTable = ({ userRole, officeLocation, searchResults }) => {
   };
 
   const handleDelete = (RevenueId) => {
-    // Add logic to delete the Driver with the specified ID
+    
     const token = localStorage.getItem('token');
     axios
       .delete(`http://localhost:5000/api/revenue/revenuedelete/${RevenueId}`, {
@@ -65,7 +65,6 @@ const RevenueViewTable = ({ userRole, officeLocation, searchResults }) => {
   },[]);
 
   useEffect(() => {
-    // Update the state when searchResults change
     setrevenue(searchResults || []);
   }, [searchResults]);
 
@@ -256,74 +255,74 @@ const RevenueViewTable = ({ userRole, officeLocation, searchResults }) => {
                   scope="row"
                   sx={{ border: '0', color: '#1471eb', fontSize: '19px' }}
                 >
-                  {row.engineno} {/* Replace with the actual property from your data */}
+                  {row.engineno} 
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row. owner} {/* Replace with the actual property from your data */}
+                  {row. owner} 
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row.email} {/* Replace with the actual property from your data */}
+                  {row.email} 
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row.address} {/* Replace with the actual property from your data */}
+                  {row.address} 
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row.issuedate} {/* Replace with the actual property from your data */}
+                  {row.issuedate} 
                 </TableCell>
                
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row. expdate} {/* Replace with the actual property from your data */}
+                  {row. expdate} 
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row.amount} {/* Replace with the actual property from your data */}
+                  {row.amount} 
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row. weight} {/* Replace with the actual property from your data */}
+                  {row. weight} 
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row.  seatno} {/* Replace with the actual property from your data */}
+                  {row.  seatno} 
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row.  vetnumber} {/* Replace with the actual property from your data */}
+                  {row.  vetnumber} 
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row.  vehicleclass} {/* Replace with the actual property from your data */}
+                  {row.  vehicleclass} 
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ border: '0', color: 'blue', fontWeight: '#1471eb' }}
                 >
-                  {row. vehiclefueltype} {/* Replace with the actual property from your data */}
+                  {row. vehiclefueltype} 
                 </TableCell>
                 
                 

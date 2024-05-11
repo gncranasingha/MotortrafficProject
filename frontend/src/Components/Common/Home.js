@@ -50,7 +50,7 @@ const Home = () => {
                     type="button"
                     className="btn btn-primary btn-lg btn-block"
                     onClick={() => {
-                      // Handle click logic or navigation
+                      
                       window.location.href = '/employeepanel';
                     }}
                     style={{
@@ -88,7 +88,7 @@ const Home = () => {
                     type="button"
                     className="btn btn-primary btn-lg btn-block"
                     onClick={() => {
-                      // Handle click logic or navigation
+                      
                       window.location.href = '/adminpanel';
                     }}
                     style={{

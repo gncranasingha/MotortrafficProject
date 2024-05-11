@@ -31,7 +31,7 @@ function LoginInsurance({ setIsAuthenticated, setUserRole, setOfficeLocation, hi
         setUserRole(loginData.role);
         setOfficeLocation(loginData.officelocation);
 
-        // Store token and user information in localStorage
+       
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('userRole', loginData.role);
         localStorage.setItem('officeLocation', loginData.officelocation);
