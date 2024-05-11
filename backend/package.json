@@ -5,13 +5,14 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon Server.js"
-  },
+    },
   "author": "nipun chanaka",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
     "bootstrap": "^5.3.2",
+    
     "cors": "^2.8.5",
     "cron": "^3.1.7",
     "dotenv": "^16.3.1",
@@ -35,5 +36,9 @@
     "uuid": "^9.0.1",
     "winston": "^3.13.0",
     "ws": "^8.16.0"
+  },
+  "devDependencies": {
+    "chai-http": "^4.4.0",
+    "mocha": "^10.4.0"
   }
 }
